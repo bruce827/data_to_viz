@@ -1,23 +1,104 @@
 {
   "nodes": [
-    { 
-      "id": "root", 
-      "type": "decision-category", 
-      "data": { "label": "Network", "icon": "NetworkIcon" },
-      "style": { "x": 600, "y": 50 }
+    {
+      "id": "root",
+      "type": "decision-category",
+      "data": {
+        "label": "Network",
+        "icon": "NetworkIcon",
+        "label-cn": "网络图"
+      },
+      "style": {
+        "x": 600,
+        "y": 50
+      }
     },
-
-    { "id": "chart-network", "type": "decision-chart", "data": { "label": "Network", "icon": "NetworkIcon", "storyPath": "/graph/network", "description": "Nodes connected by links." } },
-    { "id": "chart-arc", "type": "decision-chart", "data": { "label": "Arc Diagram", "icon": "ArcIcon", "storyPath": "/graph/arc", "description": "Linear layout of network nodes." } },
-    { "id": "chart-chord", "type": "decision-chart", "data": { "label": "Chord Diagram", "icon": "ChordIcon", "storyPath": "/graph/chord", "description": "Circular layout showing flow between entities." } },
-    { "id": "chart-sankey", "type": "decision-chart", "data": { "label": "Sankey", "icon": "SankeyIcon", "storyPath": "/graph/sankey", "description": "Flow diagram where width represents quantity." } },
-    { "id": "chart-edge-bundling", "type": "decision-chart", "data": { "label": "Edge Bundling", "icon": "EdgeBundlingIcon", "storyPath": "/graph/edge_bundling", "description": "Hierarchical network with curved bundled links." } }
+    {
+      "id": "chart-network",
+      "type": "decision-chart",
+      "data": {
+        "label": "Network",
+        "icon": "NetworkIcon",
+        "storyPath": "/graph/network",
+        "description": "Nodes connected by links.",
+        "label-cn": "网络图",
+        "description-cn": "由链接连接的节点。"
+      }
+    },
+    {
+      "id": "chart-arc",
+      "type": "decision-chart",
+      "data": {
+        "label": "Arc Diagram",
+        "icon": "ArcIcon",
+        "storyPath": "/graph/arc",
+        "description": "Linear layout of network nodes.",
+        "label-cn": "弧线图",
+        "description-cn": "网络节点的线性布局。"
+      }
+    },
+    {
+      "id": "chart-chord",
+      "type": "decision-chart",
+      "data": {
+        "label": "Chord Diagram",
+        "icon": "ChordIcon",
+        "storyPath": "/graph/chord",
+        "description": "Circular layout showing flow between entities.",
+        "label-cn": "弦图",
+        "description-cn": "显示实体之间流动的圆形布局。"
+      }
+    },
+    {
+      "id": "chart-sankey",
+      "type": "decision-chart",
+      "data": {
+        "label": "Sankey",
+        "icon": "SankeyIcon",
+        "storyPath": "/graph/sankey",
+        "description": "Flow diagram where width represents quantity.",
+        "label-cn": "桑基图",
+        "description-cn": "宽度代表数量的流程图。"
+      }
+    },
+    {
+      "id": "chart-edge-bundling",
+      "type": "decision-chart",
+      "data": {
+        "label": "Edge Bundling",
+        "icon": "EdgeBundlingIcon",
+        "storyPath": "/graph/edge_bundling",
+        "description": "Hierarchical network with curved bundled links.",
+        "label-cn": "边缘捆绑",
+        "description-cn": "带有曲线捆绑链接的层级网络。"
+      }
+    }
   ],
   "edges": [
-    { "id": "e1", "source": "root", "target": "chart-network" },
-    { "id": "e2", "source": "root", "target": "chart-arc" },
-    { "id": "e3", "source": "root", "target": "chart-chord" },
-    { "id": "e4", "source": "root", "target": "chart-sankey" },
-    { "id": "e5", "source": "root", "target": "chart-edge-bundling" }
+    {
+      "id": "e1",
+      "source": "root",
+      "target": "chart-network"
+    },
+    {
+      "id": "e2",
+      "source": "root",
+      "target": "chart-arc"
+    },
+    {
+      "id": "e3",
+      "source": "root",
+      "target": "chart-chord"
+    },
+    {
+      "id": "e4",
+      "source": "root",
+      "target": "chart-sankey"
+    },
+    {
+      "id": "e5",
+      "source": "root",
+      "target": "chart-edge-bundling"
+    }
   ]
 }

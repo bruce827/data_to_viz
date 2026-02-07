@@ -21,6 +21,9 @@ register('node', 'react-node', ReactNode);
 // --- Custom Node Component (Rendered by G6) ---
 const NodeComponent = ({ data }: { data: any }) => {
   const { label, icon } = data.data;
+  const labelCn = data.data['label-cn'];
+  const displayLabel = labelCn || label;
+
   // Dynamic Icon loading
   const Icon = (Icons as any)[icon || 'NumericIcon'] || Icons.NumericIcon;
   
@@ -36,30 +39,30 @@ const NodeComponent = ({ data }: { data: any }) => {
 
   if (isCategory) {
     return (
-      <div className="flex flex-col items-center justify-center w-[120px] h-[60px] bg-slate-900 text-white rounded-lg shadow-lg border-2 border-slate-700">
-        <span className="font-bold text-sm tracking-wide uppercase">{label}</span>
+      <div className="flex flex-col items-center justify-center w-[160px] h-[70px] bg-slate-900 text-white rounded-lg shadow-lg border-2 border-slate-700">
+        <span className="font-bold text-[28px] tracking-wide ">{displayLabel}</span>
       </div>
     );
   }
 
   if (isQuestion) {
     return (
-      <div className="flex items-center justify-center px-4 py-2 bg-slate-100 border border-slate-300 rounded-full shadow-sm min-w-[100px]">
-         <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">{label}</span>
+      <div className="flex items-center justify-center w-full text-center px-5 py-2.5 bg-slate-100 border border-slate-300 rounded-full shadow-sm min-w-[120px]">
+         <span className="text-[24px] font-bold text-slate-700 tracking-normal">{displayLabel}</span>
       </div>
     );
   }
 
   // Chart Node
   return (
-    <Card className="flex flex-col items-center justify-center w-[110px] h-[110px] hover:shadow-xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer group bg-white">
-      <div className="flex-1 flex items-center justify-center w-full pt-2">
+    <Card className="gap-1 flex flex-col items-center justify-center w-[120px] h-[120px]  hover:shadow-xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer group bg-white">
+      <div className="flex-1 flex items-center justify-center w-full pt-3">
          {/* Icon Container with subtle animation */}
-         <Icon className="w-14 h-14 text-slate-400 group-hover:text-blue-600 transition-colors duration-300" />
+         <Icon className="w-16 h-16 text-slate-400 group-hover:text-blue-600 transition-colors duration-300" />
       </div>
-      <div className="mt-1 w-full text-center border-t border-slate-100 group-hover:border-blue-100">
-        <span className="text-[14px] font-bold text-slate-500 group-hover:text-blue-700 uppercase leading-tight block">
-          {label}
+      <div className="mt-2 w-full text-center border-t border-slate-100 group-hover:border-blue-100 py-2">
+        <span className="text-xl font-bold text-slate-600 group-hover:text-blue-700 leading-normal block px-1">
+          {displayLabel}
         </span>
       </div>
     </Card>
@@ -95,9 +98,9 @@ export function DecisionGraph({ data }: { data: any }) {
           component: (d: any) => <NodeComponent data={d} />,
           // Define standard sizes for layout calculation
           size: (d: any) => {
-            if (d.type === 'decision-chart') return [120, 120];
-            if (d.type === 'decision-category') return [130, 70];
-            return [120, 50]; // Question
+            if (d.type === 'decision-chart') return [130, 130];
+            if (d.type === 'decision-category') return [150, 80];
+            return [140, 60]; // Question
           },
           ports: [
             { placement: 'top' }, 
@@ -124,9 +127,10 @@ export function DecisionGraph({ data }: { data: any }) {
         // type: 'antv-dagre',
         type: 'compact-box',
         direction: 'TB',
-        getWidth: () => 80,
-        getHeight: () => 42,
-        getVGap: () => 60,
+        getWidth: () => 100,
+        getHeight: () => 50,
+        getVGap: () => 80,
+        getHGap: () => 40,
         // rankdir: 'TB',
         // align: 'UL',
         // nodesep: 60,
@@ -191,9 +195,9 @@ export function DecisionGraph({ data }: { data: any }) {
                                  return <Icon className="w-12 h-12 text-blue-600" />;
                              })()}
                             <div>
-                                <DialogTitle className="text-2xl">{selectedNode.data.label}</DialogTitle>
+                                <DialogTitle className="text-2xl">{selectedNode.data['label-cn'] || selectedNode.data.label}</DialogTitle>
                                 <DialogDescription className="text-base mt-1">
-                                    {selectedNode.data.description || "Explore this chart type to understand your data distribution."}
+                                    {selectedNode.data['description-cn'] || selectedNode.data.description || "Explore this chart type to understand your data distribution."}
                                 </DialogDescription>
                             </div>
                         </div>

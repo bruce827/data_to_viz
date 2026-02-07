@@ -20,16 +20,16 @@ export function MobileDecisionTree({ data }: { data: any }) {
 
     if (isLeaf) {
       return (
-        <div key={node.id} className="pl-4 py-2 border-l-2 border-slate-100 ml-2">
+        <div key={node.id} className="pl-4 py-3 border-l-2 border-slate-100 ml-2">
            <Button 
              variant="outline" 
-             className="w-full justify-start gap-3 h-auto py-3 bg-white hover:border-blue-300 hover:bg-blue-50"
+             className="w-full justify-start gap-4 h-auto py-4 bg-white hover:border-blue-300 hover:bg-blue-50"
              onClick={() => node.storyPath && (window.location.href = node.storyPath)}
            >
-             {Icon && <Icon className="w-5 h-5 text-blue-600" />}
+             {Icon && <Icon className="w-6 h-6 text-blue-600" />}
              <div className="text-left">
-                <div className="font-semibold text-slate-800">{node.label}</div>
-                <div className="text-xs text-slate-500 font-normal">View Chart Guide →</div>
+                <div className="font-bold text-base text-slate-800">{node.labelCn || node.label}</div>
+                <div className="text-sm text-slate-500 font-normal mt-0.5">查看图表指南 →</div>
              </div>
            </Button>
         </div>
@@ -38,10 +38,10 @@ export function MobileDecisionTree({ data }: { data: any }) {
 
     return (
       <AccordionItem value={node.id} key={node.id} className="border-b-0">
-        <AccordionTrigger className={`hover:no-underline py-3 ${level === 0 ? 'text-lg font-bold' : 'text-sm font-medium text-slate-600'}`}>
-          <div className="flex items-center gap-2">
-            {Icon && <Icon className="w-5 h-5 text-slate-400" />}
-            {node.label}
+        <AccordionTrigger className={`hover:no-underline py-4 ${level === 0 ? 'text-xl font-bold' : 'text-base font-semibold text-slate-700'}`}>
+          <div className="flex items-center gap-3">
+            {Icon && <Icon className="w-6 h-6 text-slate-400" />}
+            {node.labelCn || node.label}
           </div>
         </AccordionTrigger>
         <AccordionContent className="pl-4">

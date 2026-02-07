@@ -1,48 +1,238 @@
 {
   "nodes": [
-    { 
-      "id": "root", 
-      "type": "decision-category", 
-      "data": { "label": "Categoric", "icon": "CategoricIcon" },
-      "style": { "x": 600, "y": 50 }
+    {
+      "id": "root",
+      "type": "decision-category",
+      "data": {
+        "label": "Categoric",
+        "icon": "CategoricIcon",
+        "label-cn": "分类"
+      },
+      "style": {
+        "x": 600,
+        "y": 50
+      }
     },
-    { "id": "q-1cat", "type": "decision-question", "data": { "label": "One Categoric" } },
-    { "id": "q-2cat", "type": "decision-question", "data": { "label": "Two Categoric" } },
-    { "id": "q-sevcat", "type": "decision-question", "data": { "label": "Several Categoric" } },
-
-    { "id": "chart-barplot", "type": "decision-chart", "data": { "label": "Barplot", "icon": "BarplotIcon", "storyPath": "/graph/barplot", "description": "Classic way to visualize numeric values for categories." } },
-    { "id": "chart-lollipop", "type": "decision-chart", "data": { "label": "Lollipop", "icon": "LollipopIcon", "storyPath": "/graph/lollipop", "description": "Less cluttered alternative to barplot." } },
-    { "id": "chart-wordcloud", "type": "decision-chart", "data": { "label": "Wordcloud", "icon": "WordcloudIcon", "storyPath": "/graph/wordcloud", "description": "Visual representation of text data." } },
-    { "id": "chart-pie", "type": "decision-chart", "data": { "label": "Pie Chart", "icon": "PieIcon", "storyPath": "/graph/pie", "description": "Show proportions of a whole." } },
-    { "id": "chart-treemap", "type": "decision-chart", "data": { "label": "Treemap", "icon": "TreemapIcon", "storyPath": "/graph/treemap", "description": "Hierarchical data as nested rectangles." } },
-    { "id": "chart-venn", "type": "decision-chart", "data": { "label": "Venn Diagram", "icon": "VennIcon", "storyPath": "/graph/venn", "description": "Logical relations between sets." } },
-    
-    { "id": "q-2cat-nested", "type": "decision-question", "data": { "label": "Nested?" } },
-    { "id": "chart-circular-packing", "type": "decision-chart", "data": { "label": "Circular Packing", "icon": "CircularPackingIcon", "storyPath": "/graph/circularpacking" } },
-    { "id": "chart-sunburst", "type": "decision-chart", "data": { "label": "Sunburst", "icon": "SunburstIcon", "storyPath": "/graph/sunburst" } },
-    
-    { "id": "chart-spider", "type": "decision-chart", "data": { "label": "Spider / Radar", "icon": "SpiderIcon", "storyPath": "/graph/spider" } },
-    { "id": "chart-parallel", "type": "decision-chart", "data": { "label": "Parallel Plot", "icon": "ParallelIcon", "storyPath": "/graph/parallel" } }
+    {
+      "id": "q-1cat",
+      "type": "decision-question",
+      "data": {
+        "label": "One Categoric",
+        "label-cn": "单个分类"
+      }
+    },
+    {
+      "id": "q-2cat",
+      "type": "decision-question",
+      "data": {
+        "label": "Two Categoric",
+        "label-cn": "两个分类"
+      }
+    },
+    {
+      "id": "q-sevcat",
+      "type": "decision-question",
+      "data": {
+        "label": "Several Categoric",
+        "label-cn": "多个分类"
+      }
+    },
+    {
+      "id": "chart-barplot",
+      "type": "decision-chart",
+      "data": {
+        "label": "Barplot",
+        "icon": "BarplotIcon",
+        "storyPath": "/graph/barplot",
+        "description": "Classic way to visualize numeric values for categories.",
+        "label-cn": "条形图",
+        "description-cn": "可视化分类数值变量的经典方式。"
+      }
+    },
+    {
+      "id": "chart-lollipop",
+      "type": "decision-chart",
+      "data": {
+        "label": "Lollipop",
+        "icon": "LollipopIcon",
+        "storyPath": "/graph/lollipop",
+        "description": "Less cluttered alternative to barplot.",
+        "label-cn": "棒棒糖图",
+        "description-cn": "条形图的简洁替代方案。"
+      }
+    },
+    {
+      "id": "chart-wordcloud",
+      "type": "decision-chart",
+      "data": {
+        "label": "Wordcloud",
+        "icon": "WordcloudIcon",
+        "storyPath": "/graph/wordcloud",
+        "description": "Visual representation of text data.",
+        "label-cn": "词云图",
+        "description-cn": "文本数据的视觉表示。"
+      }
+    },
+    {
+      "id": "chart-pie",
+      "type": "decision-chart",
+      "data": {
+        "label": "Pie Chart",
+        "icon": "PieIcon",
+        "storyPath": "/graph/pie",
+        "description": "Show proportions of a whole.",
+        "label-cn": "饼图",
+        "description-cn": "显示整体的比例。"
+      }
+    },
+    {
+      "id": "chart-treemap",
+      "type": "decision-chart",
+      "data": {
+        "label": "Treemap",
+        "icon": "TreemapIcon",
+        "storyPath": "/graph/treemap",
+        "description": "Hierarchical data as nested rectangles.",
+        "label-cn": "矩形树图",
+        "description-cn": "以嵌套矩形表示层级数据。"
+      }
+    },
+    {
+      "id": "chart-venn",
+      "type": "decision-chart",
+      "data": {
+        "label": "Venn Diagram",
+        "icon": "VennIcon",
+        "storyPath": "/graph/venn",
+        "description": "Logical relations between sets.",
+        "label-cn": "韦恩图",
+        "description-cn": "集合之间的逻辑关系。"
+      }
+    },
+    {
+      "id": "q-2cat-nested",
+      "type": "decision-question",
+      "data": {
+        "label": "Nested?",
+        "label-cn": "嵌套？"
+      }
+    },
+    {
+      "id": "chart-circular-packing",
+      "type": "decision-chart",
+      "data": {
+        "label": "Circular Packing",
+        "icon": "CircularPackingIcon",
+        "storyPath": "/graph/circularpacking",
+        "label-cn": "圆形填充图"
+      }
+    },
+    {
+      "id": "chart-sunburst",
+      "type": "decision-chart",
+      "data": {
+        "label": "Sunburst",
+        "icon": "SunburstIcon",
+        "storyPath": "/graph/sunburst",
+        "label-cn": "旭日图"
+      }
+    },
+    {
+      "id": "chart-spider",
+      "type": "decision-chart",
+      "data": {
+        "label": "Spider / Radar",
+        "icon": "SpiderIcon",
+        "storyPath": "/graph/spider",
+        "label-cn": "雷达图 / 蜘蛛网图"
+      }
+    },
+    {
+      "id": "chart-parallel",
+      "type": "decision-chart",
+      "data": {
+        "label": "Parallel Plot",
+        "icon": "ParallelIcon",
+        "storyPath": "/graph/parallel",
+        "label-cn": "平行坐标图"
+      }
+    }
   ],
   "edges": [
-    { "id": "e1", "source": "root", "target": "q-1cat" },
-    { "id": "e2", "source": "root", "target": "q-2cat" },
-    { "id": "e3", "source": "root", "target": "q-sevcat" },
-
-    { "id": "e1-1", "source": "q-1cat", "target": "chart-barplot" },
-    { "id": "e1-2", "source": "q-1cat", "target": "chart-lollipop" },
-    { "id": "e1-3", "source": "q-1cat", "target": "chart-wordcloud" },
-    { "id": "e1-4", "source": "q-1cat", "target": "chart-pie" },
-    { "id": "e1-5", "source": "q-1cat", "target": "chart-treemap" },
-
-    { "id": "e2-1", "source": "q-2cat", "target": "q-2cat-nested" },
-    { "id": "e2-2", "source": "q-2cat", "target": "chart-venn" },
-
-    { "id": "e2-nested-1", "source": "q-2cat-nested", "target": "chart-treemap" },
-    { "id": "e2-nested-2", "source": "q-2cat-nested", "target": "chart-circular-packing" },
-    { "id": "e2-nested-3", "source": "q-2cat-nested", "target": "chart-sunburst" },
-
-    { "id": "e3-1", "source": "q-sevcat", "target": "chart-spider" },
-    { "id": "e3-2", "source": "q-sevcat", "target": "chart-parallel" }
+    {
+      "id": "e1",
+      "source": "root",
+      "target": "q-1cat"
+    },
+    {
+      "id": "e2",
+      "source": "root",
+      "target": "q-2cat"
+    },
+    {
+      "id": "e3",
+      "source": "root",
+      "target": "q-sevcat"
+    },
+    {
+      "id": "e1-1",
+      "source": "q-1cat",
+      "target": "chart-barplot"
+    },
+    {
+      "id": "e1-2",
+      "source": "q-1cat",
+      "target": "chart-lollipop"
+    },
+    {
+      "id": "e1-3",
+      "source": "q-1cat",
+      "target": "chart-wordcloud"
+    },
+    {
+      "id": "e1-4",
+      "source": "q-1cat",
+      "target": "chart-pie"
+    },
+    {
+      "id": "e1-5",
+      "source": "q-1cat",
+      "target": "chart-treemap"
+    },
+    {
+      "id": "e2-1",
+      "source": "q-2cat",
+      "target": "q-2cat-nested"
+    },
+    {
+      "id": "e2-2",
+      "source": "q-2cat",
+      "target": "chart-venn"
+    },
+    {
+      "id": "e2-nested-1",
+      "source": "q-2cat-nested",
+      "target": "chart-treemap"
+    },
+    {
+      "id": "e2-nested-2",
+      "source": "q-2cat-nested",
+      "target": "chart-circular-packing"
+    },
+    {
+      "id": "e2-nested-3",
+      "source": "q-2cat-nested",
+      "target": "chart-sunburst"
+    },
+    {
+      "id": "e3-1",
+      "source": "q-sevcat",
+      "target": "chart-spider"
+    },
+    {
+      "id": "e3-2",
+      "source": "q-sevcat",
+      "target": "chart-parallel"
+    }
   ]
 }

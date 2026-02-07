@@ -1,21 +1,79 @@
 {
   "nodes": [
-    { 
-      "id": "root", 
-      "type": "decision-category", 
-      "data": { "label": "Time Series", "icon": "TimeIcon" },
-      "style": { "x": 600, "y": 50 }
+    {
+      "id": "root",
+      "type": "decision-category",
+      "data": {
+        "label": "Time Series",
+        "icon": "TimeIcon",
+        "label-cn": "时间序列"
+      },
+      "style": {
+        "x": 600,
+        "y": 50
+      }
     },
-
-    { "id": "chart-line", "type": "decision-chart", "data": { "label": "Line Plot", "icon": "LineIcon", "storyPath": "/graph/line" } },
-    { "id": "chart-area", "type": "decision-chart", "data": { "label": "Area Plot", "icon": "AreaIcon", "storyPath": "/graph/area" } },
-    { "id": "chart-stacked-area", "type": "decision-chart", "data": { "label": "Stacked Area", "icon": "StackedAreaIcon", "storyPath": "/graph/stackedarea" } },
-    { "id": "chart-stream", "type": "decision-chart", "data": { "label": "Streamgraph", "icon": "StreamIcon", "storyPath": "/graph/streamgraph" } }
+    {
+      "id": "chart-line",
+      "type": "decision-chart",
+      "data": {
+        "label": "Line Plot",
+        "icon": "LineIcon",
+        "storyPath": "/graph/line",
+        "label-cn": "折线图"
+      }
+    },
+    {
+      "id": "chart-area",
+      "type": "decision-chart",
+      "data": {
+        "label": "Area Plot",
+        "icon": "AreaIcon",
+        "storyPath": "/graph/area",
+        "label-cn": "面积图"
+      }
+    },
+    {
+      "id": "chart-stacked-area",
+      "type": "decision-chart",
+      "data": {
+        "label": "Stacked Area",
+        "icon": "StackedAreaIcon",
+        "storyPath": "/graph/stackedarea",
+        "label-cn": "堆叠面积图"
+      }
+    },
+    {
+      "id": "chart-stream",
+      "type": "decision-chart",
+      "data": {
+        "label": "Streamgraph",
+        "icon": "StreamIcon",
+        "storyPath": "/graph/streamgraph",
+        "label-cn": "流图"
+      }
+    }
   ],
   "edges": [
-    { "id": "e1", "source": "root", "target": "chart-line" },
-    { "id": "e2", "source": "root", "target": "chart-area" },
-    { "id": "e3", "source": "root", "target": "chart-stacked-area" },
-    { "id": "e4", "source": "root", "target": "chart-stream" }
+    {
+      "id": "e1",
+      "source": "root",
+      "target": "chart-line"
+    },
+    {
+      "id": "e2",
+      "source": "root",
+      "target": "chart-area"
+    },
+    {
+      "id": "e3",
+      "source": "root",
+      "target": "chart-stacked-area"
+    },
+    {
+      "id": "e4",
+      "source": "root",
+      "target": "chart-stream"
+    }
   ]
 }

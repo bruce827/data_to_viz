@@ -1,25 +1,121 @@
 {
   "nodes": [
-    { 
-      "id": "root", 
-      "type": "decision-category", 
-      "data": { "label": "Maps", "icon": "MapIcon" },
-      "style": { "x": 600, "y": 50 }
+    {
+      "id": "root",
+      "type": "decision-category",
+      "data": {
+        "label": "Maps",
+        "icon": "MapIcon",
+        "label-cn": "地图"
+      },
+      "style": {
+        "x": 600,
+        "y": 50
+      }
     },
-
-    { "id": "chart-background", "type": "decision-chart", "data": { "label": "Background Map", "icon": "MapBgIcon", "storyPath": "/graph/background_map", "description": "Just the geographical boundaries." } },
-    { "id": "chart-choropleth", "type": "decision-chart", "data": { "label": "Choropleth", "icon": "ChoroplethIcon", "storyPath": "/graph/choropleth", "description": "Regions colored by a numeric variable." } },
-    { "id": "chart-cartogram", "type": "decision-chart", "data": { "label": "Cartogram", "icon": "CartogramIcon", "storyPath": "/graph/cartogram", "description": "Distorted regions based on value." } },
-    { "id": "chart-bubble-map", "type": "decision-chart", "data": { "label": "Bubble Map", "icon": "BubbleMapIcon", "storyPath": "/graph/bubblemap", "description": "Circles on map coordinates." } },
-    { "id": "chart-connection", "type": "decision-chart", "data": { "label": "Connection", "icon": "ConnectionMapIcon", "storyPath": "/graph/connection_map", "description": "Links between locations." } },
-    { "id": "chart-hexbin-map", "type": "decision-chart", "data": { "label": "Hexbin Map", "icon": "HexbinMapIcon", "storyPath": "/graph/hexbin_map", "description": "2D density on map coordinates." } }
+    {
+      "id": "chart-background",
+      "type": "decision-chart",
+      "data": {
+        "label": "Background Map",
+        "icon": "MapBgIcon",
+        "storyPath": "/graph/background_map",
+        "description": "Just the geographical boundaries.",
+        "label-cn": "背景地图",
+        "description-cn": "仅显示地理边界。"
+      }
+    },
+    {
+      "id": "chart-choropleth",
+      "type": "decision-chart",
+      "data": {
+        "label": "Choropleth",
+        "icon": "ChoroplethIcon",
+        "storyPath": "/graph/choropleth",
+        "description": "Regions colored by a numeric variable.",
+        "label-cn": "等值区域图",
+        "description-cn": "按数值变量着色的区域。"
+      }
+    },
+    {
+      "id": "chart-cartogram",
+      "type": "decision-chart",
+      "data": {
+        "label": "Cartogram",
+        "icon": "CartogramIcon",
+        "storyPath": "/graph/cartogram",
+        "description": "Distorted regions based on value.",
+        "label-cn": "统计地图",
+        "description-cn": "根据数值变形的区域。"
+      }
+    },
+    {
+      "id": "chart-bubble-map",
+      "type": "decision-chart",
+      "data": {
+        "label": "Bubble Map",
+        "icon": "BubbleMapIcon",
+        "storyPath": "/graph/bubblemap",
+        "description": "Circles on map coordinates.",
+        "label-cn": "气泡地图",
+        "description-cn": "地图坐标上的圆圈。"
+      }
+    },
+    {
+      "id": "chart-connection",
+      "type": "decision-chart",
+      "data": {
+        "label": "Connection",
+        "icon": "ConnectionMapIcon",
+        "storyPath": "/graph/connection_map",
+        "description": "Links between locations.",
+        "label-cn": "连接地图",
+        "description-cn": "地点之间的链接。"
+      }
+    },
+    {
+      "id": "chart-hexbin-map",
+      "type": "decision-chart",
+      "data": {
+        "label": "Hexbin Map",
+        "icon": "HexbinMapIcon",
+        "storyPath": "/graph/hexbin_map",
+        "description": "2D density on map coordinates.",
+        "label-cn": "六边形分箱地图",
+        "description-cn": "地图坐标上的2D密度。"
+      }
+    }
   ],
   "edges": [
-    { "id": "e1", "source": "root", "target": "chart-background" },
-    { "id": "e2", "source": "root", "target": "chart-choropleth" },
-    { "id": "e3", "source": "root", "target": "chart-cartogram" },
-    { "id": "e4", "source": "root", "target": "chart-bubble-map" },
-    { "id": "e5", "source": "root", "target": "chart-connection" },
-    { "id": "e6", "source": "root", "target": "chart-hexbin-map" }
+    {
+      "id": "e1",
+      "source": "root",
+      "target": "chart-background"
+    },
+    {
+      "id": "e2",
+      "source": "root",
+      "target": "chart-choropleth"
+    },
+    {
+      "id": "e3",
+      "source": "root",
+      "target": "chart-cartogram"
+    },
+    {
+      "id": "e4",
+      "source": "root",
+      "target": "chart-bubble-map"
+    },
+    {
+      "id": "e5",
+      "source": "root",
+      "target": "chart-connection"
+    },
+    {
+      "id": "e6",
+      "source": "root",
+      "target": "chart-hexbin-map"
+    }
   ]
 }
