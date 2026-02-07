@@ -1,0 +1,23 @@
+{
+  "nodes": [
+    { 
+      "id": "root", 
+      "type": "decision-category", 
+      "data": { "label": "Network", "icon": "NetworkIcon" },
+      "style": { "x": 600, "y": 50 }
+    },
+
+    { "id": "chart-network", "type": "decision-chart", "data": { "label": "Network", "icon": "NetworkIcon", "storyPath": "/graph/network", "description": "Nodes connected by links." } },
+    { "id": "chart-arc", "type": "decision-chart", "data": { "label": "Arc Diagram", "icon": "ArcIcon", "storyPath": "/graph/arc", "description": "Linear layout of network nodes." } },
+    { "id": "chart-chord", "type": "decision-chart", "data": { "label": "Chord Diagram", "icon": "ChordIcon", "storyPath": "/graph/chord", "description": "Circular layout showing flow between entities." } },
+    { "id": "chart-sankey", "type": "decision-chart", "data": { "label": "Sankey", "icon": "SankeyIcon", "storyPath": "/graph/sankey", "description": "Flow diagram where width represents quantity." } },
+    { "id": "chart-edge-bundling", "type": "decision-chart", "data": { "label": "Edge Bundling", "icon": "EdgeBundlingIcon", "storyPath": "/graph/edge_bundling", "description": "Hierarchical network with curved bundled links." } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "root", "target": "chart-network" },
+    { "id": "e2", "source": "root", "target": "chart-arc" },
+    { "id": "e3", "source": "root", "target": "chart-chord" },
+    { "id": "e4", "source": "root", "target": "chart-sankey" },
+    { "id": "e5", "source": "root", "target": "chart-edge-bundling" }
+  ]
+}

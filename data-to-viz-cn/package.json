@@ -1,0 +1,39 @@
+{
+  "name": "data-to-viz-cn",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@antv/x6": "^3.1.5",
+    "@antv/x6-react-shape": "^3.0.1",
+    "clsx": "^2.1.1",
+    "d3-hierarchy": "^3.1.2",
+    "d3-shape": "^3.2.0",
+    "echarts": "^6.0.0",
+    "echarts-for-react": "^3.0.6",
+    "framer-motion": "^12.29.2",
+    "lucide-react": "^0.563.0",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/d3-hierarchy": "^3.1.7",
+    "@types/d3-shape": "^3.1.8",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

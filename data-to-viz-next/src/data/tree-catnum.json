@@ -1,0 +1,43 @@
+{
+  "nodes": [
+    { 
+      "id": "root", 
+      "type": "decision-category", 
+      "data": { "label": "Num & Cat", "icon": "NumCatIcon" },
+      "style": { "x": 600, "y": 50 }
+    },
+    
+    { "id": "q-1num-1cat", "type": "decision-question", "data": { "label": "1 Num + 1 Cat" } },
+    { "id": "q-1num-sevcat", "type": "decision-question", "data": { "label": "1 Num + Sev Cat" } },
+
+    { "id": "chart-barplot", "type": "decision-chart", "data": { "label": "Barplot", "icon": "BarplotIcon", "storyPath": "/graph/barplot" } },
+    { "id": "chart-lollipop", "type": "decision-chart", "data": { "label": "Lollipop", "icon": "LollipopIcon", "storyPath": "/graph/lollipop" } },
+    { "id": "chart-boxplot", "type": "decision-chart", "data": { "label": "Boxplot", "icon": "BoxplotIcon", "storyPath": "/graph/boxplot" } },
+    { "id": "chart-violin", "type": "decision-chart", "data": { "label": "Violin", "icon": "ViolinIcon", "storyPath": "/graph/violin" } },
+    { "id": "chart-ridgeline", "type": "decision-chart", "data": { "label": "Ridgeline", "icon": "RidgelineIcon", "storyPath": "/graph/ridgeline" } },
+
+    { "id": "chart-heatmap", "type": "decision-chart", "data": { "label": "Heatmap", "icon": "HeatmapIcon", "storyPath": "/graph/heatmap" } },
+    { "id": "chart-grouped-scatter", "type": "decision-chart", "data": { "label": "Grouped Scatter", "icon": "ScatterIcon", "storyPath": "/graph/custom/grouped-scatter" } },
+    
+    { "id": "q-subgroups", "type": "decision-question", "data": { "label": "Subgroups?" } },
+    { "id": "chart-grouped-barplot", "type": "decision-chart", "data": { "label": "Grouped Barplot", "icon": "GroupedBarIcon", "storyPath": "/graph/grouped_barplot" } },
+    { "id": "chart-stacked-barplot", "type": "decision-chart", "data": { "label": "Stacked Barplot", "icon": "StackedBarIcon", "storyPath": "/graph/stacked_barplot" } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "root", "target": "q-1num-1cat" },
+    { "id": "e2", "source": "root", "target": "q-1num-sevcat" },
+
+    { "id": "e1-1", "source": "q-1num-1cat", "target": "chart-barplot" },
+    { "id": "e1-2", "source": "q-1num-1cat", "target": "chart-lollipop" },
+    { "id": "e1-3", "source": "q-1num-1cat", "target": "chart-boxplot" },
+    { "id": "e1-4", "source": "q-1num-1cat", "target": "chart-violin" },
+    { "id": "e1-5", "source": "q-1num-1cat", "target": "chart-ridgeline" },
+
+    { "id": "e2-1", "source": "q-1num-sevcat", "target": "chart-heatmap" },
+    { "id": "e2-2", "source": "q-1num-sevcat", "target": "q-subgroups" },
+    { "id": "e2-3", "source": "q-1num-sevcat", "target": "chart-grouped-scatter" },
+
+    { "id": "e-sub-1", "source": "q-subgroups", "target": "chart-grouped-barplot" },
+    { "id": "e-sub-2", "source": "q-subgroups", "target": "chart-stacked-barplot" }
+  ]
+}

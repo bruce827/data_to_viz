@@ -1,0 +1,84 @@
+
+> data-to-viz-cn@0.1.0 dev
+> next dev --webpack
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/maylis/pnpm-lock.yaml as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * /Users/maylis/Desktop/github上的项目/data_to_viz/data-to-viz-cn/package-lock.json
+
+▲ Next.js 16.1.6 (webpack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.100.50:3000
+
+✓ Starting...
+✓ Ready in 1615ms
+○ Compiling / ...
+ GET / 200 in 4.4s (compile: 3.9s, render: 474ms)
+ GET / 200 in 83ms (compile: 29ms, render: 54ms)
+ GET /img/section/%E7%BD%91%E7%BB%9C%E5%85%B3%E7%B3%BBSmall.png 404 in 893ms (compile: 795ms, render: 99ms)
+ GET /img/section/%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90small.png 404 in 902ms (compile: 803ms, render: 99ms)
+ GET / 200 in 40ms (compile: 11ms, render: 29ms)
+ GET / 200 in 31ms (compile: 8ms, render: 23ms)
+ GET / 200 in 15ms (compile: 4ms, render: 12ms)
+ GET / 200 in 15ms (compile: 4ms, render: 11ms)
+ GET / 200 in 16ms (compile: 3ms, render: 13ms)
+⨯ ./src/app/page.tsx
+Error:   x Expected '</', got 'ident'
+    ,-[/Users/maylis/Desktop/github上的项目/data_to_viz/data-to-viz-cn/src/app/page.tsx:56:1]
+ 53 |               {tab.label}
+ 54 |             </button>
+ 55 |              <button
+ 56 |               onClick={() => setActiveTab('geo' as any)}
+    :               ^^^^^^^
+ 57 |               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+ 58 |                 activeTab === 'geo' 
+ 59 |                   ? 'bg-[#69b3a2] text-white shadow-md' 
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/page.tsx
+⨯ ./src/app/page.tsx
+Error:   x Expected '</', got 'ident'
+    ,-[/Users/maylis/Desktop/github上的项目/data_to_viz/data-to-viz-cn/src/app/page.tsx:56:1]
+ 53 |               {tab.label}
+ 54 |             </button>
+ 55 |              <button
+ 56 |               onClick={() => setActiveTab('geo' as any)}
+    :               ^^^^^^^
+ 57 |               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+ 58 |                 activeTab === 'geo' 
+ 59 |                   ? 'bg-[#69b3a2] text-white shadow-md' 
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/page.tsx
+ GET / 500 in 2.8s (compile: 2.7s, render: 75ms)
+ GET / 500 in 9ms (compile: 3ms, render: 5ms)
+ GET / 500 in 13ms (compile: 4ms, render: 9ms)
+ GET / 500 in 12ms (compile: 3ms, render: 9ms)
+○ Compiling /_error ...
+ GET / 500 in 31ms (compile: 14ms, render: 18ms)
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 377ms (compile: 240ms, render: 137ms)
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 26ms (compile: 3ms, render: 23ms)
+ GET / 200 in 23ms (compile: 3ms, render: 20ms)
+ GET / 200 in 77ms (compile: 49ms, render: 28ms)
+ GET / 200 in 101ms (compile: 71ms, render: 30ms)
+ GET / 200 in 15ms (compile: 3ms, render: 12ms)
+ GET / 200 in 145ms (compile: 118ms, render: 26ms)
+ GET / 200 in 35ms (compile: 10ms, render: 25ms)
+ GET / 200 in 87ms (compile: 62ms, render: 25ms)
+ GET / 200 in 88ms (compile: 8ms, render: 80ms)
+ GET / 200 in 80ms (compile: 61ms, render: 19ms)
+[?25h

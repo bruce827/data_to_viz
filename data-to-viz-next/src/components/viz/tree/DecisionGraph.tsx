@@ -1,0 +1,230 @@
+'use client';
+
+import React, { useEffect, useRef, useState } from 'react';
+import { Graph, register } from '@antv/g6';
+import { ReactNode } from '@antv/g6-extension-react';
+import * as Icons from '../icons';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+// Register the extension
+register('node', 'react-node', ReactNode);
+
+// --- Custom Node Component (Rendered by G6) ---
+const NodeComponent = ({ data }: { data: any }) => {
+  const { label, icon } = data.data;
+  // Dynamic Icon loading
+  const Icon = (Icons as any)[icon || 'NumericIcon'] || Icons.NumericIcon;
+  
+  const type = data.type;
+  const isChart = type === 'decision-chart';
+  const isQuestion = type === 'decision-question';
+  const isCategory = type === 'decision-category';
+
+  // UI/UX Styling Strategy:
+  // - Category (Root): Prominent, larger, brand color border.
+  // - Question (Branch): Pill shape, subtle background, distinct text.
+  // - Chart (Leaf): Card-like, visual focus, interactive hover state.
+
+  if (isCategory) {
+    return (
+      <div className="flex flex-col items-center justify-center w-[120px] h-[60px] bg-slate-900 text-white rounded-lg shadow-lg border-2 border-slate-700">
+        <span className="font-bold text-sm tracking-wide uppercase">{label}</span>
+      </div>
+    );
+  }
+
+  if (isQuestion) {
+    return (
+      <div className="flex items-center justify-center px-4 py-2 bg-slate-100 border border-slate-300 rounded-full shadow-sm min-w-[100px]">
+         <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">{label}</span>
+      </div>
+    );
+  }
+
+  // Chart Node
+  return (
+    <Card className="flex flex-col items-center justify-center w-[110px] h-[110px] hover:shadow-xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer group bg-white">
+      <div className="flex-1 flex items-center justify-center w-full pt-2">
+         {/* Icon Container with subtle animation */}
+         <Icon className="w-14 h-14 text-slate-400 group-hover:text-blue-600 transition-colors duration-300" />
+      </div>
+      <div className="mt-1 w-full text-center border-t border-slate-100 group-hover:border-blue-100">
+        <span className="text-[14px] font-bold text-slate-500 group-hover:text-blue-700 uppercase leading-tight block">
+          {label}
+        </span>
+      </div>
+    </Card>
+  );
+};
+
+// --- Main Graph Component ---
+export function DecisionGraph({ data }: { data: any }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const graphRef = useRef<Graph | null>(null);
+  const [selectedNode, setSelectedNode] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Handle Node Click from G6
+  const handleNodeClick = (event: any) => {
+    const { target } = event;
+    // Walk up to find the node element if clicked on child
+    // In G6 v5, event.target.id might be the shape ID. 
+    // We rely on the event model.
+    // However, for React nodes, the click might be captured by React.
+    // Best way: G6 event listener.
+  };
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const graph = new Graph({
+      container: containerRef.current,
+      data,
+      node: {
+        type: 'react-node',
+        style: {
+          component: (d: any) => <NodeComponent data={d} />,
+          // Define standard sizes for layout calculation
+          size: (d: any) => {
+            if (d.type === 'decision-chart') return [120, 120];
+            if (d.type === 'decision-category') return [130, 70];
+            return [120, 50]; // Question
+          },
+          ports: [
+            { placement: 'top' }, 
+            { placement: 'bottom' }
+          ],
+        },
+      },
+      edge: {
+        type: 'polyline',
+        style: {
+          router: { 
+            type: 'orth',
+            // padding:  90,
+            // offset: 30  
+          },
+          // controlPoints:[5,20],
+          stroke: '#94a3b8',
+          lineWidth: 2,
+          targetArrow: true,
+          radius: 4,
+        },
+      },
+      layout: {
+        // type: 'antv-dagre',
+        type: 'compact-box',
+        direction: 'TB',
+        getWidth: () => 80,
+        getHeight: () => 42,
+        getVGap: () => 60,
+        // rankdir: 'TB',
+        // align: 'UL',
+        // nodesep: 60,
+        // ranksep: 80,
+        // controlPoints: true,
+      },
+      behaviors: [
+        'drag-canvas', 
+        'zoom-canvas', 
+        {
+            type: 'click-select',
+            multiple: false,
+            onClick: (e: any) => {
+                if(e.target.id && data.nodes.find((n:any) => n.id === e.target.id)) {
+                    const node = data.nodes.find((n:any) => n.id === e.target.id);
+                    if(node.type === 'decision-chart') {
+                        setSelectedNode(node);
+                        setIsModalOpen(true);
+                    }
+                }
+            }
+        }
+      ],
+      autoFit: 'view',
+      animation: false, 
+    });
+
+    graph.render();
+    graphRef.current = graph;
+    
+    // Event Listener for Node Clicks (Reliable method)
+    graph.on('node:click', (e) => {
+        const nodeId = e.target.id;
+        const nodeData = data.nodes.find((n: any) => n.id === nodeId);
+        if (nodeData && nodeData.type === 'decision-chart') {
+             setSelectedNode(nodeData);
+             setIsModalOpen(true);
+        }
+    });
+
+    return () => {
+      graph.destroy();
+    };
+  }, [data]);
+
+  return (
+    <>
+        <div 
+          ref={containerRef} 
+          className="w-full h-[800px] bg-slate-50/30" 
+        />
+        
+        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+            <DialogContent className="sm:max-w-[600px]">
+                {selectedNode && (
+                    <>
+                    <DialogHeader>
+                        <div className="flex items-center gap-4 mb-4">
+                             {/* Render Icon in Header */}
+                             {(() => {
+                                 const Icon = (Icons as any)[selectedNode.data.icon || 'NumericIcon'] || Icons.NumericIcon;
+                                 return <Icon className="w-12 h-12 text-blue-600" />;
+                             })()}
+                            <div>
+                                <DialogTitle className="text-2xl">{selectedNode.data.label}</DialogTitle>
+                                <DialogDescription className="text-base mt-1">
+                                    {selectedNode.data.description || "Explore this chart type to understand your data distribution."}
+                                </DialogDescription>
+                            </div>
+                        </div>
+                    </DialogHeader>
+                    
+                    <div className="grid gap-4 py-4">
+                        <div className="grid grid-cols-2 gap-4">
+                            <Button variant="outline" className="h-auto py-4 flex flex-col gap-2">
+                                <span className="font-semibold">R Graph Gallery</span>
+                                <span className="text-xs text-muted-foreground">Code examples</span>
+                            </Button>
+                            <Button variant="outline" className="h-auto py-4 flex flex-col gap-2">
+                                <span className="font-semibold">Python Gallery</span>
+                                <span className="text-xs text-muted-foreground">Code examples</span>
+                            </Button>
+                        </div>
+                        <div className="bg-slate-100 p-4 rounded-lg text-sm text-slate-600">
+                             <strong>Best for:</strong> Comparing values across different categories.
+                        </div>
+                    </div>
+
+                    <div className="flex justify-end gap-2">
+                         <Button variant="ghost" onClick={() => setIsModalOpen(false)}>Close</Button>
+                         <Button onClick={() => window.location.href = selectedNode.data.storyPath}>
+                            Read Full Story
+                         </Button>
+                    </div>
+                    </>
+                )}
+            </DialogContent>
+        </Dialog>
+    </>
+  );
+}

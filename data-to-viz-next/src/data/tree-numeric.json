@@ -1,0 +1,77 @@
+{
+  "nodes": [
+    { 
+      "id": "root", 
+      "type": "decision-category", 
+      "data": { "label": "Numeric", "icon": "NumericIcon" },
+      "style": { "x": 800, "y": 50 }
+    },
+    
+    { "id": "q-1num", "type": "decision-question", "data": { "label": "One Numeric" } },
+    { "id": "q-2num", "type": "decision-question", "data": { "label": "Two Numeric" } },
+    { "id": "q-sevnum", "type": "decision-question", "data": { "label": "Several Numeric" } },
+
+    { "id": "chart-hist", "type": "decision-chart", "data": { "label": "Histogram", "icon": "HistogramIcon", "storyPath": "/graph/histogram", "description": "Visualise the distribution of a single continuous variable." } },
+    { "id": "chart-density", "type": "decision-chart", "data": { "label": "Density", "icon": "DensityIcon", "storyPath": "/graph/density", "description": "A smooth version of the histogram, great for seeing the shape of data." } },
+    { "id": "chart-boxplot", "type": "decision-chart", "data": { "label": "Boxplot", "icon": "BoxplotIcon", "storyPath": "/graph/boxplot", "description": "Summarise the distribution of a numeric variable with quartiles." } },
+    { "id": "chart-violin", "type": "decision-chart", "data": { "label": "Violin", "icon": "ViolinIcon", "storyPath": "/graph/violin", "description": "Combines a boxplot with a density plot." } },
+
+    { "id": "q-2num-ordered", "type": "decision-question", "data": { "label": "Ordered" } },
+    { "id": "q-2num-notordered", "type": "decision-question", "data": { "label": "Not Ordered" } },
+    
+    { "id": "chart-area", "type": "decision-chart", "data": { "label": "Area Plot", "icon": "AreaIcon", "storyPath": "/graph/area" } },
+    { "id": "chart-line", "type": "decision-chart", "data": { "label": "Line Plot", "icon": "LineIcon", "storyPath": "/graph/line" } },
+    { "id": "chart-connected-scatter", "type": "decision-chart", "data": { "label": "Connected Scatter", "icon": "ConnectedScatterIcon", "storyPath": "/graph/connected_scatter" } },
+
+    { "id": "chart-scatter", "type": "decision-chart", "data": { "label": "Scatter Plot", "icon": "ScatterIcon", "storyPath": "/graph/scatter" } },
+    { "id": "chart-density2d", "type": "decision-chart", "data": { "label": "2D Density", "icon": "Density2DIcon", "storyPath": "/graph/density2d", "description": "Use when you have too many points (overplotting)." } },
+    { "id": "chart-hexbin", "type": "decision-chart", "data": { "label": "Hexbin", "icon": "HexbinIcon", "storyPath": "/graph/hexbin" } },
+
+    { "id": "q-sevnum-ordered", "type": "decision-question", "data": { "label": "Ordered" } },
+    { "id": "q-sevnum-notordered", "type": "decision-question", "data": { "label": "Not Ordered" } },
+
+    { "id": "chart-stacked-area", "type": "decision-chart", "data": { "label": "Stacked Area", "icon": "StackedAreaIcon", "storyPath": "/graph/stackedarea" } },
+    { "id": "chart-stream", "type": "decision-chart", "data": { "label": "Streamgraph", "icon": "StreamIcon", "storyPath": "/graph/streamgraph" } },
+
+    { "id": "chart-correlogram", "type": "decision-chart", "data": { "label": "Correlogram", "icon": "CorrelogramIcon", "storyPath": "/graph/correlogram" } },
+    { "id": "chart-bubble", "type": "decision-chart", "data": { "label": "Bubble Plot", "icon": "BubbleIcon", "storyPath": "/graph/bubble" } },
+    { "id": "chart-heatmap", "type": "decision-chart", "data": { "label": "Heatmap", "icon": "HeatmapIcon", "storyPath": "/graph/heatmap" } },
+    { "id": "chart-pca", "type": "decision-chart", "data": { "label": "PCA", "icon": "PCAIcon", "storyPath": "/graph/pca" } },
+    { "id": "chart-dendrogram", "type": "decision-chart", "data": { "label": "Dendrogram", "icon": "DendrogramIcon", "storyPath": "/graph/dendrogram" } },
+    { "id": "chart-parallel", "type": "decision-chart", "data": { "label": "Parallel Coord", "icon": "ParallelIcon", "storyPath": "/graph/parallel" } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "root", "target": "q-1num" },
+    { "id": "e2", "source": "root", "target": "q-2num" },
+    { "id": "e3", "source": "root", "target": "q-sevnum" },
+
+    { "id": "e1-1", "source": "q-1num", "target": "chart-hist" },
+    { "id": "e1-2", "source": "q-1num", "target": "chart-density" },
+    { "id": "e1-3", "source": "q-1num", "target": "chart-boxplot" },
+    { "id": "e1-4", "source": "q-1num", "target": "chart-violin" },
+
+    { "id": "e2-1", "source": "q-2num", "target": "q-2num-ordered" },
+    { "id": "e2-2", "source": "q-2num", "target": "q-2num-notordered" },
+
+    { "id": "e2-ord-1", "source": "q-2num-ordered", "target": "chart-area" },
+    { "id": "e2-ord-2", "source": "q-2num-ordered", "target": "chart-line" },
+    { "id": "e2-ord-3", "source": "q-2num-ordered", "target": "chart-connected-scatter" },
+
+    { "id": "e2-not-1", "source": "q-2num-notordered", "target": "chart-scatter" },
+    { "id": "e2-not-2", "source": "q-2num-notordered", "target": "chart-density2d" },
+    { "id": "e2-not-3", "source": "q-2num-notordered", "target": "chart-hexbin" },
+
+    { "id": "e3-1", "source": "q-sevnum", "target": "q-sevnum-ordered" },
+    { "id": "e3-2", "source": "q-sevnum", "target": "q-sevnum-notordered" },
+
+    { "id": "e3-ord-1", "source": "q-sevnum-ordered", "target": "chart-stacked-area" },
+    { "id": "e3-ord-2", "source": "q-sevnum-ordered", "target": "chart-stream" },
+    
+    { "id": "e3-not-1", "source": "q-sevnum-notordered", "target": "chart-correlogram" },
+    { "id": "e3-not-2", "source": "q-sevnum-notordered", "target": "chart-bubble" },
+    { "id": "e3-not-3", "source": "q-sevnum-notordered", "target": "chart-heatmap" },
+    { "id": "e3-not-4", "source": "q-sevnum-notordered", "target": "chart-pca" },
+    { "id": "e3-not-5", "source": "q-sevnum-notordered", "target": "chart-dendrogram" },
+    { "id": "e3-not-6", "source": "q-sevnum-notordered", "target": "chart-parallel" }
+  ]
+}

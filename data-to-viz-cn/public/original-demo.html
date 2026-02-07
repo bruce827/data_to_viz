@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data to Viz - Original Implementation Demo</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        h1 { margin-bottom: 30px; }
+        .tree {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Border to show the container */
+            border: 1px dashed #ccc; 
+        }
+        /* Styles extracted from the SVG block */
+        .numst0{fill:none;stroke:#808285;stroke-width:3;stroke-linecap:square;stroke-miterlimit:10;}
+        .numst1{font-family:'Lato-Regular', sans-serif;}
+        .numst2{font-size:13px; fill: black !important; stroke: none !important; }
+        .numst3{fill:#FFFFFF;stroke:#808285;stroke-width:3;stroke-linecap:square;stroke-miterlimit:10;}
+        .numst4{fill:#808285; font-size: 13px !important;}
+        .numst5{font-family:'OpenSans-Semibold', sans-serif; font-weight: bold;}
+        .numst6{font-size:14px;}
+        
+        /* Interactive effects */
+        .graphtypelogo {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .graphtypelogo:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Data to Viz: Original SVG Implementation (Partial)</h1>
+    <p>This page demonstrates how the original "decision tree" was implemented: a single static SVG with hardcoded coordinates.</p>
+    
+    <div id="num" class="tree">
+        <!-- SVG Start -->
+        <svg version="1.1" id="Numeric_copy" width="100%" height="auto" viewBox="0 0 1508.3 1502.4" style="enable-background:new 0 0 1508.3 1502.4;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Content extracted from index.html -->
+            <g>
+                <line class="numst0" x1="1405.7" y1="312" x2="1405.7" y2="1355.8"/>
+                <text transform="matrix(1 0 0 1 1356.6582 871.4056)"><tspan x="0" y="0" class="numst1 numst2">RIDGE</tspan><tspan x="10.9" y="13" class="numst1 numst2">LINE</tspan></text>
+                <text transform="matrix(1 0 0 1 1352.0439 733.4965)"><tspan x="0" y="0" class="numst1 numst2">VIOLIN</tspan><tspan x="10.5" y="13" class="numst1 numst2">PLOT</tspan></text>
+                <text transform="matrix(1 0 0 1 1335.3188 595.5875)" class="numst1 numst2">BOXPLOT</text>
+                <text transform="matrix(1 0 0 1 1301.064 1423.0453)" class="numst1 numst2">DENDROGRAM</text>
+                <text transform="matrix(1 0 0 1 1332.5439 1285.1371)" class="numst1 numst2">HEATMAP</text>
+                
+                <!-- Example Node: Heatmap -->
+                <g>
+                    <ellipse transform="matrix(0.9999 -1.596312e-02 1.596312e-02 0.9999 -19.2616 22.5944)" class="numst4" cx="1405.7" cy="1217.9" rx="52.4" ry="52.4"/>
+                    <a href="#" onclick="alert('Opens Heatmap Modal')">
+                        <image class="graphtypelogo" width="114" height="114" xlink:href="img/section/HeatmapSmall.png" transform="matrix(0.8522 0 0 0.8522 1357.1085 1169.2806)"></image>
+                    </a>
+                </g>
+
+                <!-- Example Node: Violin -->
+                <g>
+                    <circle class="numst4" cx="1405.7" cy="666.2" r="52.4"/>
+                    <a href="#" onclick="alert('Opens Violin Modal')">
+                        <image class="graphtypelogo" width="114" height="114" xlink:href="img/section/ViolinSmall.png" transform="matrix(0.8522 0 0 0.8522 1357.1157 617.6404)"></image>
+                    </a>
+                </g>
+                
+                <!-- Example Category: Several Numeric -->
+                <g>
+                    <polygon class="numst3" points="1291.8,137.5 1333.5,113.4 1375.3,137.5 1375.3,185.7 1333.5,209.8 1291.8,185.7  "/>
+                    <text transform="matrix(1 0 0 1 1304.6089 157.1974)"><tspan x="0" y="0" class="numst4 numst5 numst6">SEVERAL</tspan><tspan x="-3.2" y="16.8" class="numst4 numst5 numst6">NUMERIC</tspan></text>
+                </g>
+                
+                <!-- Example Path -->
+                <path class="numst0" d="M1375.3,185.7h16.3c5.5,5.5,8.6,8.6,14.2,14.2v32.5"/>
+            </g>
+        </svg>
+    </div>
+
+</body>
+</html>
