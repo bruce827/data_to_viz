@@ -12,24 +12,33 @@ export function HistogramG2() {
     const chart = new Chart({
       container: containerRef.current,
       autoFit: true,
-      height: 400,
+      height: 300,
+      paddingLeft: 40,
+      paddingRight: 20,
+      paddingBottom: 40,
     });
 
-    // Generate random normal distribution data
-    const data = Array.from({ length: 500 }, () => ({
-      value: (Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()) - 3
+    // Generate random normal distribution data for a better "demo" look
+    const data = Array.from({ length: 1000 }, () => ({
+      value: (Math.random() + Math.random() + Math.random() + Math.random()) * 25
     }));
 
     chart
       .rect()
       .data(data)
       .encode('x', 'value')
-      .encode('y', 'count') // Histogram transform will generate 'count'
+      .encode('y', 'count')
       .transform({ type: 'binX', y: 'count' })
-      .style('inset', 0.5)
-      .style('fill', '#3b82f6') // Blue-500
-      .axis('x', { title: 'Value' })
-      .axis('y', { title: 'Frequency' });
+      .style('inset', 1)
+      .style('fill', '#2563eb') // Blue-600
+      .style('fillOpacity', 0.8)
+      .axis('x', { title: '变量值', titleFontSize: 12 })
+      .axis('y', { title: '频数', titleFontSize: 12 })
+      .tooltip({
+        showMarkers: false,
+        title: (d: any) => `范围: ${Math.floor(d.x0)} - ${Math.floor(d.x1)}`,
+        items: [{ channel: 'y', name: '计数' }]
+      });
 
     chart.render();
 

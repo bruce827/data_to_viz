@@ -105,10 +105,10 @@
       "id": "chart-area",
       "type": "decision-chart",
       "data": {
-        "label": "Area Plot",
+        "label": "Difference Chart",
         "icon": "AreaIcon",
         "storyPath": "/graph/area",
-        "label-cn": "面积图"
+        "label-cn": "差异图"
       }
     },
     {

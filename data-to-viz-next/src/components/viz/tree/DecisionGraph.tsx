@@ -14,9 +14,30 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { HistogramG2 } from '../charts/HistogramG2';
+import { ScatterG2 } from '../charts/ScatterG2';
+import { DensityG2 } from '../charts/DensityG2';
+import { BoxplotG2 } from '../charts/BoxplotG2';
+import { LineG2 } from '../charts/LineG2';
+import { AreaG2 } from '../charts/AreaG2';
+import { ConnectedScatterG2 } from '../charts/ConnectedScatterG2';
+import { ViolinG2 } from '../charts/ViolinG2';
 
 // Register the extension
 register('node', 'react-node', ReactNode);
+
+// --- Chart Component Mapping ---
+const CHART_COMPONENTS: Record<string, React.ComponentType> = {
+  'chart-hist': HistogramG2,
+  'chart-scatter': ScatterG2,
+  'chart-density': DensityG2,
+  'chart-boxplot': BoxplotG2,
+  'chart-violin': ViolinG2,
+  'chart-line': LineG2,
+  'chart-area': AreaG2,
+  'chart-connected-scatter': ConnectedScatterG2,
+  // More charts will be added here
+};
 
 // --- Custom Node Component (Rendered by G6) ---
 const NodeComponent = ({ data }: { data: any }) => {
@@ -203,26 +224,38 @@ export function DecisionGraph({ data }: { data: any }) {
                         </div>
                     </DialogHeader>
                     
-                    <div className="grid gap-4 py-4">
-                        <div className="grid grid-cols-2 gap-4">
-                            <Button variant="outline" className="h-auto py-4 flex flex-col gap-2">
-                                <span className="font-semibold">R Graph Gallery</span>
-                                <span className="text-xs text-muted-foreground">Code examples</span>
-                            </Button>
-                            <Button variant="outline" className="h-auto py-4 flex flex-col gap-2">
-                                <span className="font-semibold">Python Gallery</span>
-                                <span className="text-xs text-muted-foreground">Code examples</span>
-                            </Button>
+                    <div className="flex flex-col gap-6 py-4">
+                        {/* Interactive Chart Container */}
+                        <div className="w-full bg-slate-50 rounded-xl border border-slate-200 overflow-hidden min-h-[350px] relative">
+                             {(() => {
+                                 const ChartComponent = CHART_COMPONENTS[selectedNode.id];
+                                 if (ChartComponent) {
+                                     return <div className="p-4"><ChartComponent /></div>;
+                                 }
+                                 return (
+                                     <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 gap-3">
+                                         <Icons.NumericIcon className="w-12 h-12 opacity-20" />
+                                         <p className="text-sm">Demo chart coming soon for {selectedNode.data.label}</p>
+                                     </div>
+                                 );
+                             })()}
                         </div>
-                        <div className="bg-slate-100 p-4 rounded-lg text-sm text-slate-600">
-                             <strong>Best for:</strong> Comparing values across different categories.
+
+                        <div className="bg-blue-50/50 p-4 rounded-lg text-sm text-blue-900 border border-blue-100">
+                             <div className="font-semibold mb-1 flex items-center gap-2">
+                                <Icons.NumericIcon className="w-4 h-4" />
+                                核心用途
+                             </div>
+                             {selectedNode.data['description-cn'] || selectedNode.data.description || "探索此图表类型以了解您的数据分布。"}
                         </div>
                     </div>
 
-                    <div className="flex justify-end gap-2">
-                         <Button variant="ghost" onClick={() => setIsModalOpen(false)}>Close</Button>
-                         <Button onClick={() => window.location.href = selectedNode.data.storyPath}>
-                            Read Full Story
+                    <div className="flex justify-end gap-3 pt-2">
+                         <Button variant="outline" onClick={() => setIsModalOpen(false)}>
+                            关闭
+                         </Button>
+                         <Button className="bg-blue-600 hover:bg-blue-700" onClick={() => window.location.href = selectedNode.data.storyPath}>
+                            查看数据故事
                          </Button>
                     </div>
                     </>

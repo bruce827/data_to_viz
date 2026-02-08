@@ -84,9 +84,13 @@ export const LineIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export const AreaIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...svgProps} {...props}>
-    <path d="M3 18l6-10l7 6L21 4V22H3z" fill="currentColor" fillOpacity="0.2" />
-    <path d="M3 18l6-10l7 6L21 4" />
-    <path d="M2 22h20" />
+    {/* Upper filled area (e.g. blue) */}
+    <path d="M4 16 L12 8 L20 16" fill="none" strokeWidth="2" />
+    <path d="M4 12 L12 20 L20 12" fill="none" strokeWidth="2" strokeOpacity="0.5" />
+    {/* Intersection fill simulation */}
+    <path d="M4 16 L8 12 L12 16 L4 16" fill="currentColor" fillOpacity="0.2" stroke="none" />
+    <path d="M12 16 L16 20 L20 16 L12 16" fill="currentColor" fillOpacity="0.2" stroke="none" />
+    <path d="M8 12 L12 8 L16 12 L8 12" fill="currentColor" fillOpacity="0.4" stroke="none" />
   </svg>
 );
 
