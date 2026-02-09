@@ -1,0 +1,8 @@
+[
+  {"species": "setosa", "sepal_width": 3.5, "sepal_length": 5.1, "petal_length": 1.4, "petal_width": 0.2},
+  {"species": "setosa", "sepal_width": 3.0, "sepal_length": 4.9, "petal_length": 1.4, "petal_width": 0.2},
+  {"species": "versicolor", "sepal_width": 3.2, "sepal_length": 7.0, "petal_length": 4.7, "petal_width": 1.4},
+  {"species": "versicolor", "sepal_width": 2.3, "sepal_length": 6.4, "petal_length": 4.5, "petal_width": 1.5},
+  {"species": "virginica", "sepal_width": 3.3, "sepal_length": 6.3, "petal_length": 6.0, "petal_width": 2.5},
+  {"species": "virginica", "sepal_width": 2.7, "sepal_length": 5.8, "petal_length": 5.1, "petal_width": 1.9}
+]

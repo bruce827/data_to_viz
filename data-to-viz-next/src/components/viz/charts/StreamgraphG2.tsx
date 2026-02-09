@@ -2,9 +2,9 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
-import scatterData from './demoData/ScatterG2.json';
+import streamData from './demoData/StreamgraphG2.json';
 
-export function ScatterG2() {
+export function StreamgraphG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -12,38 +12,33 @@ export function ScatterG2() {
 
     const chart = new Chart({
       container: containerRef.current,
+      theme: 'classic',
       autoFit: true,
       height: 300,
     });
 
     chart.options({
-      type: 'point',
+      type: 'area',
       data: {
         type: 'inline',
-        value: scatterData,
+        value: streamData,
       },
       encode: {
-        x: 'height',
-        y: 'weight',
-        color: 'gender',
-        shape: 'point',
+        x: (d: any) => new Date(d.date),
+        y: 'unemployed',
+        color: 'industry',
+        shape: 'smooth',
       },
-      scale: {
-        color: { range: ['#3b82f6', '#f59e0b'] },
-        x: { nice: true },
-        y: { nice: true }
-      },
-      style: {
-        fillOpacity: 0.6,
-        stroke: '#fff',
-        lineWidth: 1,
-      },
+      transform: [
+        { type: 'stackY' },
+        { type: 'symmetryY' }, // 官方范例：对称分布
+      ],
       axis: {
-        x: { title: '身高 (cm)' },
-        y: { title: '体重 (kg)' }
+        x: { title: false },
+        y: { title: false }
       },
       tooltip: {
-        items: ['height', 'weight', 'gender']
+        items: [{ field: 'unemployed', name: '人数' }]
       }
     });
 

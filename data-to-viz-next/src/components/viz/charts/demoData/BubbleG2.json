@@ -1,0 +1,7 @@
+[
+  {"lifeExp": 68, "gdp": 5000, "pop": 1300, "continent": "Asia"},
+  {"height": 72, "gdp": 45000, "pop": 330, "continent": "Americas"},
+  {"lifeExp": 81, "gdp": 35000, "pop": 65, "continent": "Europe"},
+  {"lifeExp": 55, "gdp": 1200, "pop": 200, "continent": "Africa"},
+  {"lifeExp": 75, "gdp": 28000, "pop": 25, "continent": "Oceania"}
+]

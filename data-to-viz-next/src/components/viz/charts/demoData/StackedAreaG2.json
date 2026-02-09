@@ -1,0 +1,12 @@
+[
+  {"year": "2010", "category": "A", "value": 10},
+  {"year": "2011", "category": "A", "value": 15},
+  {"year": "2012", "category": "A", "value": 25},
+  {"year": "2013", "category": "A", "value": 20},
+  {"year": "2014", "category": "A", "value": 30},
+  {"year": "2010", "category": "B", "value": 20},
+  {"year": "2011", "category": "B", "value": 25},
+  {"year": "2012", "category": "B", "value": 15},
+  {"year": "2013", "category": "B", "value": 35},
+  {"year": "2014", "category": "B", "value": 25}
+]

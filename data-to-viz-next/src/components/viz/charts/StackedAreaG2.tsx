@@ -2,9 +2,9 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
-import scatterData from './demoData/ScatterG2.json';
+import stackedAreaData from './demoData/StackedAreaG2.json';
 
-export function ScatterG2() {
+export function StackedAreaG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -17,33 +17,32 @@ export function ScatterG2() {
     });
 
     chart.options({
-      type: 'point',
+      type: 'area',
       data: {
         type: 'inline',
-        value: scatterData,
+        value: stackedAreaData,
       },
+      transform: [
+        { type: 'stackY' }
+      ],
       encode: {
-        x: 'height',
-        y: 'weight',
-        color: 'gender',
-        shape: 'point',
+        x: 'year',
+        y: 'value',
+        color: 'category',
+        shape: 'smooth',
       },
       scale: {
-        color: { range: ['#3b82f6', '#f59e0b'] },
-        x: { nice: true },
-        y: { nice: true }
+        color: { range: ['#3b82f6', '#93c5fd'] }
       },
       style: {
-        fillOpacity: 0.6,
-        stroke: '#fff',
-        lineWidth: 1,
+        fillOpacity: 0.7,
       },
       axis: {
-        x: { title: '身高 (cm)' },
-        y: { title: '体重 (kg)' }
+        x: { title: '年份' },
+        y: { title: '数值' }
       },
       tooltip: {
-        items: ['height', 'weight', 'gender']
+        items: ['value']
       }
     });
 

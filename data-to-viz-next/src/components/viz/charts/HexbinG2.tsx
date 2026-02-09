@@ -2,9 +2,9 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
-import scatterData from './demoData/ScatterG2.json';
+import hexbinData from './demoData/Density2DG2.json';
 
-export function ScatterG2() {
+export function HexbinG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -17,33 +17,36 @@ export function ScatterG2() {
     });
 
     chart.options({
-      type: 'point',
+      type: 'rect',
       data: {
         type: 'inline',
-        value: scatterData,
+        value: hexbinData,
       },
       encode: {
-        x: 'height',
-        y: 'weight',
-        color: 'gender',
-        shape: 'point',
+        x: 'x',
+        y: 'y',
+        color: 'count',
       },
+      transform: [
+        {
+          type: 'bin',
+          as: ['x', 'y', 'count'],
+          field: 'count',
+          method: 'count',
+          thresholdsX: 10,
+          thresholdsY: 10,
+        },
+      ],
       scale: {
-        color: { range: ['#3b82f6', '#f59e0b'] },
-        x: { nice: true },
-        y: { nice: true }
+        color: { palette: 'interpolateYlGnBu' }
       },
       style: {
-        fillOpacity: 0.6,
         stroke: '#fff',
         lineWidth: 1,
       },
       axis: {
-        x: { title: '身高 (cm)' },
-        y: { title: '体重 (kg)' }
-      },
-      tooltip: {
-        items: ['height', 'weight', 'gender']
+        x: { title: '变量 X' },
+        y: { title: '变量 Y' }
       }
     });
 

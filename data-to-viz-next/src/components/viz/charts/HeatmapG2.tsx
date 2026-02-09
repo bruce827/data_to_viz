@@ -2,9 +2,9 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
-import scatterData from './demoData/ScatterG2.json';
+import heatmapData from './demoData/HeatmapG2.json';
 
-export function ScatterG2() {
+export function HeatmapG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -17,34 +17,32 @@ export function ScatterG2() {
     });
 
     chart.options({
-      type: 'point',
+      type: 'cell',
       data: {
         type: 'inline',
-        value: scatterData,
+        value: heatmapData,
       },
       encode: {
-        x: 'height',
-        y: 'weight',
-        color: 'gender',
-        shape: 'point',
+        x: 'x',
+        y: 'y',
+        color: 'value',
       },
       scale: {
-        color: { range: ['#3b82f6', '#f59e0b'] },
-        x: { nice: true },
-        y: { nice: true }
+        color: {
+          palette: 'gnBu',
+          nice: true,
+        },
       },
       style: {
-        fillOpacity: 0.6,
-        stroke: '#fff',
-        lineWidth: 1,
+        inset: 0.5,
       },
       axis: {
-        x: { title: '身高 (cm)' },
-        y: { title: '体重 (kg)' }
+        x: { title: '类别 X' },
+        y: { title: '级别 Y' },
       },
       tooltip: {
-        items: ['height', 'weight', 'gender']
-      }
+        items: [{ field: 'value', name: '数值' }],
+      },
     });
 
     chart.render();

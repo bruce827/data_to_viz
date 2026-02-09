@@ -22,6 +22,19 @@ import { LineG2 } from '../charts/LineG2';
 import { AreaG2 } from '../charts/AreaG2';
 import { ConnectedScatterG2 } from '../charts/ConnectedScatterG2';
 import { ViolinG2 } from '../charts/ViolinG2';
+import { Density2DG2 } from '../charts/Density2DG2';
+import { HexbinG2 } from '../charts/HexbinG2';
+import { HeatmapG2 } from '../charts/HeatmapG2';
+import { StackedAreaG2 } from '../charts/StackedAreaG2';
+import { DensityHeatmapG2 } from '../charts/DensityHeatmapG2';
+import { BubbleG2 } from '../charts/BubbleG2';
+import { Scatter3DG2 } from '../charts/Scatter3DG2';
+import { PCAG2 } from '../charts/PCAG2';
+import { RidgelineG2 } from '../charts/RidgelineG2';
+import { StreamgraphG2 } from '../charts/StreamgraphG2';
+import { ParallelG2 } from '../charts/ParallelG2';
+import { DendrogramG2 } from '../charts/DendrogramG2';
+import { HeatmapSevG2 } from '../charts/HeatmapSevG2';
 
 // Register the extension
 register('node', 'react-node', ReactNode);
@@ -29,13 +42,27 @@ register('node', 'react-node', ReactNode);
 // --- Chart Component Mapping ---
 const CHART_COMPONENTS: Record<string, React.ComponentType> = {
   'chart-hist': HistogramG2,
+  'chart-hist-few': HistogramG2,
   'chart-scatter': ScatterG2,
   'chart-density': DensityG2,
   'chart-boxplot': BoxplotG2,
   'chart-violin': ViolinG2,
   'chart-line': LineG2,
+  'chart-line-sev': LineG2,
   'chart-area': AreaG2,
   'chart-connected-scatter': ConnectedScatterG2,
+  'chart-heatmap-many': HeatmapG2,
+  'chart-stacked-area-many': StackedAreaG2,
+  'chart-stacked-area': StackedAreaG2,
+  'chart-density-heatmap': DensityHeatmapG2,
+  'chart-bubble': BubbleG2,
+  'chart-scatter3d': Scatter3DG2,
+  'chart-pca': PCAG2,
+  'chart-correlogram': RidgelineG2,
+  'chart-stream': StreamgraphG2,
+  'chart-parallel': ParallelG2,
+  'chart-dendrogram': DendrogramG2,
+  'chart-heatmap': HeatmapSevG2,
   // More charts will be added here
 };
 

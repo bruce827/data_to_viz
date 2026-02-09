@@ -2,9 +2,9 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
-import scatterData from './demoData/ScatterG2.json';
+import bubbleData from './demoData/BubbleG2.json';
 
-export function ScatterG2() {
+export function BubbleG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -20,30 +20,27 @@ export function ScatterG2() {
       type: 'point',
       data: {
         type: 'inline',
-        value: scatterData,
+        value: bubbleData,
       },
       encode: {
-        x: 'height',
-        y: 'weight',
-        color: 'gender',
+        x: 'gdp',
+        y: 'lifeExp',
+        size: 'pop',
+        color: 'continent',
         shape: 'point',
       },
       scale: {
-        color: { range: ['#3b82f6', '#f59e0b'] },
-        x: { nice: true },
-        y: { nice: true }
+        x: { type: 'log', title: '人均 GDP (对数刻度)' },
+        y: { domain: [50, 90], title: '预期寿命 (年)' },
+        size: { range: [5, 30] }
       },
       style: {
         fillOpacity: 0.6,
         stroke: '#fff',
         lineWidth: 1,
       },
-      axis: {
-        x: { title: '身高 (cm)' },
-        y: { title: '体重 (kg)' }
-      },
       tooltip: {
-        items: ['height', 'weight', 'gender']
+        items: ['gdp', 'lifeExp', 'pop', 'continent']
       }
     });
 

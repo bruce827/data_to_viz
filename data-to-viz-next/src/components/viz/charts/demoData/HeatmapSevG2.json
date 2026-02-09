@@ -1,0 +1,7 @@
+[
+  {"x": "Var A", "y": "Var A", "val": 1.0}, {"x": "Var A", "y": "Var B", "val": 0.8}, {"x": "Var A", "y": "Var C", "val": 0.3}, {"x": "Var A", "y": "Var D", "val": 0.1}, {"x": "Var A", "y": "Var E", "val": -0.2},
+  {"x": "Var B", "y": "Var A", "val": 0.8}, {"x": "Var B", "y": "Var B", "val": 1.0}, {"x": "Var B", "y": "Var C", "val": 0.5}, {"x": "Var B", "y": "Var D", "val": 0.2}, {"x": "Var B", "y": "Var E", "val": 0.0},
+  {"x": "Var C", "y": "Var A", "val": 0.3}, {"x": "Var C", "y": "Var B", "val": 0.5}, {"x": "Var C", "y": "Var C", "val": 1.0}, {"x": "Var C", "y": "Var D", "val": 0.7}, {"x": "Var C", "y": "Var E", "val": 0.4},
+  {"x": "Var D", "y": "Var A", "val": 0.1}, {"x": "Var D", "y": "Var B", "val": 0.2}, {"x": "Var D", "y": "Var C", "val": 0.7}, {"x": "Var D", "y": "Var D", "val": 1.0}, {"x": "Var D", "y": "Var E", "val": 0.6},
+  {"x": "Var E", "y": "Var A", "val": -0.2}, {"x": "Var E", "y": "Var B", "val": 0.0}, {"x": "Var E", "y": "Var C", "val": 0.4}, {"x": "Var E", "y": "Var D", "val": 0.6}, {"x": "Var E", "y": "Var E", "val": 1.0}
+]

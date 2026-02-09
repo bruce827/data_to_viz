@@ -30,6 +30,14 @@
       }
     },
     {
+      "id": "q-3num",
+      "type": "decision-question",
+      "data": {
+        "label": "Three Numeric",
+        "label-cn": "三个数值"
+      }
+    },
+    {
       "id": "q-sevnum",
       "type": "decision-question",
       "data": {
@@ -102,6 +110,34 @@
       }
     },
     {
+      "id": "q-notordered-few",
+      "type": "decision-question",
+      "data": {
+        "label": "Few Observations",
+        "label-cn": "少量数据"
+      }
+    },
+    {
+      "id": "q-notordered-many",
+      "type": "decision-question",
+      "data": {
+        "label": "Many Observations",
+        "label-cn": "大量数据"
+      }
+    },
+    {
+      "id": "chart-hist-few",
+      "type": "decision-chart",
+      "data": {
+        "label": "Histogram",
+        "icon": "GroupedHistogramIcon",
+        "storyPath": "/graph/histogram",
+        "description": "Used for distribution when you have few data points.",
+        "label-cn": "直方图",
+        "description-cn": "用于在数据量较少时观察分布。"
+      }
+    },
+    {
       "id": "chart-area",
       "type": "decision-chart",
       "data": {
@@ -142,25 +178,39 @@
       }
     },
     {
-      "id": "chart-density2d",
+      "id": "chart-heatmap-many",
       "type": "decision-chart",
       "data": {
-        "label": "2D Density",
-        "icon": "Density2DIcon",
-        "storyPath": "/graph/density2d",
-        "description": "Use when you have too many points (overplotting).",
-        "label-cn": "2D密度图",
-        "description-cn": "当点过多（重叠）时使用。"
+        "label": "Threshold Heatmap",
+        "icon": "HeatmapIcon",
+        "storyPath": "/graph/heatmap",
+        "label-cn": "阈值热力图",
+        "description": "Visualise density when you have a lot of data points.",
+        "description-cn": "当数据量很大时，用于可视化数据密度。"
       }
     },
     {
-      "id": "chart-hexbin",
+      "id": "chart-stacked-area-many",
       "type": "decision-chart",
       "data": {
-        "label": "Hexbin",
-        "icon": "HexbinIcon",
-        "storyPath": "/graph/hexbin",
-        "label-cn": "六边形分箱图"
+        "label": "Stacked Area",
+        "icon": "StackedAreaIcon",
+        "storyPath": "/graph/stackedarea",
+        "label-cn": "堆叠面积图",
+        "description": "Used to show how each category contributes to the total over time.",
+        "description-cn": "用于展示随时间推移，各分类对总量的贡献。"
+      }
+    },
+    {
+      "id": "chart-density-heatmap",
+      "type": "decision-chart",
+      "data": {
+        "label": "Density Heatmap",
+        "icon": "Density2DIcon",
+        "storyPath": "/graph/density2d",
+        "label-cn": "密度热力图",
+        "description": "A heatmap that represents the density of data points in a 2D space.",
+        "description-cn": "在二维空间中展示数据点分布密度的热力图。"
       }
     },
     {
@@ -196,17 +246,29 @@
         "label": "Streamgraph",
         "icon": "StreamIcon",
         "storyPath": "/graph/streamgraph",
-        "label-cn": "流图"
+        "label-cn": "河流图"
+      }
+    },
+    {
+      "id": "chart-line-sev",
+      "type": "decision-chart",
+      "data": {
+        "label": "Line Plot",
+        "icon": "LineIcon",
+        "storyPath": "/graph/line",
+        "label-cn": "多线折线图",
+        "description": "Used to compare trends across multiple numeric variables over time.",
+        "description-cn": "用于在时间维度上对比多个数值变量的趋势。"
       }
     },
     {
       "id": "chart-correlogram",
       "type": "decision-chart",
       "data": {
-        "label": "Correlogram",
-        "icon": "CorrelogramIcon",
+        "label": "Ridgeline",
+        "icon": "RidgelineIcon",
         "storyPath": "/graph/correlogram",
-        "label-cn": "相关图"
+        "label-cn": "山脊图"
       }
     },
     {
@@ -217,6 +279,16 @@
         "icon": "BubbleIcon",
         "storyPath": "/graph/bubble",
         "label-cn": "气泡图"
+      }
+    },
+    {
+      "id": "chart-scatter3d",
+      "type": "decision-chart",
+      "data": {
+        "label": "3D Scatter Plot",
+        "icon": "Scatter3DIcon",
+        "storyPath": "/graph/scatter3d",
+        "label-cn": "3D 散点图"
       }
     },
     {
@@ -233,10 +305,10 @@
       "id": "chart-pca",
       "type": "decision-chart",
       "data": {
-        "label": "PCA",
+        "label": "Dimensionality Reduction",
         "icon": "PCAIcon",
         "storyPath": "/graph/pca",
-        "label-cn": "主成分分析 (PCA)"
+        "label-cn": "降维散点图"
       }
     },
     {
@@ -272,6 +344,11 @@
       "target": "q-2num"
     },
     {
+      "id": "e-3num",
+      "source": "root",
+      "target": "q-3num"
+    },
+    {
       "id": "e3",
       "source": "root",
       "target": "q-sevnum"
@@ -285,16 +362,6 @@
       "id": "e1-2",
       "source": "q-1num",
       "target": "chart-density"
-    },
-    {
-      "id": "e1-3",
-      "source": "q-1num",
-      "target": "chart-boxplot"
-    },
-    {
-      "id": "e1-4",
-      "source": "q-1num",
-      "target": "chart-violin"
     },
     {
       "id": "e2-1",
@@ -322,19 +389,59 @@
       "target": "chart-connected-scatter"
     },
     {
-      "id": "e2-not-1",
+      "id": "e2-not-q-few",
       "source": "q-2num-notordered",
+      "target": "q-notordered-few"
+    },
+    {
+      "id": "e2-not-q-many",
+      "source": "q-2num-notordered",
+      "target": "q-notordered-many"
+    },
+    {
+      "id": "e2-not-few-1",
+      "source": "q-notordered-few",
       "target": "chart-scatter"
     },
     {
-      "id": "e2-not-2",
-      "source": "q-2num-notordered",
-      "target": "chart-density2d"
+      "id": "e2-not-few-2",
+      "source": "q-notordered-few",
+      "target": "chart-boxplot"
     },
     {
-      "id": "e2-not-3",
-      "source": "q-2num-notordered",
-      "target": "chart-hexbin"
+      "id": "e2-not-few-3",
+      "source": "q-notordered-few",
+      "target": "chart-hist-few"
+    },
+    {
+      "id": "e2-not-many-3",
+      "source": "q-notordered-many",
+      "target": "chart-violin"
+    },
+    {
+      "id": "e2-not-many-4",
+      "source": "q-notordered-many",
+      "target": "chart-heatmap-many"
+    },
+    {
+      "id": "e2-not-many-5",
+      "source": "q-notordered-many",
+      "target": "chart-stacked-area-many"
+    },
+    {
+      "id": "e2-not-many-6",
+      "source": "q-notordered-many",
+      "target": "chart-density-heatmap"
+    },
+    {
+      "id": "e-3num-1",
+      "source": "q-3num",
+      "target": "chart-bubble"
+    },
+    {
+      "id": "e-3num-2",
+      "source": "q-3num",
+      "target": "chart-scatter3d"
     },
     {
       "id": "e3-1",
@@ -357,14 +464,14 @@
       "target": "chart-stream"
     },
     {
+      "id": "e3-ord-3",
+      "source": "q-sevnum-ordered",
+      "target": "chart-line-sev"
+    },
+    {
       "id": "e3-not-1",
       "source": "q-sevnum-notordered",
       "target": "chart-correlogram"
-    },
-    {
-      "id": "e3-not-2",
-      "source": "q-sevnum-notordered",
-      "target": "chart-bubble"
     },
     {
       "id": "e3-not-3",

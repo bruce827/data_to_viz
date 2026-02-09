@@ -27,6 +27,22 @@ export const HistogramIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+export const GroupedHistogramIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...svgProps} {...props}>
+    {/* Category 1 - Solid bars */}
+    <rect x="3" y="14" width="3" height="6" fill="currentColor" />
+    <rect x="9" y="10" width="3" height="10" fill="currentColor" />
+    <rect x="15" y="12" width="3" height="8" fill="currentColor" />
+    
+    {/* Category 2 - Semi-transparent bars */}
+    <rect x="6" y="11" width="3" height="9" fill="currentColor" fillOpacity="0.4" />
+    <rect x="12" y="7" width="3" height="13" fill="currentColor" fillOpacity="0.4" />
+    <rect x="18" y="13" width="3" height="7" fill="currentColor" fillOpacity="0.4" />
+    
+    <path d="M21 20H3" />
+  </svg>
+);
+
 export const DensityIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...svgProps} {...props}>
     <path d="M2 19c2-2 4-10 10-10s8 8 10 10" />
@@ -66,12 +82,22 @@ export const ScatterIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export const ConnectedScatterIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...svgProps} {...props}>
-    <circle cx="4" cy="18" r="1.5" />
-    <circle cx="10" cy="10" r="1.5" />
-    <circle cx="16" cy="14" r="1.5" />
-    <circle cx="20" cy="4" r="1.5" />
-    <path d="M4 18l6-8l6 4l4-10" />
-    <path d="M2 22h20" />
+    {/* Axes */}
+    <path d="M3 3v18h18" strokeWidth="1.5" />
+    
+    {/* Line 1 with Points */}
+    <path d="M5 16l4-8l5 4l5-9" strokeWidth="1.5" />
+    <circle cx="5" cy="16" r="1" fill="currentColor" />
+    <circle cx="9" cy="8" r="1" fill="currentColor" />
+    <circle cx="14" cy="12" r="1" fill="currentColor" />
+    <circle cx="19" cy="3" r="1" fill="currentColor" />
+
+    {/* Line 2 with Points */}
+    <path d="M5 10l5 6l6-4l3 4" strokeWidth="1.5" strokeOpacity="0.4" />
+    <circle cx="5" cy="10" r="1" fill="currentColor" fillOpacity="0.4" />
+    <circle cx="10" cy="16" r="1" fill="currentColor" fillOpacity="0.4" />
+    <circle cx="16" cy="12" r="1" fill="currentColor" fillOpacity="0.4" />
+    <circle cx="19" cy="16" r="1" fill="currentColor" fillOpacity="0.4" />
   </svg>
 );
 
@@ -113,10 +139,16 @@ export const HexbinIcon = (props: React.SVGProps<SVGSVGElement>) => (
 // --- Several Numeric Icons ---
 export const StackedAreaIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...svgProps} {...props}>
-    <path d="M3 12l5-4l7 3l6-5V22H3z" fill="currentColor" fillOpacity="0.1" />
-    <path d="M3 18l5-4l7 3l6-5" />
-    <path d="M3 22l5-4l7 3l6-5" />
-    <path d="M2 22h20" />
+    {/* Base Axis */}
+    <path d="M2 22h20" strokeWidth="1.5" />
+    
+    {/* Bottom Layer */}
+    <path d="M3 18l5-4l7 3l6-5V22H3z" fill="currentColor" fillOpacity="0.4" stroke="none" />
+    <path d="M3 18l5-4l7 3l6-5" strokeWidth="1.5" />
+    
+    {/* Top Layer */}
+    <path d="M3 12l5-4l7 3l6-5l0 6l-6-3l-7 4l-5 4z" fill="currentColor" fillOpacity="0.2" stroke="none" />
+    <path d="M3 12l5-4l7 3l6-5" strokeWidth="1.5" strokeOpacity="0.6" />
   </svg>
 );
 
@@ -144,17 +176,37 @@ export const BubbleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+export const Scatter3DIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...svgProps} {...props}>
+    {/* 3D Coordinate System (Perspective) */}
+    <path d="M4 18l8-4M12 14v-10M12 14h10" strokeWidth="1.5" />
+    <circle cx="12" cy="14" r="1" fill="currentColor" />
+    
+    {/* Points in 3D Space */}
+    <circle cx="8" cy="10" r="1.5" fill="currentColor" />
+    <circle cx="15" cy="8" r="1.5" fill="currentColor" fillOpacity="0.6" />
+    <circle cx="18" cy="12" r="1.5" fill="currentColor" fillOpacity="0.4" />
+    <circle cx="10" cy="6" r="1.5" fill="currentColor" fillOpacity="0.8" />
+  </svg>
+);
+
 export const HeatmapIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...svgProps} {...props}>
-    <rect x="4" y="4" width="4" height="4" fill="currentColor" fillOpacity="0.8" />
-    <rect x="8" y="4" width="4" height="4" fill="currentColor" fillOpacity="0.4" />
-    <rect x="12" y="4" width="4" height="4" fill="currentColor" fillOpacity="0.6" />
-    <rect x="16" y="4" width="4" height="4" fill="currentColor" fillOpacity="0.2" />
-    <rect x="4" y="8" width="4" height="4" fill="currentColor" fillOpacity="0.3" />
-    <rect x="8" y="8" width="4" height="4" fill="currentColor" fillOpacity="0.9" />
-    <rect x="12" y="8" width="4" height="4" fill="currentColor" fillOpacity="0.5" />
-    <rect x="16" y="8" width="4" height="4" fill="currentColor" fillOpacity="0.7" />
-    <rect x="4" y="12" width="12" height="4" fill="currentColor" fillOpacity="0.2" />
+    {/* Axes */}
+    <path d="M3 3v18h18" strokeWidth="1.5" />
+    
+    {/* Heatmap Grid */}
+    <rect x="5" y="5" width="4" height="4" fill="currentColor" fillOpacity="0.8" stroke="none" />
+    <rect x="10" y="5" width="4" height="4" fill="currentColor" fillOpacity="0.3" stroke="none" />
+    <rect x="15" y="5" width="4" height="4" fill="currentColor" fillOpacity="0.6" stroke="none" />
+    
+    <rect x="5" y="10" width="4" height="4" fill="currentColor" fillOpacity="0.2" stroke="none" />
+    <rect x="10" y="10" width="4" height="4" fill="currentColor" fillOpacity="0.9" stroke="none" />
+    <rect x="15" y="10" width="4" height="4" fill="currentColor" fillOpacity="0.4" stroke="none" />
+    
+    <rect x="5" y="15" width="4" height="4" fill="currentColor" fillOpacity="0.5" stroke="none" />
+    <rect x="10" y="15" width="4" height="4" fill="currentColor" fillOpacity="0.1" stroke="none" />
+    <rect x="15" y="15" width="4" height="4" fill="currentColor" fillOpacity="0.7" stroke="none" />
   </svg>
 );
 
@@ -281,12 +333,19 @@ export const ParallelIcon = (props: React.SVGProps<SVGSVGElement>) => (
     
     export const RidgelineIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...svgProps} {...props}>
-        <path d="M2 8c4-4 8 4 12 0s8-4 8 0" fill="none" strokeOpacity="0.2" />
-        <path d="M2 14c4-4 8 4 12 0s8-4 8 0" fill="none" strokeOpacity="0.5" />
-        <path d="M2 20c4-4 8 4 12 0s8-4 8 0" fill="none" />
+        {/* Curve 1 (Back) */}
+        <path d="M2 12c2-4 4-4 6 0s4 4 6 0s4-4 6 0" fill="currentColor" fillOpacity="0.2" stroke="none" />
+        <path d="M2 12c2-4 4-4 6 0s4 4 6 0s4-4 6 0" strokeWidth="1.5" strokeOpacity="0.4" />
+        
+        {/* Curve 2 (Middle) */}
+        <path d="M2 16c2-4 4-4 6 0s4 4 6 0s4-4 6 0" fill="currentColor" fillOpacity="0.4" stroke="none" />
+        <path d="M2 16c2-4 4-4 6 0s4 4 6 0s4-4 6 0" strokeWidth="1.5" strokeOpacity="0.7" />
+        
+        {/* Curve 3 (Front) */}
+        <path d="M2 20c2-4 4-4 6 0s4 4 6 0s4-4 6 0" fill="currentColor" fillOpacity="0.6" stroke="none" />
+        <path d="M2 20c2-4 4-4 6 0s4 4 6 0s4-4 6 0" strokeWidth="1.5" />
       </svg>
-    );
-    
+    );    
     export const GroupedBarIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...svgProps} {...props}>
         <rect x="3" y="10" width="3" height="10" />
