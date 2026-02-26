@@ -1,0 +1,5 @@
+[
+  { "sets": ["产品A"], "size": 25, "label": "A" },
+  { "sets": ["产品B"], "size": 20, "label": "B" },
+  { "sets": ["产品A", "产品B"], "size": 15, "label": "共同" }
+]

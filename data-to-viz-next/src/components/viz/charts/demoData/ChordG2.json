@@ -1,0 +1,12 @@
+{
+  "links": [
+    { "source": "电商", "target": "支付", "value": 18 },
+    { "source": "电商", "target": "物流", "value": 14 },
+    { "source": "支付", "target": "风控", "value": 11 },
+    { "source": "物流", "target": "客服", "value": 9 },
+    { "source": "客服", "target": "电商", "value": 7 },
+    { "source": "风控", "target": "支付", "value": 10 },
+    { "source": "物流", "target": "风控", "value": 6 },
+    { "source": "支付", "target": "客服", "value": 8 }
+  ]
+}

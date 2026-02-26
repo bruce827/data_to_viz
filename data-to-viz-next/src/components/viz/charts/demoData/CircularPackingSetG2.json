@@ -1,0 +1,35 @@
+{
+  "name": "用户集合",
+  "children": [
+    {
+      "name": "集合A",
+      "children": [
+        { "name": "A-核心", "value": 90, "group": "集合A" },
+        { "name": "A-增长", "value": 70, "group": "集合A" }
+      ]
+    },
+    {
+      "name": "集合B",
+      "children": [
+        { "name": "B-核心", "value": 85, "group": "集合B" },
+        { "name": "B-增长", "value": 65, "group": "集合B" }
+      ]
+    },
+    {
+      "name": "集合C",
+      "children": [
+        { "name": "C-核心", "value": 80, "group": "集合C" },
+        { "name": "C-增长", "value": 60, "group": "集合C" }
+      ]
+    },
+    {
+      "name": "交叉集合",
+      "children": [
+        { "name": "A∩B", "value": 55, "group": "交叉" },
+        { "name": "A∩C", "value": 45, "group": "交叉" },
+        { "name": "B∩C", "value": 40, "group": "交叉" },
+        { "name": "A∩B∩C", "value": 30, "group": "交叉" }
+      ]
+    }
+  ]
+}

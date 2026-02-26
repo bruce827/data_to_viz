@@ -26,14 +26,6 @@
       "type": "decision-question",
       "data": {
         "label": "Two Categoric",
-        "label-cn": "两个分类"
-      }
-    },
-    {
-      "id": "q-sevcat",
-      "type": "decision-question",
-      "data": {
-        "label": "Several Categoric",
         "label-cn": "多个分类"
       }
     },
@@ -113,8 +105,32 @@
       "id": "q-2cat-nested",
       "type": "decision-question",
       "data": {
-        "label": "Nested?",
-        "label-cn": "嵌套？"
+        "label": "Hierarchy",
+        "label-cn": "层级关系"
+      }
+    },
+    {
+      "id": "q-2cat-set",
+      "type": "decision-question",
+      "data": {
+        "label": "Set Relation",
+        "label-cn": "集合关系"
+      }
+    },
+    {
+      "id": "q-2cat-multi",
+      "type": "decision-question",
+      "data": {
+        "label": "Multi-dimensional",
+        "label-cn": "多维对比"
+      }
+    },
+    {
+      "id": "q-2cat-network",
+      "type": "decision-question",
+      "data": {
+        "label": "Network Relation",
+        "label-cn": "网络关系"
       }
     },
     {
@@ -123,6 +139,16 @@
       "data": {
         "label": "Circular Packing",
         "icon": "CircularPackingIcon",
+        "storyPath": "/graph/circularpacking",
+        "label-cn": "圆形填充图"
+      }
+    },
+    {
+      "id": "chart-circular-packing-set",
+      "type": "decision-chart",
+      "data": {
+        "label": "Circular Packing",
+        "icon": "CircularPackingSetIcon",
         "storyPath": "/graph/circularpacking",
         "label-cn": "圆形填充图"
       }
@@ -144,7 +170,7 @@
         "label": "Spider / Radar",
         "icon": "SpiderIcon",
         "storyPath": "/graph/spider",
-        "label-cn": "雷达图 / 蜘蛛网图"
+        "label-cn": "雷达图"
       }
     },
     {
@@ -155,6 +181,36 @@
         "icon": "ParallelIcon",
         "storyPath": "/graph/parallel",
         "label-cn": "平行坐标图"
+      }
+    },
+    {
+      "id": "chart-sankey-set",
+      "type": "decision-chart",
+      "data": {
+        "label": "Sankey",
+        "icon": "SankeyIcon",
+        "storyPath": "/graph/sankey",
+        "label-cn": "桑基图"
+      }
+    },
+    {
+      "id": "chart-chord-set",
+      "type": "decision-chart",
+      "data": {
+        "label": "Chord Diagram",
+        "icon": "ChordIcon",
+        "storyPath": "/graph/chord",
+        "label-cn": "和弦图"
+      }
+    },
+    {
+      "id": "chart-network-set",
+      "type": "decision-chart",
+      "data": {
+        "label": "Network",
+        "icon": "NetworkIcon",
+        "storyPath": "/graph/network",
+        "label-cn": "关系图"
       }
     }
   ],
@@ -168,11 +224,6 @@
       "id": "e2",
       "source": "root",
       "target": "q-2cat"
-    },
-    {
-      "id": "e3",
-      "source": "root",
-      "target": "q-sevcat"
     },
     {
       "id": "e1-1",
@@ -207,7 +258,32 @@
     {
       "id": "e2-2",
       "source": "q-2cat",
+      "target": "q-2cat-set"
+    },
+    {
+      "id": "e2-set-1",
+      "source": "q-2cat-set",
       "target": "chart-venn"
+    },
+    {
+      "id": "e2-set-2",
+      "source": "q-2cat-set",
+      "target": "chart-circular-packing-set"
+    },
+    {
+      "id": "e2-set-3",
+      "source": "q-2cat-network",
+      "target": "chart-sankey-set"
+    },
+    {
+      "id": "e2-set-4",
+      "source": "q-2cat-network",
+      "target": "chart-chord-set"
+    },
+    {
+      "id": "e2-set-5",
+      "source": "q-2cat-network",
+      "target": "chart-network-set"
     },
     {
       "id": "e2-nested-1",
@@ -225,13 +301,23 @@
       "target": "chart-sunburst"
     },
     {
-      "id": "e3-1",
-      "source": "q-sevcat",
+      "id": "e2-3",
+      "source": "q-2cat",
+      "target": "q-2cat-multi"
+    },
+    {
+      "id": "e3",
+      "source": "root",
+      "target": "q-2cat-network"
+    },
+    {
+      "id": "e2-multi-1",
+      "source": "q-2cat-multi",
       "target": "chart-spider"
     },
     {
-      "id": "e3-2",
-      "source": "q-sevcat",
+      "id": "e2-multi-2",
+      "source": "q-2cat-multi",
       "target": "chart-parallel"
     }
   ]

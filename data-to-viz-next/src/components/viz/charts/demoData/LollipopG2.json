@@ -1,0 +1,11 @@
+[
+  { "category": "A", "value": -55, "label": "-55", "sign": "neg" },
+  { "category": "B", "value": -25, "label": "-25", "sign": "neg" },
+  { "category": "C", "value": -18, "label": "-18", "sign": "neg" },
+  { "category": "D", "value": 34, "label": "+34", "sign": "pos" },
+  { "category": "E", "value": 35, "label": "+35", "sign": "pos" },
+  { "category": "F", "value": 61, "label": "+61", "sign": "pos" },
+  { "category": "G", "value": -9, "label": "-9", "sign": "neg" },
+  { "category": "H", "value": 61, "label": "+61", "sign": "pos" },
+  { "category": "I", "value": 66, "label": "+66", "sign": "pos" }
+]

@@ -15,6 +15,19 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { HistogramG2 } from '../charts/HistogramG2';
+import { BarplotG2 } from '../charts/BarplotG2';
+import { LollipopG2 } from '../charts/LollipopG2';
+import { WordcloudG2 } from '../charts/WordcloudG2';
+import { PieG2 } from '../charts/PieG2';
+import { TreemapG2 } from '../charts/TreemapG2';
+import { VennG2 } from '../charts/VennG2';
+import { SankeyG2 } from '../charts/SankeyG2';
+import { ChordG2 } from '../charts/ChordG2';
+import { NetworkG6 } from '../charts/NetworkG6';
+import { CircularPackingG2 } from '../charts/CircularPackingG2';
+import { CircularPackingSetG2 } from '../charts/CircularPackingSetG2';
+import { SunburstG2 } from '../charts/SunburstG2';
+import { SpiderG2 } from '../charts/SpiderG2';
 import { ScatterG2 } from '../charts/ScatterG2';
 import { DensityG2 } from '../charts/DensityG2';
 import { BoxplotG2 } from '../charts/BoxplotG2';
@@ -44,6 +57,19 @@ register('node', 'react-node', ReactNode);
 const CHART_COMPONENTS: Record<string, React.ComponentType> = {
   'chart-hist': HistogramG2,
   'chart-hist-few': HistogramG2,
+  'chart-barplot': BarplotG2,
+  'chart-lollipop': LollipopG2,
+  'chart-wordcloud': WordcloudG2,
+  'chart-pie': PieG2,
+  'chart-treemap': TreemapG2,
+  'chart-venn': VennG2,
+  'chart-circular-packing': CircularPackingG2,
+  'chart-circular-packing-set': CircularPackingSetG2,
+  'chart-sunburst': SunburstG2,
+  'chart-spider': SpiderG2,
+  'chart-sankey-set': SankeyG2,
+  'chart-chord-set': ChordG2,
+  'chart-network-set': NetworkG6,
   'chart-scatter': ScatterG2,
   'chart-density': DensityG2,
   'chart-boxplot': BoxplotG2,
@@ -141,6 +167,8 @@ export function DecisionGraph({ data }: { data: any }) {
     const graph = new Graph({
       container: containerRef.current,
       data,
+      // Add side padding so outer nodes are not visually clipped.
+      padding: [24, 56, 24, 56],
       node: {
         type: 'react-node',
         style: {
@@ -200,7 +228,8 @@ export function DecisionGraph({ data }: { data: any }) {
       autoFit: {
         type: 'view',
         options: {
-          when:'overflow',
+          when: 'always',
+          direction: 'x',
         }
       },
       animation: true, 

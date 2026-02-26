@@ -1,0 +1,22 @@
+[
+  { "text": "可视化", "value": 100, "group": "core" },
+  { "text": "数据", "value": 92, "group": "core" },
+  { "text": "分析", "value": 84, "group": "core" },
+  { "text": "图表", "value": 76, "group": "chart" },
+  { "text": "趋势", "value": 71, "group": "chart" },
+  { "text": "分布", "value": 68, "group": "chart" },
+  { "text": "对比", "value": 64, "group": "chart" },
+  { "text": "关系", "value": 61, "group": "relation" },
+  { "text": "聚类", "value": 56, "group": "relation" },
+  { "text": "模式", "value": 54, "group": "relation" },
+  { "text": "维度", "value": 50, "group": "model" },
+  { "text": "指标", "value": 48, "group": "model" },
+  { "text": "特征", "value": 46, "group": "model" },
+  { "text": "决策", "value": 43, "group": "action" },
+  { "text": "洞察", "value": 41, "group": "action" },
+  { "text": "业务", "value": 39, "group": "action" },
+  { "text": "增长", "value": 36, "group": "action" },
+  { "text": "质量", "value": 33, "group": "quality" },
+  { "text": "效率", "value": 31, "group": "quality" },
+  { "text": "预测", "value": 29, "group": "model" }
+]

@@ -1,0 +1,7 @@
+[
+  { "type": "搜索", "value": 38 },
+  { "type": "推荐", "value": 27 },
+  { "type": "活动", "value": 18 },
+  { "type": "广告", "value": 11 },
+  { "type": "其他", "value": 6 }
+]

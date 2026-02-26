@@ -1,0 +1,29 @@
+{
+  "name": "流量来源",
+  "children": [
+    {
+      "name": "自然流量",
+      "children": [
+        { "name": "搜索", "value": 320 },
+        { "name": "直接访问", "value": 210 },
+        { "name": "收藏/书签", "value": 120 }
+      ]
+    },
+    {
+      "name": "付费流量",
+      "children": [
+        { "name": "信息流广告", "value": 260 },
+        { "name": "搜索广告", "value": 180 },
+        { "name": "联盟广告", "value": 90 }
+      ]
+    },
+    {
+      "name": "社交流量",
+      "children": [
+        { "name": "微信", "value": 150 },
+        { "name": "微博", "value": 110 },
+        { "name": "短视频平台", "value": 140 }
+      ]
+    }
+  ]
+}

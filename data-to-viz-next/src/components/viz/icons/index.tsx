@@ -269,9 +269,17 @@ export const ParallelIcon = (props: React.SVGProps<SVGSVGElement>) => (
     
     export const WordcloudIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...svgProps} {...props}>
-        <text x="50%" y="50%" textAnchor="middle" dy=".3em" fontSize="6" fontWeight="bold" fill="currentColor">ABC</text>
-        <text x="20%" y="30%" textAnchor="middle" fontSize="4" fill="currentColor" fillOpacity="0.5">a</text>
-        <text x="80%" y="80%" textAnchor="middle" fontSize="4" fill="currentColor" fillOpacity="0.5">z</text>
+        {/* Cloud outline */}
+        <path d="M6.2 18h11.2c2.1 0 3.8-1.6 3.8-3.6c0-1.8-1.3-3.3-3-3.6A5.2 5.2 0 0 0 8.1 8.4A3.8 3.8 0 0 0 6.2 18z" />
+        {/* Dense words with varied lengths and directions */}
+        <line x1="8" y1="10.6" x2="12.8" y2="10.6" strokeWidth="1.6" />
+        <line x1="13.2" y1="10.6" x2="16.8" y2="10.6" strokeWidth="1.3" strokeOpacity="0.75" />
+        <line x1="8.4" y1="12.6" x2="17.2" y2="12.6" strokeWidth="1.6" strokeOpacity="0.85" />
+        <line x1="8.7" y1="14.6" x2="13.4" y2="14.6" strokeWidth="1.6" strokeOpacity="0.7" />
+        <line x1="13.9" y1="14.6" x2="16.6" y2="14.6" strokeWidth="1.2" strokeOpacity="0.6" />
+        <line x1="9.4" y1="16.2" x2="14.6" y2="16.2" strokeWidth="1.4" strokeOpacity="0.65" />
+        <line x1="15.5" y1="11.2" x2="15.5" y2="16" strokeWidth="1.2" strokeOpacity="0.8" />
+        <line x1="10.2" y1="11.4" x2="10.2" y2="13.8" strokeWidth="1.1" strokeOpacity="0.65" />
       </svg>
     );
     
@@ -299,8 +307,10 @@ export const ParallelIcon = (props: React.SVGProps<SVGSVGElement>) => (
     
     export const SpiderIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...svgProps} {...props}>
-        <path d="M12 2L20.66 7L17.32 17H6.68L3.34 7L12 2Z" strokeOpacity="0.3" />
-        <path d="M12 6L16 9L15 14H9L8 9L12 6Z" fill="currentColor" fillOpacity="0.2" />
+        <path d="M12 2.5L21 8.5L17.5 21H6.5L3 8.5L12 2.5Z" strokeOpacity="0.35" />
+        <path d="M12 6.5L17 10L15.5 16.5H8.5L7 10L12 6.5Z" fill="currentColor" fillOpacity="0.22" />
+        <path d="M12 11.5L14.5 13.2L13.7 16H10.3L9.5 13.2L12 11.5Z" fill="currentColor" fillOpacity="0.4" stroke="none" />
+        <path d="M12 11.5L12 2.5M12 11.5L21 8.5M12 11.5L17.5 21M12 11.5L6.5 21M12 11.5L3 8.5" strokeOpacity="0.2" />
       </svg>
     );
     
@@ -310,6 +320,19 @@ export const ParallelIcon = (props: React.SVGProps<SVGSVGElement>) => (
         <circle cx="10" cy="10" r="4" />
         <circle cx="16" cy="15" r="3" />
         <circle cx="15" cy="8" r="2" />
+      </svg>
+    );
+
+    export const CircularPackingSetIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        {/* Three set groups */}
+        <circle cx="8.6" cy="11" r="5.2" strokeOpacity="0.8" />
+        <circle cx="15.4" cy="11" r="5.2" strokeOpacity="0.8" />
+        <circle cx="12" cy="16.2" r="5.2" strokeOpacity="0.8" />
+        {/* Packed points highlighting overlap region */}
+        <circle cx="12" cy="11.5" r="1.6" fill="currentColor" fillOpacity="0.38" stroke="none" />
+        <circle cx="9.8" cy="14.1" r="1.2" fill="currentColor" fillOpacity="0.24" stroke="none" />
+        <circle cx="14.2" cy="14.1" r="1.2" fill="currentColor" fillOpacity="0.24" stroke="none" />
       </svg>
     );
     

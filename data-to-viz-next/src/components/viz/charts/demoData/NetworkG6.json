@@ -1,0 +1,23 @@
+{
+  "nodes": [
+    { "id": "n-biz", "data": { "label": "业务中台", "group": "业务", "size": 34 } },
+    { "id": "n-shop", "data": { "label": "电商", "group": "业务", "size": 30 } },
+    { "id": "n-content", "data": { "label": "内容", "group": "业务", "size": 28 } },
+    { "id": "n-pay", "data": { "label": "支付", "group": "平台", "size": 26 } },
+    { "id": "n-risk", "data": { "label": "风控", "group": "平台", "size": 24 } },
+    { "id": "n-member", "data": { "label": "会员", "group": "平台", "size": 24 } },
+    { "id": "n-reco", "data": { "label": "推荐", "group": "服务", "size": 22 } },
+    { "id": "n-msg", "data": { "label": "消息", "group": "服务", "size": 22 } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "n-biz", "target": "n-shop", "data": { "value": 10 } },
+    { "id": "e2", "source": "n-biz", "target": "n-content", "data": { "value": 8 } },
+    { "id": "e3", "source": "n-shop", "target": "n-pay", "data": { "value": 9 } },
+    { "id": "e4", "source": "n-shop", "target": "n-member", "data": { "value": 6 } },
+    { "id": "e5", "source": "n-pay", "target": "n-risk", "data": { "value": 7 } },
+    { "id": "e6", "source": "n-content", "target": "n-reco", "data": { "value": 6 } },
+    { "id": "e7", "source": "n-reco", "target": "n-member", "data": { "value": 5 } },
+    { "id": "e8", "source": "n-member", "target": "n-msg", "data": { "value": 4 } },
+    { "id": "e9", "source": "n-risk", "target": "n-msg", "data": { "value": 3 } }
+  ]
+}

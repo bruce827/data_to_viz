@@ -1,0 +1,27 @@
+{
+  "name": "电商业务",
+  "children": [
+    {
+      "name": "拉新",
+      "children": [
+        { "name": "自然拉新", "value": 220 },
+        { "name": "广告拉新", "value": 180 }
+      ]
+    },
+    {
+      "name": "转化",
+      "children": [
+        { "name": "商品曝光", "value": 260 },
+        { "name": "加购", "value": 200 },
+        { "name": "下单", "value": 160 }
+      ]
+    },
+    {
+      "name": "留存",
+      "children": [
+        { "name": "会员活跃", "value": 140 },
+        { "name": "复购", "value": 120 }
+      ]
+    }
+  ]
+}

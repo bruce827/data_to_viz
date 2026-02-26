@@ -1,0 +1,14 @@
+[
+  { "series": "产品A", "dimension": "功能", "score": 82 },
+  { "series": "产品A", "dimension": "性能", "score": 76 },
+  { "series": "产品A", "dimension": "稳定性", "score": 84 },
+  { "series": "产品A", "dimension": "易用性", "score": 79 },
+  { "series": "产品A", "dimension": "生态", "score": 68 },
+  { "series": "产品A", "dimension": "成本", "score": 72 },
+  { "series": "产品B", "dimension": "功能", "score": 74 },
+  { "series": "产品B", "dimension": "性能", "score": 83 },
+  { "series": "产品B", "dimension": "稳定性", "score": 78 },
+  { "series": "产品B", "dimension": "易用性", "score": 71 },
+  { "series": "产品B", "dimension": "生态", "score": 82 },
+  { "series": "产品B", "dimension": "成本", "score": 64 }
+]
