@@ -32,7 +32,7 @@ export function StackedAreaG2() {
         shape: 'smooth',
       },
       scale: {
-        color: { range: ['#3b82f6', '#93c5fd'] }
+        color: { palette: 'category10' }
       },
       style: {
         fillOpacity: 0.7,

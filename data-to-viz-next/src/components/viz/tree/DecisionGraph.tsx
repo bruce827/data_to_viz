@@ -19,6 +19,7 @@ import { ScatterG2 } from '../charts/ScatterG2';
 import { DensityG2 } from '../charts/DensityG2';
 import { BoxplotG2 } from '../charts/BoxplotG2';
 import { LineG2 } from '../charts/LineG2';
+import { LineSevG2 } from '../charts/LineSevG2';
 import { AreaG2 } from '../charts/AreaG2';
 import { ConnectedScatterG2 } from '../charts/ConnectedScatterG2';
 import { ViolinG2 } from '../charts/ViolinG2';
@@ -48,7 +49,7 @@ const CHART_COMPONENTS: Record<string, React.ComponentType> = {
   'chart-boxplot': BoxplotG2,
   'chart-violin': ViolinG2,
   'chart-line': LineG2,
-  'chart-line-sev': LineG2,
+  'chart-line-sev': LineSevG2,
   'chart-area': AreaG2,
   'chart-connected-scatter': ConnectedScatterG2,
   'chart-heatmap-many': HeatmapG2,
@@ -172,18 +173,12 @@ export function DecisionGraph({ data }: { data: any }) {
         },
       },
       layout: {
-        // type: 'antv-dagre',
         type: 'compact-box',
         direction: 'TB',
-        getWidth: () => 100,
-        getHeight: () => 50,
-        getVGap: () => 80,
-        getHGap: () => 40,
-        // rankdir: 'TB',
-        // align: 'UL',
-        // nodesep: 60,
-        // ranksep: 80,
-        // controlPoints: true,
+        getWidth: () => 140,
+        getHeight: () => 60,
+        getVGap: () => 60,
+        getHGap: () => 10,
       },
       behaviors: [
         'drag-canvas', 
@@ -202,8 +197,13 @@ export function DecisionGraph({ data }: { data: any }) {
             }
         }
       ],
-      autoFit: 'view',
-      animation: false, 
+      autoFit: {
+        type: 'view',
+        options: {
+          when:'overflow',
+        }
+      },
+      animation: true, 
     });
 
     graph.render();

@@ -1,27 +1,51 @@
 {
-  "name": "root",
+  "name": "Data Science",
   "children": [
     {
-      "name": "Cluster A",
+      "name": "Analysis",
       "children": [
-        {"name": "A1", "value": 10},
-        {"name": "A2", "value": 15},
-        {"name": "A3", "value": 12}
+        {
+          "name": "Distribution",
+          "children": [
+            {"name": "Histogram"},
+            {"name": "Density"},
+            {"name": "Boxplot"}
+          ]
+        },
+        {
+          "name": "Correlation",
+          "children": [
+            {"name": "Scatter"},
+            {"name": "Heatmap"}
+          ]
+        }
       ]
     },
     {
-      "name": "Cluster B",
+      "name": "ML",
       "children": [
-        {"name": "B1", "value": 20},
-        {"name": "B2", "value": 25}
+        {
+          "name": "Supervised",
+          "children": [
+            {"name": "Regression"},
+            {"name": "Classification"}
+          ]
+        },
+        {
+          "name": "Unsupervised",
+          "children": [
+            {"name": "Clustering"},
+            {"name": "PCA"}
+          ]
+        }
       ]
     },
     {
-      "name": "Cluster C",
+      "name": "Eng",
       "children": [
-        {"name": "C1", "value": 30},
-        {"name": "C2", "value": 10},
-        {"name": "C3", "value": 5}
+        {"name": "ETL"},
+        {"name": "Storage"},
+        {"name": "Cloud"}
       ]
     }
   ]

@@ -2,53 +2,39 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
-import dendrogramData from './demoData/DendrogramG2.json';
 
-/**
- * 手动计算树形布局的简单算法
- * 目标：将嵌套 JSON 转为带 x, y 坐标的节点和连线
- */
-function layoutTree(data: any) {
-  const nodes: any[] = [];
-  const links: any[] = [];
-  let leafCount = 0;
+const budgetData = {
+  name: '年度预算',
+  children: [
+    {
+      name: '研发部门',
+      children: [
+        { name: '前端开发', value: 1200 },
+        { name: '后端开发', value: 1500 },
+        { name: '测试', value: 800 },
+        { name: '设计', value: 600 },
+      ],
+    },
+    {
+      name: '市场部门',
+      children: [
+        { name: '广告投放', value: 2000 },
+        { name: '活动策划', value: 800 },
+        { name: '内容营销', value: 500 },
+      ],
+    },
+    {
+      name: '运营部门',
+      children: [
+        { name: '客户服务', value: 700 },
+        { name: '数据分析', value: 400 },
+        { name: '运营支持', value: 300 },
+      ],
+    },
+    { name: '其他支出', value: 1200 },
+  ],
+};
 
-  // 1. 递归计算位置
-  function traverse(node: any, depth: number) {
-    if (!node.children || node.children.length === 0) {
-      // 叶子节点：x 均匀分布，y 为深度
-      const x = leafCount++;
-      const y = depth;
-      const result = { ...node, x, y };
-      nodes.push(result);
-      return result;
-    }
-
-    // 内部节点：y 为深度，x 为子节点 x 的平均值
-    const childNodes = node.children.map((c: any) => traverse(c, depth + 1));
-    const x = childNodes.reduce((acc: number, c: any) => acc + c.x, 0) / childNodes.length;
-    const y = depth;
-    const result = { ...node, x, y };
-    
-    nodes.push(result);
-    
-    // 生成连线数据 (从父到子)
-    childNodes.forEach((c: any) => {
-      links.push({
-        sourceX: x,
-        sourceY: y,
-        targetX: c.x,
-        targetY: c.y,
-        name: c.name
-      });
-    });
-
-    return result;
-  }
-
-  traverse(data, 0);
-  return { nodes, links };
-}
 
 export function DendrogramG2() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -60,67 +46,33 @@ export function DendrogramG2() {
       container: containerRef.current,
       autoFit: true,
       height: 300,
-      paddingTop: 20,
-      paddingBottom: 40,
     });
 
-    // 计算布局
-    const { nodes, links } = layoutTree(dendrogramData);
 
     chart.options({
-      type: 'view',
-      children: [
-        // 1. 绘制连线 (使用 link 标记)
-        {
-          type: 'link',
-          data: links,
-          encode: {
-            x: ['sourceX', 'targetX'],
-            y: ['sourceY', 'targetY'],
-          },
-          style: {
-            stroke: '#94a3b8',
-            lineWidth: 1.5,
-          },
-          tooltip: false
-        },
-        // 2. 绘制节点 (使用 point 标记)
-        {
-          type: 'point',
-          data: nodes,
-          encode: {
-            x: 'x',
-            y: 'y',
-            color: 'name',
-            size: 6,
-          },
-          style: {
-            fillOpacity: 1,
-            stroke: '#fff',
-            lineWidth: 1
-          },
-          tooltip: {
-            items: [{ field: 'name', name: '节点' }]
-          }
-        },
-        // 3. 绘制文字 (只给叶子节点画文字，避免重叠)
-        {
-          type: 'text',
-          data: nodes.filter(n => !n.children),
-          encode: {
-            x: 'x',
-            y: 'y',
-            text: 'name',
-          },
-          style: {
-            fontSize: 10,
-            textAlign: 'center',
-            dy: 15,
-          }
-        }
-      ],
-      // 隐藏轴，因为树形图的坐标轴没有物理意义
-      axis: false,
+        type: 'treemap',
+  data: { value: budgetData },
+  layout: {
+    tile: 'treemapSquarify',
+    paddingInner: 2,
+  },
+  encode: {
+    value: 'value',
+    color: (d) => d.path[1] || d.data.name,
+  },
+  style: {
+    labelText: (d) => d.data.name,
+    // labelFill: '#fff',
+    // labelStroke: '#000',
+    labelLineWidth: 0.5,
+    labelFontSize: 12,
+  },
+  tooltip: {
+    title: (d) => d.data.name,
+    items: [
+      { field: 'value', name: '预算', valueFormatter: (v) => `${v}万元` },
+    ],
+  },
     });
 
     chart.render();
@@ -128,5 +80,9 @@ export function DendrogramG2() {
     return () => chart.destroy();
   }, []);
 
-  return <div ref={containerRef} style={{ width: '100%', height: '300px' }} />;
+  return (
+    <div className="relative w-full bg-slate-50/50 rounded-lg border border-slate-100 overflow-hidden">
+      <div ref={containerRef} style={{ width: '100%', height: '300px' }} />
+    </div>
+  );
 }

@@ -1,0 +1,7 @@
+[
+  {"month": "1月", "city": "北京", "temp": -2.5}, {"month": "2月", "city": "北京", "temp": 1.2}, {"month": "3月", "city": "北京", "temp": 8.5}, {"month": "4月", "city": "北京", "temp": 16.2}, {"month": "5月", "city": "北京", "temp": 22.4}, {"month": "6月", "city": "北京", "temp": 26.8},
+  {"month": "1月", "city": "上海", "temp": 4.5}, {"month": "2月", "city": "上海", "temp": 6.2}, {"month": "3月", "city": "上海", "temp": 10.5}, {"month": "4月", "city": "上海", "temp": 16.2}, {"month": "5月", "city": "上海", "temp": 21.8}, {"month": "6月", "city": "上海", "temp": 25.5},
+  {"month": "1月", "city": "深圳", "temp": 15.5}, {"month": "2月", "city": "深圳", "temp": 16.8}, {"month": "3月", "city": "深圳", "temp": 19.5}, {"month": "4月", "city": "深圳", "temp": 22.5}, {"month": "5月", "city": "深圳", "temp": 25.8}, {"month": "6月", "city": "深圳", "temp": 28.5},
+  {"month": "1月", "city": "西安", "temp": 0.5}, {"month": "2月", "city": "西安", "temp": 3.2}, {"month": "3月", "city": "西安", "temp": 9.5}, {"month": "4月", "city": "西安", "temp": 15.2}, {"month": "5月", "city": "西安", "temp": 21.4}, {"month": "6月", "city": "西安", "temp": 26.5},
+  {"month": "1月", "city": "成都", "temp": 6.5}, {"month": "2月", "city": "成都", "temp": 8.2}, {"month": "3月", "city": "成都", "temp": 12.5}, {"month": "4月", "city": "成都", "temp": 17.2}, {"month": "5月", "city": "成都", "temp": 21.8}, {"month": "6月", "city": "成都", "temp": 24.5}
+]

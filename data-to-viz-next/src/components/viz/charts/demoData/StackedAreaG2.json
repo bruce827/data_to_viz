@@ -1,12 +1,7 @@
 [
-  {"year": "2010", "category": "A", "value": 10},
-  {"year": "2011", "category": "A", "value": 15},
-  {"year": "2012", "category": "A", "value": 25},
-  {"year": "2013", "category": "A", "value": 20},
-  {"year": "2014", "category": "A", "value": 30},
-  {"year": "2010", "category": "B", "value": 20},
-  {"year": "2011", "category": "B", "value": 25},
-  {"year": "2012", "category": "B", "value": 15},
-  {"year": "2013", "category": "B", "value": 35},
-  {"year": "2014", "category": "B", "value": 25}
+  {"year": "2010", "category": "Retail", "value": 15}, {"year": "2011", "category": "Retail", "value": 18}, {"year": "2012", "category": "Retail", "value": 25}, {"year": "2013", "category": "Retail", "value": 22}, {"year": "2014", "category": "Retail", "value": 30},
+  {"year": "2010", "category": "Online", "value": 10}, {"year": "2011", "category": "Online", "value": 25}, {"year": "2012", "category": "Online", "value": 35}, {"year": "2013", "category": "Online", "value": 45}, {"year": "2014", "category": "Online", "value": 60},
+  {"year": "2010", "category": "Mobile", "value": 5}, {"year": "2011", "category": "Mobile", "value": 8}, {"year": "2012", "category": "Mobile", "value": 15}, {"year": "2013", "category": "Mobile", "value": 25}, {"year": "2014", "category": "Mobile", "value": 40},
+  {"year": "2010", "category": "Direct", "value": 20}, {"year": "2011", "category": "Direct", "value": 15}, {"year": "2012", "category": "Direct", "value": 10}, {"year": "2013", "category": "Direct", "value": 12}, {"year": "2014", "category": "Direct", "value": 8},
+  {"year": "2010", "category": "Wholesale", "value": 30}, {"year": "2011", "category": "Wholesale", "value": 32}, {"year": "2012", "category": "Wholesale", "value": 28}, {"year": "2013", "category": "Wholesale", "value": 35}, {"year": "2014", "category": "Wholesale", "value": 30}
 ]
