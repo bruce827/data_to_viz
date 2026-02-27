@@ -1,0 +1,23 @@
+[
+  { "state": "California", "age": "0-17", "population": 8870000 },
+  { "state": "California", "age": "18-64", "population": 24480000 },
+  { "state": "California", "age": "65+", "population": 6350000 },
+  { "state": "Texas", "age": "0-17", "population": 7360000 },
+  { "state": "Texas", "age": "18-64", "population": 18290000 },
+  { "state": "Texas", "age": "65+", "population": 3970000 },
+  { "state": "Florida", "age": "0-17", "population": 3990000 },
+  { "state": "Florida", "age": "18-64", "population": 13650000 },
+  { "state": "Florida", "age": "65+", "population": 4870000 },
+  { "state": "New York", "age": "0-17", "population": 3950000 },
+  { "state": "New York", "age": "18-64", "population": 12650000 },
+  { "state": "New York", "age": "65+", "population": 3610000 },
+  { "state": "Illinois", "age": "0-17", "population": 2580000 },
+  { "state": "Illinois", "age": "18-64", "population": 8020000 },
+  { "state": "Illinois", "age": "65+", "population": 2190000 },
+  { "state": "Pennsylvania", "age": "0-17", "population": 2460000 },
+  { "state": "Pennsylvania", "age": "18-64", "population": 8030000 },
+  { "state": "Pennsylvania", "age": "65+", "population": 2520000 },
+  { "state": "Ohio", "age": "0-17", "population": 2270000 },
+  { "state": "Ohio", "age": "18-64", "population": 7260000 },
+  { "state": "Ohio", "age": "65+", "population": 2250000 }
+]

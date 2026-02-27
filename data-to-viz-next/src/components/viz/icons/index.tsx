@@ -304,6 +304,45 @@ export const ParallelIcon = (props: React.SVGProps<SVGSVGElement>) => (
         <circle cx="15" cy="12" r="6" strokeOpacity="0.8" />
       </svg>
     );
+
+    export const UpsetIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        {/* Top bars */}
+        <rect x="3.5" y="4.5" width="2.8" height="3.8" rx="0.6" fill="currentColor" fillOpacity="0.35" stroke="none" />
+        <rect x="8.1" y="3.1" width="2.8" height="5.2" rx="0.6" fill="currentColor" fillOpacity="0.55" stroke="none" />
+        <rect x="12.7" y="1.8" width="2.8" height="6.5" rx="0.6" fill="currentColor" fillOpacity="0.8" stroke="none" />
+        <rect x="17.3" y="5.1" width="2.8" height="3.2" rx="0.6" fill="currentColor" fillOpacity="0.35" stroke="none" />
+
+        {/* Matrix background dots */}
+        <circle cx="4.9" cy="12.2" r="1.1" fill="currentColor" fillOpacity="0.15" stroke="none" />
+        <circle cx="4.9" cy="15.6" r="1.1" fill="currentColor" fillOpacity="0.15" stroke="none" />
+        <circle cx="4.9" cy="19.0" r="1.1" fill="currentColor" fillOpacity="0.15" stroke="none" />
+
+        <circle cx="9.5" cy="12.2" r="1.1" fill="currentColor" fillOpacity="0.15" stroke="none" />
+        <circle cx="9.5" cy="15.6" r="1.1" fill="currentColor" fillOpacity="0.15" stroke="none" />
+        <circle cx="9.5" cy="19.0" r="1.1" fill="currentColor" fillOpacity="0.15" stroke="none" />
+
+        <circle cx="14.1" cy="12.2" r="1.1" fill="currentColor" fillOpacity="0.15" stroke="none" />
+        <circle cx="14.1" cy="15.6" r="1.1" fill="currentColor" fillOpacity="0.15" stroke="none" />
+        <circle cx="14.1" cy="19.0" r="1.1" fill="currentColor" fillOpacity="0.15" stroke="none" />
+
+        <circle cx="18.7" cy="12.2" r="1.1" fill="currentColor" fillOpacity="0.15" stroke="none" />
+        <circle cx="18.7" cy="15.6" r="1.1" fill="currentColor" fillOpacity="0.15" stroke="none" />
+        <circle cx="18.7" cy="19.0" r="1.1" fill="currentColor" fillOpacity="0.15" stroke="none" />
+
+        {/* Active combinations with connectors */}
+        <line x1="9.5" y1="12.2" x2="9.5" y2="15.6" stroke="currentColor" strokeWidth="1.4" strokeOpacity="0.75" />
+        <circle cx="9.5" cy="12.2" r="1.15" fill="currentColor" stroke="none" />
+        <circle cx="9.5" cy="15.6" r="1.15" fill="currentColor" stroke="none" />
+
+        <line x1="14.1" y1="12.2" x2="14.1" y2="19.0" stroke="currentColor" strokeWidth="1.4" strokeOpacity="0.75" />
+        <circle cx="14.1" cy="12.2" r="1.15" fill="currentColor" stroke="none" />
+        <circle cx="14.1" cy="15.6" r="1.15" fill="currentColor" stroke="none" />
+        <circle cx="14.1" cy="19.0" r="1.15" fill="currentColor" stroke="none" />
+
+        <circle cx="18.7" cy="19.0" r="1.15" fill="currentColor" stroke="none" />
+      </svg>
+    );
     
     export const SpiderIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...svgProps} {...props}>
@@ -386,6 +425,34 @@ export const ParallelIcon = (props: React.SVGProps<SVGSVGElement>) => (
         <rect x="14" y="12" width="4" height="8" />
         <rect x="14" y="4" width="4" height="7" fillOpacity="0.5" />
         <path d="M2 22h20" />
+      </svg>
+    );
+
+    export const FacetRectIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        {/* Top-left panel */}
+        <rect x="2" y="3" width="8" height="7" rx="1" />
+        <line x1="6" y1="3" x2="6" y2="10" strokeOpacity="0.45" />
+        <line x1="2" y1="6.5" x2="10" y2="6.5" strokeOpacity="0.45" />
+        <rect x="2.8" y="3.8" width="2.6" height="2.1" fill="currentColor" fillOpacity="0.35" stroke="none" />
+
+        {/* Top-right panel */}
+        <rect x="14" y="3" width="8" height="7" rx="1" />
+        <line x1="18" y1="3" x2="18" y2="10" strokeOpacity="0.45" />
+        <line x1="14" y1="6.5" x2="22" y2="6.5" strokeOpacity="0.45" />
+        <rect x="18.6" y="3.8" width="2.6" height="2.1" fill="currentColor" fillOpacity="0.55" stroke="none" />
+
+        {/* Bottom-left panel */}
+        <rect x="2" y="14" width="8" height="7" rx="1" />
+        <line x1="6" y1="14" x2="6" y2="21" strokeOpacity="0.45" />
+        <line x1="2" y1="17.5" x2="10" y2="17.5" strokeOpacity="0.45" />
+        <rect x="6.6" y="17.9" width="2.6" height="2.1" fill="currentColor" fillOpacity="0.55" stroke="none" />
+
+        {/* Bottom-right panel */}
+        <rect x="14" y="14" width="8" height="7" rx="1" />
+        <line x1="18" y1="14" x2="18" y2="21" strokeOpacity="0.45" />
+        <line x1="14" y1="17.5" x2="22" y2="17.5" strokeOpacity="0.45" />
+        <rect x="14.8" y="17.9" width="2.6" height="2.1" fill="currentColor" fillOpacity="0.35" stroke="none" />
       </svg>
     );
     

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
-import heatmapData from './demoData/HeatmapG2.json';
+import { View } from '@antv/data-set';
 
 export function HeatmapG2() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -16,34 +16,49 @@ export function HeatmapG2() {
       height: 300,
     });
 
-    chart.options({
-      type: 'cell',
-      data: {
-        type: 'inline',
-        value: heatmapData,
-      },
-      encode: {
-        x: 'x',
-        y: 'y',
-        color: 'value',
-      },
-      scale: {
-        color: {
-          palette: 'gnBu',
-          nice: true,
-        },
-      },
-      style: {
-        inset: 0.5,
-      },
-      axis: {
-        x: { title: '类别 X' },
-        y: { title: '级别 Y' },
-      },
-      tooltip: {
-        items: [{ field: 'value', name: '数值' }],
-      },
+    chart.data({
+      type: 'fetch',
+      value: 'https://assets.antv.antgroup.com/g2/diamond.json',
     });
+
+    chart.scale('x', { nice: true, domainMin: -0.5 });
+    chart.scale('y', { nice: true, domainMin: -2000 });
+    chart.scale('color', { nice: true });
+
+    chart
+      .heatmap()
+      .data({
+        transform: [
+          {
+            type: 'custom',
+            callback: (data) => {
+              const dv = new View().source(data);
+              dv.transform({
+                type: 'kernel-smooth.density',
+                fields: ['carat', 'price'],
+                as: ['carat', 'price', 'density'],
+              });
+              return dv.rows;
+            },
+          },
+        ],
+      })
+      .encode('x', 'carat')
+      .encode('y', 'price')
+      .encode('color', 'density')
+      .style({
+        opacity: 0.3,
+        gradient: [
+          [0, 'white'],
+          [0.2, 'blue'],
+          [0.4, 'cyan'],
+          [0.6, 'lime'],
+          [0.8, 'yellow'],
+          [0.9, 'red'],
+        ],
+      });
+
+    chart.point().encode('x', 'carat').encode('y', 'price');
 
     chart.render();
 

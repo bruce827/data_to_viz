@@ -1,0 +1,29 @@
+{
+  "name": "年度营收",
+  "children": [
+    {
+      "name": "华东",
+      "children": [
+        { "name": "直营", "value": 420 },
+        { "name": "电商", "value": 360 },
+        { "name": "分销", "value": 210 }
+      ]
+    },
+    {
+      "name": "华南",
+      "children": [
+        { "name": "直营", "value": 300 },
+        { "name": "电商", "value": 280 },
+        { "name": "分销", "value": 160 }
+      ]
+    },
+    {
+      "name": "华北",
+      "children": [
+        { "name": "直营", "value": 260 },
+        { "name": "电商", "value": 240 },
+        { "name": "分销", "value": 150 }
+      ]
+    }
+  ]
+}

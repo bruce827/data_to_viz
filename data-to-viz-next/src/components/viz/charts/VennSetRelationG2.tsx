@@ -2,13 +2,15 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
+import vennSetData from './demoData/VennSetRelationG2.json';
 
 type VennDatum = {
-  sets: string[];
+  sets?: string[];
   label?: string;
+  size?: number;
 };
 
-export function CircularPackingSetG2() {
+export function VennSetRelationG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -17,27 +19,19 @@ export function CircularPackingSetG2() {
     const chart = new Chart({
       container: containerRef.current,
       autoFit: true,
-      height: 320,
+      height: 380,
       paddingLeft: 20,
       paddingRight: 20,
-      paddingTop: 12,
-      paddingBottom: 12,
+      paddingTop: 16,
+      paddingBottom: 16,
     });
 
     chart.options({
       type: 'path',
       data: {
-        type: 'fetch',
-        value: 'https://assets.antv.antgroup.com/g2/lastfm.json',
-        transform: [
-          {
-            type: 'venn',
-            padding: 12,
-            sets: 'sets',
-            size: 'size',
-            as: ['key', 'path'],
-          },
-        ],
+        type: 'inline',
+        value: vennSetData,
+        transform: [{ type: 'venn' }],
       },
       encode: {
         d: 'path',
@@ -47,29 +41,23 @@ export function CircularPackingSetG2() {
         {
           position: 'inside',
           text: (d: VennDatum) => d.label || '',
-          style: {
-            fontSize: 12,
-            fontWeight: 'bold',
-          },
-          transform: [{ type: 'contrastReverse' }],
         },
       ],
       style: {
-        opacity: (d: VennDatum) => (d.sets.length > 1 ? 0.4 : 0.7),
-        stroke: '#fff',
+        opacity: (d: VennDatum) => ((d.sets?.length ?? 0) > 1 ? 0.3 : 0.7),
+        stroke: '#ffffff',
         lineWidth: 2,
       },
-      scale: {
-        color: {
-          range: ['#667eea', '#764ba2', '#f093fb'],
-        },
-      },
       state: {
-        inactive: { opacity: 0.1 },
+        inactive: { opacity: 0.2 },
         active: { opacity: 0.9 },
       },
       interactions: [{ type: 'elementHighlight' }],
       legend: false,
+      tooltip: {
+        title: (d: VennDatum) => d.sets?.join(' ∩ ') || '',
+        items: [{ field: 'size', name: '人数' }],
+      },
     });
 
     chart.render();
@@ -77,5 +65,5 @@ export function CircularPackingSetG2() {
     return () => chart.destroy();
   }, []);
 
-  return <div ref={containerRef} style={{ width: '100%', height: '320px' }} />;
+  return <div ref={containerRef} style={{ width: '100%', height: '380px' }} />;
 }

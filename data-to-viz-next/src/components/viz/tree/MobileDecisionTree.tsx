@@ -18,12 +18,24 @@ export function MobileDecisionTree({ data }: { data: any }) {
     const isLeaf = node.children.length === 0;
     const Icon = node.icon ? (Icons as any)[node.icon] : null;
 
+    if (isLeaf && node.type === 'decision-question') {
+      return (
+        <div key={node.id} className="pl-4 py-3 border-l-2 border-slate-100 ml-2">
+          <div className="w-full flex items-center gap-3 py-3 px-4 rounded-lg bg-white border border-slate-200">
+            {Icon && <Icon className="w-5 h-5 text-slate-400" />}
+            <div className="font-semibold text-slate-700">{node.labelCn || node.label}</div>
+          </div>
+        </div>
+      );
+    }
+
     if (isLeaf) {
       return (
         <div key={node.id} className="pl-4 py-3 border-l-2 border-slate-100 ml-2">
            <Button 
              variant="outline" 
              className="w-full justify-start gap-4 h-auto py-4 bg-white hover:border-blue-300 hover:bg-blue-50"
+             disabled={!node.storyPath}
              onClick={() => node.storyPath && (window.location.href = node.storyPath)}
            >
              {Icon && <Icon className="w-6 h-6 text-blue-600" />}

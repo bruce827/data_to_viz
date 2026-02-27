@@ -14,180 +14,256 @@
       }
     },
     {
-      "id": "q-1num-1cat",
+      "id": "q-structure",
       "type": "decision-question",
       "data": {
-        "label": "1 Num + 1 Cat",
-        "label-cn": "单数值\n单分类"
+        "label": "Structure Relation",
+        "label-cn": "结构关系"
       }
     },
     {
-      "id": "q-1num-sevcat",
+      "id": "q-combo",
       "type": "decision-question",
       "data": {
-        "label": "1 Num + Sev Cat",
-        "label-cn": "单数值\n多分类"
+        "label": "Variable Combination",
+        "label-cn": "多分类数值组合"
       }
     },
+
     {
-      "id": "chart-barplot",
-      "type": "decision-chart",
-      "data": {
-        "label": "Barplot",
-        "icon": "BarplotIcon",
-        "storyPath": "/graph/barplot",
-        "label-cn": "条形图"
-      }
-    },
-    {
-      "id": "chart-lollipop",
-      "type": "decision-chart",
-      "data": {
-        "label": "Lollipop",
-        "icon": "LollipopIcon",
-        "storyPath": "/graph/lollipop",
-        "label-cn": "棒棒糖图"
-      }
-    },
-    {
-      "id": "chart-boxplot",
-      "type": "decision-chart",
-      "data": {
-        "label": "Boxplot",
-        "icon": "BoxplotIcon",
-        "storyPath": "/graph/boxplot",
-        "label-cn": "箱线图"
-      }
-    },
-    {
-      "id": "chart-violin",
-      "type": "decision-chart",
-      "data": {
-        "label": "Violin",
-        "icon": "ViolinIcon",
-        "storyPath": "/graph/violin",
-        "label-cn": "小提琴图"
-      }
-    },
-    {
-      "id": "chart-ridgeline",
-      "type": "decision-chart",
-      "data": {
-        "label": "Ridgeline",
-        "icon": "RidgelineIcon",
-        "storyPath": "/graph/ridgeline",
-        "label-cn": "山脊图"
-      }
-    },
-    {
-      "id": "chart-heatmap",
-      "type": "decision-chart",
-      "data": {
-        "label": "Heatmap",
-        "icon": "HeatmapIcon",
-        "storyPath": "/graph/heatmap",
-        "label-cn": "热力图"
-      }
-    },
-    {
-      "id": "chart-grouped-scatter",
-      "type": "decision-chart",
-      "data": {
-        "label": "Grouped Scatter",
-        "icon": "ScatterIcon",
-        "storyPath": "/graph/custom/grouped-scatter",
-        "label-cn": "分组散点图"
-      }
-    },
-    {
-      "id": "q-subgroups",
+      "id": "q-structure-hierarchy",
       "type": "decision-question",
       "data": {
-        "label": "Subgroups?",
-        "label-cn": "子组？"
+        "label": "Hierarchy",
+        "label-cn": "层级关系"
       }
     },
     {
-      "id": "chart-grouped-barplot",
+      "id": "q-structure-set",
+      "type": "decision-question",
+      "data": {
+        "label": "Set Relation",
+        "label-cn": "集合关系"
+      }
+    },
+    {
+      "id": "q-structure-flow",
+      "type": "decision-question",
+      "data": {
+        "label": "Flow Relation",
+        "label-cn": "流向关系"
+      }
+    },
+    {
+      "id": "q-structure-network",
+      "type": "decision-question",
+      "data": {
+        "label": "Network Relation",
+        "label-cn": "网络关系"
+      }
+    },
+
+    {
+      "id": "chart-structure-hierarchy-treemap",
+      "type": "decision-chart",
+      "data": {
+        "label": "Treemap",
+        "label-cn": "矩形树图",
+        "icon": "TreemapIcon",
+        "storyPath": "/graph/treemap"
+      }
+    },
+    {
+      "id": "chart-structure-hierarchy-sunburst",
+      "type": "decision-chart",
+      "data": {
+        "label": "Sunburst",
+        "label-cn": "旭日图",
+        "icon": "SunburstIcon",
+        "storyPath": "/graph/sunburst"
+      }
+    },
+    {
+      "id": "chart-structure-hierarchy-circular-packing",
+      "type": "decision-chart",
+      "data": {
+        "label": "Circular Packing",
+        "label-cn": "圆形填充图",
+        "icon": "CircularPackingIcon",
+        "storyPath": "/graph/circularpacking"
+      }
+    },
+    {
+      "id": "chart-structure-set-venn",
+      "type": "decision-chart",
+      "data": {
+        "label": "Venn Diagram",
+        "label-cn": "韦恩图",
+        "icon": "VennIcon",
+        "storyPath": "/graph/venn"
+      }
+    },
+    {
+      "id": "chart-structure-set-upset",
+      "type": "decision-chart",
+      "data": {
+        "label": "UpSet",
+        "label-cn": "UpSet图",
+        "icon": "UpsetIcon"
+      }
+    },
+    {
+      "id": "chart-structure-set-circular-packing",
+      "type": "decision-chart",
+      "data": {
+        "label": "Circular Packing (Set)",
+        "label-cn": "圆形填充图",
+        "icon": "CircularPackingIcon",
+        "storyPath": "/graph/circularpacking"
+      }
+    },
+    {
+      "id": "chart-structure-flow-sankey",
+      "type": "decision-chart",
+      "data": {
+        "label": "Sankey",
+        "label-cn": "桑基图",
+        "icon": "SankeyIcon",
+        "storyPath": "/graph/sankey"
+      }
+    },
+    {
+      "id": "chart-structure-flow-alluvial",
+      "type": "decision-chart",
+      "data": {
+        "label": "Alluvial",
+        "label-cn": "河流图",
+        "icon": "SankeyIcon"
+      }
+    },
+    {
+      "id": "chart-structure-network-network",
+      "type": "decision-chart",
+      "data": {
+        "label": "Network Graph",
+        "label-cn": "关系网络图",
+        "icon": "NetworkIcon",
+        "storyPath": "/graph/network"
+      }
+    },
+    {
+      "id": "chart-structure-network-chord",
+      "type": "decision-chart",
+      "data": {
+        "label": "Chord Diagram",
+        "label-cn": "和弦图",
+        "icon": "ChordIcon",
+        "storyPath": "/graph/chord"
+      }
+    },
+    {
+      "id": "chart-structure-network-arc",
+      "type": "decision-chart",
+      "data": {
+        "label": "Arc Diagram",
+        "label-cn": "弧形关系图",
+        "icon": "ArcIcon"
+      }
+    },
+
+    {
+      "id": "q-combo-mcat-1num",
+      "type": "decision-question",
+      "data": {
+        "label": "Multi Cat + 1 Num",
+        "label-cn": "单个数值"
+      }
+    },
+    {
+      "id": "q-combo-mcat-mnum",
+      "type": "decision-question",
+      "data": {
+        "label": "Multi Cat + Multi Num",
+        "label-cn": "多数值"
+      }
+    },
+
+    {
+      "id": "chart-combo-mcat-1num-grouped-bar",
       "type": "decision-chart",
       "data": {
         "label": "Grouped Barplot",
-        "icon": "GroupedBarIcon",
-        "storyPath": "/graph/grouped_barplot",
-        "label-cn": "分组条形图"
+        "label-cn": "分组条形图",
+        "icon": "GroupedBarIcon"
       }
     },
     {
-      "id": "chart-stacked-barplot",
+      "id": "chart-combo-mcat-1num-stacked-bar",
       "type": "decision-chart",
       "data": {
         "label": "Stacked Barplot",
-        "icon": "StackedBarIcon",
-        "storyPath": "/graph/stacked_barplot",
-        "label-cn": "堆叠条形图"
+        "label-cn": "堆叠条形图",
+        "icon": "StackedBarIcon"
+      }
+    },
+
+    {
+      "id": "chart-combo-mcat-mnum-heatmap",
+      "type": "decision-chart",
+      "data": {
+        "label": "Heatmap",
+        "label-cn": "热力图",
+        "icon": "HeatmapIcon"
+      }
+    },
+    {
+      "id": "chart-combo-mcat-mnum-small-multiples",
+      "type": "decision-chart",
+      "data": {
+        "label": "Small Multiples",
+        "label-cn": "小多图",
+        "icon": "GroupedBarIcon"
+      }
+    },
+    {
+      "id": "chart-combo-mcat-mnum-facet-rect",
+      "type": "decision-chart",
+      "data": {
+        "label": "Facet Rect",
+        "label-cn": "矩形分面图",
+        "icon": "FacetRectIcon"
       }
     }
   ],
   "edges": [
-    {
-      "id": "e1",
-      "source": "root",
-      "target": "q-1num-1cat"
-    },
-    {
-      "id": "e2",
-      "source": "root",
-      "target": "q-1num-sevcat"
-    },
-    {
-      "id": "e1-1",
-      "source": "q-1num-1cat",
-      "target": "chart-barplot"
-    },
-    {
-      "id": "e1-2",
-      "source": "q-1num-1cat",
-      "target": "chart-lollipop"
-    },
-    {
-      "id": "e1-3",
-      "source": "q-1num-1cat",
-      "target": "chart-boxplot"
-    },
-    {
-      "id": "e1-4",
-      "source": "q-1num-1cat",
-      "target": "chart-violin"
-    },
-    {
-      "id": "e1-5",
-      "source": "q-1num-1cat",
-      "target": "chart-ridgeline"
-    },
-    {
-      "id": "e2-1",
-      "source": "q-1num-sevcat",
-      "target": "chart-heatmap"
-    },
-    {
-      "id": "e2-2",
-      "source": "q-1num-sevcat",
-      "target": "q-subgroups"
-    },
-    {
-      "id": "e2-3",
-      "source": "q-1num-sevcat",
-      "target": "chart-grouped-scatter"
-    },
-    {
-      "id": "e-sub-1",
-      "source": "q-subgroups",
-      "target": "chart-grouped-barplot"
-    },
-    {
-      "id": "e-sub-2",
-      "source": "q-subgroups",
-      "target": "chart-stacked-barplot"
-    }
+    { "id": "e-root-1", "source": "root", "target": "q-structure" },
+    { "id": "e-root-2", "source": "root", "target": "q-combo" },
+
+    { "id": "e-struct-1", "source": "q-structure", "target": "q-structure-hierarchy" },
+    { "id": "e-struct-2", "source": "q-structure", "target": "q-structure-set" },
+    { "id": "e-struct-3", "source": "q-structure", "target": "q-structure-flow" },
+    { "id": "e-struct-4", "source": "q-structure", "target": "q-structure-network" },
+
+    { "id": "e-hier-1", "source": "q-structure-hierarchy", "target": "chart-structure-hierarchy-treemap" },
+    { "id": "e-hier-2", "source": "q-structure-hierarchy", "target": "chart-structure-hierarchy-sunburst" },
+    { "id": "e-hier-3", "source": "q-structure-hierarchy", "target": "chart-structure-hierarchy-circular-packing" },
+    { "id": "e-set-1", "source": "q-structure-set", "target": "chart-structure-set-venn" },
+    { "id": "e-set-2", "source": "q-structure-set", "target": "chart-structure-set-upset" },
+    { "id": "e-set-3", "source": "q-structure-set", "target": "chart-structure-set-circular-packing" },
+    { "id": "e-flow-1", "source": "q-structure-flow", "target": "chart-structure-flow-sankey" },
+    { "id": "e-flow-2", "source": "q-structure-flow", "target": "chart-structure-flow-alluvial" },
+    { "id": "e-net-1", "source": "q-structure-network", "target": "chart-structure-network-network" },
+    { "id": "e-net-2", "source": "q-structure-network", "target": "chart-structure-network-chord" },
+    { "id": "e-net-3", "source": "q-structure-network", "target": "chart-structure-network-arc" },
+
+    { "id": "e-combo-3", "source": "q-combo", "target": "q-combo-mcat-1num" },
+    { "id": "e-combo-4", "source": "q-combo", "target": "q-combo-mcat-mnum" },
+
+    { "id": "e-mc1n-1", "source": "q-combo-mcat-1num", "target": "chart-combo-mcat-1num-grouped-bar" },
+    { "id": "e-mc1n-2", "source": "q-combo-mcat-1num", "target": "chart-combo-mcat-1num-stacked-bar" },
+
+    { "id": "e-mcmn-1", "source": "q-combo-mcat-mnum", "target": "chart-combo-mcat-mnum-heatmap" },
+    { "id": "e-mcmn-2", "source": "q-combo-mcat-mnum", "target": "chart-combo-mcat-mnum-small-multiples" },
+    { "id": "e-mcmn-3", "source": "q-combo-mcat-mnum", "target": "chart-combo-mcat-mnum-facet-rect" }
   ]
 }

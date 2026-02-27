@@ -1,34 +1,26 @@
 {
-  "name": "用户集合",
+  "name": "用户集合关系",
   "children": [
     {
-      "name": "集合A",
+      "name": "独有成员",
       "children": [
-        { "name": "A-核心", "value": 90, "group": "集合A" },
-        { "name": "A-增长", "value": 70, "group": "集合A" }
+        { "name": "仅A", "value": 110, "group": "集合A" },
+        { "name": "仅B", "value": 96, "group": "集合B" },
+        { "name": "仅C", "value": 88, "group": "集合C" }
       ]
     },
     {
-      "name": "集合B",
+      "name": "两两交集",
       "children": [
-        { "name": "B-核心", "value": 85, "group": "集合B" },
-        { "name": "B-增长", "value": 65, "group": "集合B" }
+        { "name": "仅AB", "value": 54, "group": "交叉" },
+        { "name": "仅AC", "value": 46, "group": "交叉" },
+        { "name": "仅BC", "value": 39, "group": "交叉" }
       ]
     },
     {
-      "name": "集合C",
+      "name": "三重交集",
       "children": [
-        { "name": "C-核心", "value": 80, "group": "集合C" },
-        { "name": "C-增长", "value": 60, "group": "集合C" }
-      ]
-    },
-    {
-      "name": "交叉集合",
-      "children": [
-        { "name": "A∩B", "value": 55, "group": "交叉" },
-        { "name": "A∩C", "value": 45, "group": "交叉" },
-        { "name": "B∩C", "value": 40, "group": "交叉" },
-        { "name": "A∩B∩C", "value": 30, "group": "交叉" }
+        { "name": "A∩B∩C", "value": 27, "group": "交叉" }
       ]
     }
   ]

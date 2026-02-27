@@ -1,0 +1,29 @@
+{
+  "name": "年度成本",
+  "children": [
+    {
+      "name": "生产",
+      "children": [
+        { "name": "原料", "value": 120 },
+        { "name": "人工", "value": 92 },
+        { "name": "制造费用", "value": 74 }
+      ]
+    },
+    {
+      "name": "营销",
+      "children": [
+        { "name": "广告投放", "value": 96 },
+        { "name": "渠道返佣", "value": 82 },
+        { "name": "活动运营", "value": 63 }
+      ]
+    },
+    {
+      "name": "运营",
+      "children": [
+        { "name": "仓储", "value": 66 },
+        { "name": "物流", "value": 58 },
+        { "name": "售后", "value": 41 }
+      ]
+    }
+  ]
+}

@@ -16,17 +16,26 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { HistogramG2 } from '../charts/HistogramG2';
 import { BarplotG2 } from '../charts/BarplotG2';
+import { GroupedBarG2 } from '../charts/GroupedBarG2';
+import { StackedBarG2 } from '../charts/StackedBarG2';
 import { LollipopG2 } from '../charts/LollipopG2';
 import { WordcloudG2 } from '../charts/WordcloudG2';
 import { PieG2 } from '../charts/PieG2';
 import { TreemapG2 } from '../charts/TreemapG2';
+import { TreemapHierarchyG2 } from '../charts/TreemapHierarchyG2';
 import { VennG2 } from '../charts/VennG2';
+import { VennSetRelationG2 } from '../charts/VennSetRelationG2';
+import { UpsetSetRelationG2 } from '../charts/UpsetSetRelationG2';
 import { SankeyG2 } from '../charts/SankeyG2';
+import { AlluvialG2 } from '../charts/AlluvialG2';
 import { ChordG2 } from '../charts/ChordG2';
 import { NetworkG6 } from '../charts/NetworkG6';
+import { ArcDiagramG2 } from '../charts/ArcDiagramG2';
 import { CircularPackingG2 } from '../charts/CircularPackingG2';
+import { CircularPackingHierarchyG2 } from '../charts/CircularPackingHierarchyG2';
 import { CircularPackingSetG2 } from '../charts/CircularPackingSetG2';
 import { SunburstG2 } from '../charts/SunburstG2';
+import { SunburstHierarchyG2 } from '../charts/SunburstHierarchyG2';
 import { SpiderG2 } from '../charts/SpiderG2';
 import { ScatterG2 } from '../charts/ScatterG2';
 import { DensityG2 } from '../charts/DensityG2';
@@ -49,6 +58,8 @@ import { StreamgraphG2 } from '../charts/StreamgraphG2';
 import { ParallelG2 } from '../charts/ParallelG2';
 import { DendrogramG2 } from '../charts/DendrogramG2';
 import { HeatmapSevG2 } from '../charts/HeatmapSevG2';
+import { SmallMultiplesG2 } from '../charts/SmallMultiplesG2';
+import { FacetRectG2 } from '../charts/FacetRectG2';
 
 // Register the extension
 register('node', 'react-node', ReactNode);
@@ -62,14 +73,25 @@ const CHART_COMPONENTS: Record<string, React.ComponentType> = {
   'chart-wordcloud': WordcloudG2,
   'chart-pie': PieG2,
   'chart-treemap': TreemapG2,
+  'chart-structure-hierarchy-treemap': TreemapHierarchyG2,
+  'chart-structure-hierarchy-sunburst': SunburstHierarchyG2,
+  'chart-structure-hierarchy-circular-packing': CircularPackingHierarchyG2,
   'chart-venn': VennG2,
+  'chart-structure-set-venn': VennSetRelationG2,
+  'chart-structure-set-upset': UpsetSetRelationG2,
+  'chart-structure-set-circular-packing': CircularPackingSetG2,
   'chart-circular-packing': CircularPackingG2,
   'chart-circular-packing-set': CircularPackingSetG2,
   'chart-sunburst': SunburstG2,
   'chart-spider': SpiderG2,
   'chart-sankey-set': SankeyG2,
+  'chart-structure-flow-sankey': SankeyG2,
+  'chart-structure-flow-alluvial': AlluvialG2,
   'chart-chord-set': ChordG2,
+  'chart-structure-network-chord': ChordG2,
   'chart-network-set': NetworkG6,
+  'chart-structure-network-network': NetworkG6,
+  'chart-structure-network-arc': ArcDiagramG2,
   'chart-scatter': ScatterG2,
   'chart-density': DensityG2,
   'chart-boxplot': BoxplotG2,
@@ -90,6 +112,11 @@ const CHART_COMPONENTS: Record<string, React.ComponentType> = {
   'chart-parallel': ParallelG2,
   'chart-dendrogram': DendrogramG2,
   'chart-heatmap': HeatmapSevG2,
+  'chart-combo-mcat-1num-grouped-bar': GroupedBarG2,
+  'chart-combo-mcat-1num-stacked-bar': StackedBarG2,
+  'chart-combo-mcat-mnum-heatmap': HeatmapG2,
+  'chart-combo-mcat-mnum-small-multiples': SmallMultiplesG2,
+  'chart-combo-mcat-mnum-facet-rect': FacetRectG2,
   // More charts will be added here
 };
 
@@ -310,7 +337,15 @@ export function DecisionGraph({ data }: { data: any }) {
                          <Button variant="outline" onClick={() => setIsModalOpen(false)}>
                             关闭
                          </Button>
-                         <Button className="bg-blue-600 hover:bg-blue-700" onClick={() => window.location.href = selectedNode.data.storyPath}>
+                         <Button
+                           className="bg-blue-600 hover:bg-blue-700"
+                           disabled={!selectedNode.data.storyPath}
+                           onClick={() => {
+                             if (selectedNode.data.storyPath) {
+                               window.location.href = selectedNode.data.storyPath;
+                             }
+                           }}
+                         >
                             查看数据故事
                          </Button>
                     </div>

@@ -1,0 +1,29 @@
+{
+  "name": "年度利润",
+  "children": [
+    {
+      "name": "消费电子",
+      "children": [
+        { "name": "手机", "value": 320 },
+        { "name": "平板", "value": 180 },
+        { "name": "穿戴设备", "value": 140 }
+      ]
+    },
+    {
+      "name": "家电",
+      "children": [
+        { "name": "空调", "value": 260 },
+        { "name": "冰箱", "value": 210 },
+        { "name": "洗衣机", "value": 160 }
+      ]
+    },
+    {
+      "name": "智能家居",
+      "children": [
+        { "name": "音箱", "value": 130 },
+        { "name": "摄像头", "value": 120 },
+        { "name": "路由器", "value": 110 }
+      ]
+    }
+  ]
+}
