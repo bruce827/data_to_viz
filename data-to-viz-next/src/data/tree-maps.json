@@ -14,43 +14,41 @@
       }
     },
     {
-      "id": "chart-background",
-      "type": "decision-chart",
+      "id": "q-map-point",
+      "type": "decision-question",
       "data": {
-        "label": "Background Map",
-        "icon": "MapBgIcon",
-        "storyPath": "/graph/background_map",
-        "description": "Just the geographical boundaries.",
-        "label-cn": "背景地图",
-        "description-cn": "仅显示地理边界。"
+        "label": "Point Data",
+        "label-cn": "点数据"
       }
     },
     {
-      "id": "chart-choropleth",
-      "type": "decision-chart",
+      "id": "q-map-line",
+      "type": "decision-question",
       "data": {
-        "label": "Choropleth",
-        "icon": "ChoroplethIcon",
-        "storyPath": "/graph/choropleth",
-        "description": "Regions colored by a numeric variable.",
-        "label-cn": "等值区域图",
-        "description-cn": "按数值变量着色的区域。"
+        "label": "Line Data",
+        "label-cn": "线数据"
       }
     },
     {
-      "id": "chart-cartogram",
-      "type": "decision-chart",
+      "id": "q-map-polygon",
+      "type": "decision-question",
       "data": {
-        "label": "Cartogram",
-        "icon": "CartogramIcon",
-        "storyPath": "/graph/cartogram",
-        "description": "Distorted regions based on value.",
-        "label-cn": "统计地图",
-        "description-cn": "根据数值变形的区域。"
+        "label": "Polygon Data",
+        "label-cn": "面数据"
       }
     },
     {
-      "id": "chart-bubble-map",
+      "id": "chart-map-point",
+      "type": "decision-chart",
+      "data": {
+        "label": "Point Map",
+        "icon": "PointMapIcon",
+        "label-cn": "点地图",
+        "description-cn": "以点标记显示位置分布。"
+      }
+    },
+    {
+      "id": "chart-map-bubble",
       "type": "decision-chart",
       "data": {
         "label": "Bubble Map",
@@ -58,31 +56,111 @@
         "storyPath": "/graph/bubblemap",
         "description": "Circles on map coordinates.",
         "label-cn": "气泡地图",
-        "description-cn": "地图坐标上的圆圈。"
+        "description-cn": "用气泡大小编码数值。"
       }
     },
     {
-      "id": "chart-connection",
+      "id": "chart-map-heat",
       "type": "decision-chart",
       "data": {
-        "label": "Connection",
-        "icon": "ConnectionMapIcon",
-        "storyPath": "/graph/connection_map",
-        "description": "Links between locations.",
-        "label-cn": "连接地图",
-        "description-cn": "地点之间的链接。"
+        "label": "3D Bar Map",
+        "icon": "Map3DBarIcon",
+        "label-cn": "3D柱状图",
+        "description-cn": "在地图上以柱体高度编码数值。"
       }
     },
     {
-      "id": "chart-hexbin-map",
+      "id": "chart-map-composite",
+      "type": "decision-chart",
+      "data": {
+        "label": "Composite Map",
+        "icon": "CompositeMapIcon",
+        "label-cn": "复合地图",
+        "description-cn": "在地图上叠加自定义画布图形与动画。"
+      }
+    },
+    {
+      "id": "chart-map-heatmap",
+      "type": "decision-chart",
+      "data": {
+        "label": "Heat Map",
+        "icon": "MapHeatmapIcon",
+        "label-cn": "热力图",
+        "description-cn": "基于点位权重生成连续密度分布，适合展示热点聚集区域。"
+      }
+    },
+    {
+      "id": "chart-map-hexbin",
       "type": "decision-chart",
       "data": {
         "label": "Hexbin Map",
         "icon": "HexbinMapIcon",
         "storyPath": "/graph/hexbin_map",
         "description": "2D density on map coordinates.",
-        "label-cn": "六边形分箱地图",
-        "description-cn": "地图坐标上的2D密度。"
+        "label-cn": "六边形地图",
+        "description-cn": "将海量点位按六边形网格聚合，适合做密度对比与区域统计；相比热力图的连续模糊效果，六边形地图更适合做离散格子的精确比较。"
+      }
+    },
+    {
+      "id": "chart-map-grid-heatmap",
+      "type": "decision-chart",
+      "data": {
+        "label": "Grid Heatmap",
+        "icon": "MapGridHeatmapIcon",
+        "label-cn": "网格热力图",
+        "description-cn": "将点数据聚合到网格后着色，适合做区域强度对比。"
+      }
+    },
+    {
+      "id": "chart-map-path",
+      "type": "decision-chart",
+      "data": {
+        "label": "Path Map",
+        "icon": "PathMapIcon",
+        "label-cn": "路径线图",
+        "description-cn": "展示单条或多条路径轨迹。"
+      }
+    },
+    {
+      "id": "chart-map-flow",
+      "type": "decision-chart",
+      "data": {
+        "label": "Flow Map",
+        "icon": "FlowMapIcon",
+        "label-cn": "流向地图",
+        "description-cn": "表达方向和强度的流动关系。"
+      }
+    },
+    {
+      "id": "chart-map-od",
+      "type": "decision-chart",
+      "data": {
+        "label": "Contour Map",
+        "icon": "ContourMapIcon",
+        "label-cn": "等值线图",
+        "description-cn": "用等值线表达连续空间场的变化。"
+      }
+    },
+    {
+      "id": "chart-background",
+      "type": "decision-chart",
+      "data": {
+        "label": "Graduated Map",
+        "icon": "CartogramIcon",
+        "storyPath": "/graph/background_map",
+        "description": "Just the geographical boundaries.",
+        "label-cn": "分级统计图",
+        "description-cn": "按数值分级着色展示区域统计。"
+      }
+    },
+    {
+      "id": "chart-map-3d-fill",
+      "type": "decision-chart",
+      "data": {
+        "label": "3D Filled Map",
+        "icon": "Map3DFillIcon",
+        "label-cn": "3D填充图",
+        "description-cn": "对面要素进行三维拉伸填充，表达区域数值等级。"
       }
     }
   ],
@@ -90,32 +168,79 @@
     {
       "id": "e1",
       "source": "root",
-      "target": "chart-background"
+      "target": "q-map-point"
     },
     {
       "id": "e2",
       "source": "root",
-      "target": "chart-choropleth"
+      "target": "q-map-line"
     },
     {
       "id": "e3",
       "source": "root",
-      "target": "chart-cartogram"
+      "target": "q-map-polygon"
     },
     {
-      "id": "e4",
-      "source": "root",
-      "target": "chart-bubble-map"
+      "id": "e-p-1",
+      "source": "q-map-point",
+      "target": "chart-map-point"
     },
     {
-      "id": "e5",
-      "source": "root",
-      "target": "chart-connection"
+      "id": "e-p-2",
+      "source": "q-map-point",
+      "target": "chart-map-bubble"
     },
     {
-      "id": "e6",
-      "source": "root",
-      "target": "chart-hexbin-map"
+      "id": "e-p-3",
+      "source": "q-map-point",
+      "target": "chart-map-heat"
+    },
+    {
+      "id": "e-p-4",
+      "source": "q-map-point",
+      "target": "chart-map-composite"
+    },
+    {
+      "id": "e-p-5",
+      "source": "q-map-point",
+      "target": "chart-map-heatmap"
+    },
+
+    {
+      "id": "e-l-1",
+      "source": "q-map-line",
+      "target": "chart-map-path"
+    },
+    {
+      "id": "e-l-2",
+      "source": "q-map-line",
+      "target": "chart-map-flow"
+    },
+    {
+      "id": "e-l-3",
+      "source": "q-map-line",
+      "target": "chart-map-od"
+    },
+
+    {
+      "id": "e-a-1",
+      "source": "q-map-polygon",
+      "target": "chart-background"
+    },
+    {
+      "id": "e-a-3",
+      "source": "q-map-polygon",
+      "target": "chart-map-hexbin"
+    },
+    {
+      "id": "e-a-4",
+      "source": "q-map-polygon",
+      "target": "chart-map-3d-fill"
+    },
+    {
+      "id": "e-a-5",
+      "source": "q-map-polygon",
+      "target": "chart-map-grid-heatmap"
     }
   ]
 }

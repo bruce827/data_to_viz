@@ -467,35 +467,162 @@ export const ParallelIcon = (props: React.SVGProps<SVGSVGElement>) => (
     
     export const MapBgIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...svgProps} {...props}>
-        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z" />
-        <circle cx="12" cy="10" r="3" />
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.24" />
+        <path d="M5.8 9.6l2.6 2.2l-1.1 3.1l2.3 2.6" fill="none" strokeWidth="1.25" strokeOpacity="0.72" />
+        <path d="M11.1 8.6l3 2.1l-0.8 3.6l2.8 2.9" fill="none" strokeWidth="1.25" strokeOpacity="0.72" />
+        <path d="M16.5 8.2l2.1 2.3l-1 2.8l1.7 2.5" fill="none" strokeWidth="1.25" strokeOpacity="0.72" />
+      </svg>
+    );
+
+    export const PointMapIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.22" />
+
+        <path
+          d="M12.1 6.1c-1.7 0-3.1 1.4-3.1 3.1c0 2.2 2.2 4.5 3.1 5.7c0.9-1.2 3.1-3.5 3.1-5.7c0-1.7-1.4-3.1-3.1-3.1z"
+          fill="currentColor"
+          fillOpacity="0.95"
+          stroke="none"
+        />
+        <circle cx="12.1" cy="9.2" r="1.05" fill="#ffffff" stroke="none" />
+
+        <path
+          d="M7.2 11.8c-1.4 0-2.5 1.1-2.5 2.5c0 1.7 1.7 3.4 2.5 4.4c0.8-1 2.5-2.7 2.5-4.4c0-1.4-1.1-2.5-2.5-2.5z"
+          fill="currentColor"
+          fillOpacity="0.72"
+          stroke="none"
+        />
+        <circle cx="7.2" cy="14.3" r="0.8" fill="#ffffff" stroke="none" />
+
+        <path
+          d="M17.3 10.4c-1.3 0-2.4 1.1-2.4 2.4c0 1.6 1.6 3.2 2.4 4.2c0.8-1 2.4-2.6 2.4-4.2c0-1.3-1.1-2.4-2.4-2.4z"
+          fill="currentColor"
+          fillOpacity="0.62"
+          stroke="none"
+        />
+        <circle cx="17.3" cy="12.8" r="0.75" fill="#ffffff" stroke="none" />
       </svg>
     );
     
     export const ChoroplethIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...svgProps} {...props}>
-        <path d="M3 6h6v6h-6z" fillOpacity="0.2" />
-        <path d="M9 6h6v6h-6z" fillOpacity="0.8" />
-        <path d="M15 6h6v6h-6z" fillOpacity="0.4" />
-        <path d="M3 12h6v6h-6z" fillOpacity="0.6" />
-        <path d="M9 12h6v6h-6z" fillOpacity="0.3" />
-        <path d="M15 12h6v6h-6z" fillOpacity="0.9" />
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.2" />
+        <path d="M3.4 8.4l4.8-1.6l2.1 1.1l-2.3 4.4l-4.4 1.5z" fill="currentColor" fillOpacity="0.22" stroke="none" />
+        <path d="M8.9 7.9l4.8 1.8l-0.9 4.6l-3.9 1.4l-2.1-2.2z" fill="currentColor" fillOpacity="0.78" stroke="none" />
+        <path d="M14.2 8.1l4.6-1.5l1.7 1.1l-1.1 4.1l-4.3 1.7l-1.6-1.9z" fill="currentColor" fillOpacity="0.46" stroke="none" />
+        <path d="M8.1 13.6l4.2-1.4l2.6 2.4l-1.3 4.3l-4.7-1.8z" fill="currentColor" fillOpacity="0.34" stroke="none" />
+        <path d="M14.7 13.9l4.3-1.6l1.2 1.7l-1.5 4.4l-4.5 1.5l-1.2-1.8z" fill="currentColor" fillOpacity="0.92" stroke="none" />
+      </svg>
+    );
+
+    export const MapHeatmapIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        {/* Map outline */}
+        <path d="M3 6l6-2l6 2l6-2v14l-6 2l-6-2l-6 2V6z" opacity="0.2" />
+        <line x1="9" y1="4" x2="9" y2="20" strokeOpacity="0.25" />
+        <line x1="15" y1="4" x2="15" y2="20" strokeOpacity="0.25" />
+
+        {/* Heat spots */}
+        <circle cx="8" cy="12.5" r="4.2" fill="currentColor" fillOpacity="0.24" stroke="none" />
+        <circle cx="8" cy="12.5" r="2.5" fill="currentColor" fillOpacity="0.44" stroke="none" />
+        <circle cx="8" cy="12.5" r="1.3" fill="currentColor" fillOpacity="0.82" stroke="none" />
+        <circle cx="8" cy="12.5" r="1.1" fill="currentColor" stroke="none" />
+
+        <circle cx="16.2" cy="9.8" r="3.4" fill="currentColor" fillOpacity="0.22" stroke="none" />
+        <circle cx="16.2" cy="9.8" r="1.9" fill="currentColor" fillOpacity="0.38" stroke="none" />
+        <circle cx="16.2" cy="9.8" r="0.95" fill="currentColor" fillOpacity="0.72" stroke="none" />
+      </svg>
+    );
+
+    export const MapGridHeatmapIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        <path d="M3 6l6-2l6 2l6-2v14l-6 2l-6-2l-6 2V6z" opacity="0.2" />
+
+        {/* grid cells with center hotspot */}
+        <rect x="5.2" y="8.2" width="3.4" height="3.4" rx="0.3" fill="currentColor" fillOpacity="0.22" stroke="none" />
+        <rect x="9.2" y="8.2" width="3.4" height="3.4" rx="0.3" fill="currentColor" fillOpacity="0.4" stroke="none" />
+        <rect x="13.2" y="8.2" width="3.4" height="3.4" rx="0.3" fill="currentColor" fillOpacity="0.26" stroke="none" />
+
+        <rect x="5.2" y="12.2" width="3.4" height="3.4" rx="0.3" fill="currentColor" fillOpacity="0.36" stroke="none" />
+        <rect x="9.2" y="12.2" width="3.4" height="3.4" rx="0.3" fill="currentColor" fillOpacity="0.96" stroke="none" />
+        <rect x="13.2" y="12.2" width="3.4" height="3.4" rx="0.3" fill="currentColor" fillOpacity="0.52" stroke="none" />
+
+        <rect x="5.2" y="16.2" width="3.4" height="1.8" rx="0.3" fill="currentColor" fillOpacity="0.18" stroke="none" />
+        <rect x="9.2" y="16.2" width="3.4" height="1.8" rx="0.3" fill="currentColor" fillOpacity="0.42" stroke="none" />
+        <rect x="13.2" y="16.2" width="3.4" height="1.8" rx="0.3" fill="currentColor" fillOpacity="0.28" stroke="none" />
+      </svg>
+    );
+
+    export const Map3DBarIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.22" />
+
+        {/* center tall column */}
+        <rect x="10.8" y="7.8" width="2.4" height="8.2" fill="currentColor" fillOpacity="0.92" stroke="none" />
+        <ellipse cx="12" cy="7.8" rx="1.25" ry="0.62" fill="currentColor" />
+        <ellipse cx="12" cy="16" rx="1.25" ry="0.62" fill="currentColor" fillOpacity="0.55" />
+
+        {/* left short column */}
+        <rect x="6.2" y="11.1" width="2" height="4.9" fill="currentColor" fillOpacity="0.66" stroke="none" />
+        <ellipse cx="7.2" cy="11.1" rx="1.05" ry="0.52" fill="currentColor" fillOpacity="0.66" />
+        <ellipse cx="7.2" cy="16" rx="1.05" ry="0.52" fill="currentColor" fillOpacity="0.38" />
+
+        {/* right medium column */}
+        <rect x="15.6" y="9.6" width="2" height="6.4" fill="currentColor" fillOpacity="0.78" stroke="none" />
+        <ellipse cx="16.6" cy="9.6" rx="1.05" ry="0.52" fill="currentColor" fillOpacity="0.78" />
+        <ellipse cx="16.6" cy="16" rx="1.05" ry="0.52" fill="currentColor" fillOpacity="0.45" />
+      </svg>
+    );
+
+    export const Map3DFillIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.22" />
+
+        {/* central extruded region */}
+        <path d="M6.1 9.4l4.4-1.5l4.2 1.5l-4.4 1.6z" fill="currentColor" fillOpacity="0.95" stroke="none" />
+        <path d="M10.5 9l4.2 1.5v4.9l-4.4 1.6v-5z" fill="currentColor" fillOpacity="0.72" stroke="none" />
+        <path d="M6.1 9.4l4.4 1.6v5l-4.4-1.6z" fill="currentColor" fillOpacity="0.48" stroke="none" />
+
+        {/* right extruded region */}
+        <path d="M13.3 11.2l3.1-1.1l3 1.1l-3.1 1.1z" fill="currentColor" fillOpacity="0.88" stroke="none" />
+        <path d="M16.4 11.2l3 1.1v3.6l-3.1 1.1v-3.7z" fill="currentColor" fillOpacity="0.66" stroke="none" />
+        <path d="M13.3 11.2l3.1 1.1v3.7l-3.1-1.1z" fill="currentColor" fillOpacity="0.42" stroke="none" />
+
+        {/* left-low extruded region */}
+        <path d="M4.9 13.6l2.7-0.9l2.5 0.9l-2.7 1z" fill="currentColor" fillOpacity="0.82" stroke="none" />
+        <path d="M7.6 13.6l2.5 0.9v2.9l-2.7 1v-3z" fill="currentColor" fillOpacity="0.62" stroke="none" />
+        <path d="M4.9 13.6l2.7 1v3l-2.7-1z" fill="currentColor" fillOpacity="0.36" stroke="none" />
+      </svg>
+    );
+
+    export const CompositeMapIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.2" />
+        <circle cx="8.1" cy="13.6" r="3.4" fill="currentColor" fillOpacity="0.2" stroke="none" />
+        <path d="M5.2 13.6c0.9-0.7 1.8-0.8 2.9-0.2c1.1 0.6 2 0.5 2.9-0.2" fill="none" strokeWidth="1.15" strokeOpacity="0.8" />
+        <path d="M5.2 14.8c0.9-0.7 1.8-0.8 2.9-0.2c1.1 0.6 2 0.5 2.9-0.2" fill="none" strokeWidth="1.15" strokeOpacity="0.7" />
+
+        <rect x="14.6" y="9.5" width="2.1" height="6.5" fill="currentColor" fillOpacity="0.8" stroke="none" />
+        <ellipse cx="15.65" cy="9.5" rx="1.08" ry="0.5" fill="currentColor" fillOpacity="0.8" />
+        <ellipse cx="15.65" cy="16" rx="1.08" ry="0.5" fill="currentColor" fillOpacity="0.45" />
       </svg>
     );
     
     export const CartogramIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...svgProps} {...props}>
-        <circle cx="6" cy="6" r="4" fillOpacity="0.2" />
-        <circle cx="16" cy="8" r="6" fillOpacity="0.4" />
-        <circle cx="8" cy="16" r="5" fillOpacity="0.3" />
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.18" />
+        <rect x="4" y="9.8" width="4.2" height="3.2" rx="0.55" fill="currentColor" fillOpacity="0.34" stroke="none" />
+        <rect x="8.9" y="8.4" width="6.2" height="6.7" rx="0.7" fill="currentColor" fillOpacity="0.82" stroke="none" />
+        <rect x="15.8" y="11.4" width="4.1" height="5.1" rx="0.55" fill="currentColor" fillOpacity="0.48" stroke="none" />
+        <rect x="8.2" y="15.7" width="5.2" height="3.9" rx="0.62" fill="currentColor" fillOpacity="0.62" stroke="none" />
       </svg>
     );
     
     export const BubbleMapIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...svgProps} {...props}>
-        <path d="M3 6l6-2l6 2l6-2v14l-6 2l-6-2l-6 2V6z" opacity="0.2" />
-        <circle cx="8" cy="12" r="2" fill="currentColor" />
-        <circle cx="16" cy="10" r="4" fill="currentColor" />
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.22" />
+        <circle cx="8.2" cy="13.2" r="2" fill="currentColor" />
+        <circle cx="16.2" cy="11.4" r="4" fill="currentColor" />
       </svg>
     );
     
@@ -507,11 +634,66 @@ export const ParallelIcon = (props: React.SVGProps<SVGSVGElement>) => (
         <circle cx="18" cy="16" r="1.5" fill="currentColor" />
       </svg>
     );
+
+    export const PathMapIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.22" />
+        <path d="M5.2 17l3.3-3.4l2.7 1.5l3.2-3.8l4.2 1.8" fill="none" strokeWidth="1.9" />
+        <circle cx="5.2" cy="17" r="1" fill="currentColor" stroke="none" />
+        <circle cx="11.2" cy="15.1" r="0.9" fill="currentColor" fillOpacity="0.85" stroke="none" />
+        <circle cx="18.6" cy="13.1" r="1.1" fill="currentColor" stroke="none" />
+      </svg>
+    );
+
+    export const FlowMapIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.22" />
+        <path d="M5.5 16.5c3.2-5.8 8.8-7.2 13-3.3" fill="none" strokeWidth="2.2" />
+        <path d="M16.5 11.8l2.2 1.4l-2.5 0.5z" fill="currentColor" stroke="none" />
+        <path d="M6.2 18.1c3.2-2.6 6.9-2.2 10.4 0.2" fill="none" strokeWidth="1.4" strokeOpacity="0.55" />
+      </svg>
+    );
+
+    export const ODMapIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.22" />
+        <circle cx="6.3" cy="17" r="1.6" fill="currentColor" stroke="none" />
+        <circle cx="17.1" cy="9.8" r="1.2" fill="none" strokeWidth="1.7" />
+        <circle cx="18.4" cy="16.1" r="1.2" fill="none" strokeWidth="1.7" />
+        <path d="M7.6 16.2c2.4-3.9 5.7-5.9 8.6-6.4" fill="none" strokeWidth="1.6" />
+        <path d="M7.9 17.3c2.8-0.7 5.8-0.5 9 1" fill="none" strokeWidth="1.5" strokeDasharray="1.8 1.8" />
+      </svg>
+    );
+
+    export const ContourMapIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.22" />
+        <path d="M5 16.8c1.4-1 2.8-1.5 4.5-1.2c1.8 0.3 3.2-0.1 4.8-1.1c1.7-1 3.1-1.3 4.7-1" fill="none" strokeWidth="1.3" />
+        <path d="M5.3 13.9c1.4-1 2.7-1.4 4.4-1.1c1.8 0.3 3.3-0.1 4.9-1.1c1.6-1 3-1.2 4.5-0.9" fill="none" strokeWidth="1.3" strokeOpacity="0.75" />
+        <path d="M5.7 11.2c1.3-0.9 2.5-1.2 4.1-0.9c1.7 0.3 3.2-0.1 4.7-1c1.4-0.8 2.8-1.1 4.1-0.8" fill="none" strokeWidth="1.3" strokeOpacity="0.55" />
+      </svg>
+    );
+
+    export const GeoNetworkIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.2" />
+        <line x1="7.2" y1="10.4" x2="12.3" y2="14.1" strokeWidth="1.5" />
+        <line x1="12.3" y1="14.1" x2="17.6" y2="10.9" strokeWidth="1.5" />
+        <line x1="7.2" y1="10.4" x2="9.1" y2="17.2" strokeWidth="1.5" strokeOpacity="0.7" />
+        <line x1="9.1" y1="17.2" x2="17.6" y2="10.9" strokeWidth="1.5" strokeOpacity="0.7" />
+        <circle cx="7.2" cy="10.4" r="1.2" fill="currentColor" stroke="none" />
+        <circle cx="12.3" cy="14.1" r="1.25" fill="currentColor" stroke="none" />
+        <circle cx="17.6" cy="10.9" r="1.2" fill="currentColor" stroke="none" />
+        <circle cx="9.1" cy="17.2" r="1.1" fill="currentColor" fillOpacity="0.85" stroke="none" />
+      </svg>
+    );
     
     export const HexbinMapIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...svgProps} {...props}>
-        <path d="M3 6l6-2l6 2l6-2v14l-6 2l-6-2l-6 2V6z" opacity="0.2" />
-        <path d="M10 8l-2 3l2 3h4l2-3l-2-3z" fill="currentColor" />
+        <path d="M2 7l7-2.3l6 2.3l7-2.3v16l-7 2.3l-6-2.3l-7 2.3V7z" opacity="0.22" />
+        <path d="M10 9.3l-2 3l2 3h4l2-3l-2-3z" fill="currentColor" fillOpacity="1" />
+        <path d="M7.1 12.7l-1.4 2.1l1.4 2.1h2.8l1.4-2.1l-1.4-2.1z" fill="currentColor" fillOpacity="0.26" />
+        <path d="M14.1 12.7l-1.4 2.1l1.4 2.1h2.8l1.4-2.1l-1.4-2.1z" fill="currentColor" fillOpacity="0.74" />
       </svg>
     );
     

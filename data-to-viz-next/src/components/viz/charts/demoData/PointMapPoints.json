@@ -1,0 +1,10 @@
+[
+  { "name": "北京", "lng": 116.4074, "lat": 39.9042, "category": "核心城市", "value": 98 },
+  { "name": "上海", "lng": 121.4737, "lat": 31.2304, "category": "核心城市", "value": 102 },
+  { "name": "深圳", "lng": 114.0579, "lat": 22.5431, "category": "核心城市", "value": 95 },
+  { "name": "广州", "lng": 113.2644, "lat": 23.1291, "category": "增长城市", "value": 82 },
+  { "name": "成都", "lng": 104.0665, "lat": 30.5728, "category": "增长城市", "value": 76 },
+  { "name": "重庆", "lng": 106.5516, "lat": 29.563, "category": "增长城市", "value": 71 },
+  { "name": "武汉", "lng": 114.3054, "lat": 30.5931, "category": "潜力城市", "value": 63 },
+  { "name": "杭州", "lng": 120.1551, "lat": 30.2741, "category": "潜力城市", "value": 68 }
+]

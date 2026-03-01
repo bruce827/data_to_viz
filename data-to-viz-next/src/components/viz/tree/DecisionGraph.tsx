@@ -60,6 +60,18 @@ import { DendrogramG2 } from '../charts/DendrogramG2';
 import { HeatmapSevG2 } from '../charts/HeatmapSevG2';
 import { SmallMultiplesG2 } from '../charts/SmallMultiplesG2';
 import { FacetRectG2 } from '../charts/FacetRectG2';
+import { PointMapL7 } from '../charts/PointMapL7';
+import { BubbleMapL7 } from '../charts/BubbleMapL7';
+import { Map3DBarL7 } from '../charts/Map3DBarL7';
+import { HeatmapMapL7 } from '../charts/HeatmapMapL7';
+import { GridHeatmapMapL7 } from '../charts/GridHeatmapMapL7';
+import { CompositeMapL7 } from '../charts/CompositeMapL7';
+import { PathMapL7 } from '../charts/PathMapL7';
+import { FlowMapL7 } from '../charts/FlowMapL7';
+import { ContourMapL7 } from '../charts/ContourMapL7';
+import { BackgroundMapG2 } from '../charts/BackgroundMapG2';
+import { HexbinMapG2 } from '../charts/HexbinMapG2';
+import { ExtrudedPolygonMapL7 } from '../charts/ExtrudedPolygonMapL7';
 
 // Register the extension
 register('node', 'react-node', ReactNode);
@@ -117,6 +129,18 @@ const CHART_COMPONENTS: Record<string, React.ComponentType> = {
   'chart-combo-mcat-mnum-heatmap': HeatmapG2,
   'chart-combo-mcat-mnum-small-multiples': SmallMultiplesG2,
   'chart-combo-mcat-mnum-facet-rect': FacetRectG2,
+  'chart-map-point': PointMapL7,
+  'chart-map-bubble': BubbleMapL7,
+  'chart-map-heat': Map3DBarL7,
+  'chart-map-heatmap': HeatmapMapL7,
+  'chart-map-composite': CompositeMapL7,
+  'chart-map-path': PathMapL7,
+  'chart-map-flow': FlowMapL7,
+  'chart-map-od': ContourMapL7,
+  'chart-background': BackgroundMapG2,
+  'chart-map-hexbin': HexbinMapG2,
+  'chart-map-grid-heatmap': GridHeatmapMapL7,
+  'chart-map-3d-fill': ExtrudedPolygonMapL7,
   // More charts will be added here
 };
 
@@ -313,7 +337,11 @@ export function DecisionGraph({ data }: { data: any }) {
                              {(() => {
                                  const ChartComponent = CHART_COMPONENTS[selectedNode.id];
                                  if (ChartComponent) {
-                                     return <div className="p-4"><ChartComponent /></div>;
+                                     return (
+                                       <div className="p-4" key={selectedNode.id}>
+                                         <ChartComponent />
+                                       </div>
+                                     );
                                  }
                                  return (
                                      <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 gap-3">

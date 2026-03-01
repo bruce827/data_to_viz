@@ -18,6 +18,8 @@
     "@antv/g2-extension-3d": "^0.2.0",
     "@antv/g6": "^5.0.51",
     "@antv/g6-extension-react": "^0.2.6",
+    "@antv/l7": "^2.23.2",
+    "@antv/l7-maps": "^2.23.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-navigation-menu": "^1.2.14",
@@ -33,7 +35,8 @@
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.4.0",
+    "topojson-client": "^3.1.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
