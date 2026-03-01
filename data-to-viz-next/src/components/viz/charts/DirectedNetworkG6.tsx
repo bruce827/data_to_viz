@@ -2,12 +2,18 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Graph } from '@antv/g6';
-import networkData from './demoData/NetworkG6.json';
+import directedData from './demoData/DirectedNetworkG6.json';
 
-const GROUP_COLORS: Record<string, string> = {
-  业务: '#2563eb',
-  平台: '#0ea5a4',
-  服务: '#0f766e',
+const NODE_GROUP_COLORS: Record<string, string> = {
+  入口: '#2563eb',
+  交易: '#0ea5a4',
+  保障: '#0284c7',
+};
+
+const EDGE_KIND_COLORS: Record<string, string> = {
+  flow: '#2563eb',
+  control: '#0891b2',
+  trigger: '#0ea5a4',
 };
 
 type NodeStyleDatum = {
@@ -21,10 +27,31 @@ type NodeStyleDatum = {
 type EdgeStyleDatum = {
   data?: {
     value?: number;
+    kind?: string;
   };
 };
 
-export function NetworkG6() {
+function buildInitialScatter<T extends { id: string; style?: Record<string, unknown> }>(
+  nodes: T[],
+): Array<T & { style: Record<string, unknown> }> {
+  const total = Math.max(nodes.length, 1);
+  const radius = 95;
+  return nodes.map((node, index) => {
+    const angle = (Math.PI * 2 * index) / total;
+    const x = 150 + Math.cos(angle) * radius;
+    const y = 145 + Math.sin(angle) * radius;
+    return {
+      ...node,
+      style: {
+        ...(node.style || {}),
+        x,
+        y,
+      },
+    };
+  });
+}
+
+export function DirectedNetworkG6() {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<Graph | null>(null);
 
@@ -32,22 +59,29 @@ export function NetworkG6() {
     if (!containerRef.current) return;
     let disposed = false;
     let rendered = false;
+    const seededData = {
+      ...directedData,
+      nodes: buildInitialScatter(directedData.nodes),
+    };
 
     const graph = new Graph({
       container: containerRef.current,
-      data: networkData,
+      data: seededData,
       padding: 12,
       layout: {
         type: 'force',
         preventOverlap: true,
-        linkDistance: 110,
+        nodeStrength: -70,
+        linkDistance: (d: EdgeStyleDatum) => {
+          const value = d.data?.value ?? 6;
+          return Math.max(92, 136 - value * 3);
+        },
       },
       node: {
         type: 'circle',
         style: {
           size: (d: NodeStyleDatum) => d.data?.size ?? 24,
-          fill: (d: NodeStyleDatum) =>
-            (d.data?.group && GROUP_COLORS[d.data.group]) || '#3b82f6',
+          fill: (d: NodeStyleDatum) => (d.data?.group && NODE_GROUP_COLORS[d.data.group]) || '#3b82f6',
           stroke: '#ffffff',
           lineWidth: 1.5,
           labelText: (d: NodeStyleDatum) => d.data?.label ?? '',
@@ -61,9 +95,9 @@ export function NetworkG6() {
       edge: {
         type: 'line',
         style: {
-          stroke: '#94a3b8',
-          strokeOpacity: 0.5,
-          lineWidth: (d: EdgeStyleDatum) => Math.max(1.2, (d.data?.value ?? 4) / 4),
+          stroke: (d: EdgeStyleDatum) => EDGE_KIND_COLORS[d.data?.kind ?? 'flow'] || '#2563eb',
+          strokeOpacity: 0.7,
+          lineWidth: (d: EdgeStyleDatum) => Math.max(1.5, (d.data?.value ?? 4) / 4),
           targetArrow: true,
         },
       },

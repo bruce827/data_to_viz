@@ -1,0 +1,25 @@
+{
+  "nodes": [
+    { "id": "user", "data": { "label": "用户中心", "group": "核心", "size": 38 } },
+    { "id": "order", "data": { "label": "订单", "group": "核心", "size": 34 } },
+    { "id": "product", "data": { "label": "商品", "group": "核心", "size": 30 } },
+    { "id": "payment", "data": { "label": "支付", "group": "平台", "size": 28 } },
+    { "id": "inventory", "data": { "label": "库存", "group": "平台", "size": 26 } },
+    { "id": "logistics", "data": { "label": "物流", "group": "平台", "size": 26 } },
+    { "id": "recommend", "data": { "label": "推荐", "group": "服务", "size": 24 } },
+    { "id": "message", "data": { "label": "消息", "group": "服务", "size": 22 } },
+    { "id": "risk", "data": { "label": "风控", "group": "服务", "size": 24 } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "user", "target": "order", "data": { "value": 12 } },
+    { "id": "e2", "source": "user", "target": "product", "data": { "value": 9 } },
+    { "id": "e3", "source": "order", "target": "payment", "data": { "value": 10 } },
+    { "id": "e4", "source": "order", "target": "inventory", "data": { "value": 8 } },
+    { "id": "e5", "source": "order", "target": "logistics", "data": { "value": 7 } },
+    { "id": "e6", "source": "payment", "target": "risk", "data": { "value": 9 } },
+    { "id": "e7", "source": "user", "target": "message", "data": { "value": 5 } },
+    { "id": "e8", "source": "product", "target": "recommend", "data": { "value": 6 } },
+    { "id": "e9", "source": "recommend", "target": "order", "data": { "value": 5 } },
+    { "id": "e10", "source": "risk", "target": "message", "data": { "value": 4 } }
+  ]
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "service": "订单服务",
+    "state": "正常",
+    "startMinute": 0,
+    "endMinute": 26,
+    "startLabel": "09:00",
+    "endLabel": "09:26"
+  },
+  {
+    "service": "订单服务",
+    "state": "降级",
+    "startMinute": 26,
+    "endMinute": 47,
+    "startLabel": "09:26",
+    "endLabel": "09:47"
+  },
+  {
+    "service": "订单服务",
+    "state": "恢复",
+    "startMinute": 47,
+    "endMinute": 80,
+    "startLabel": "09:47",
+    "endLabel": "10:20"
+  },
+  {
+    "service": "支付服务",
+    "state": "正常",
+    "startMinute": 0,
+    "endMinute": 18,
+    "startLabel": "09:00",
+    "endLabel": "09:18"
+  },
+  {
+    "service": "支付服务",
+    "state": "故障",
+    "startMinute": 18,
+    "endMinute": 35,
+    "startLabel": "09:18",
+    "endLabel": "09:35"
+  },
+  {
+    "service": "支付服务",
+    "state": "恢复",
+    "startMinute": 35,
+    "endMinute": 80,
+    "startLabel": "09:35",
+    "endLabel": "10:20"
+  },
+  {
+    "service": "库存服务",
+    "state": "正常",
+    "startMinute": 0,
+    "endMinute": 42,
+    "startLabel": "09:00",
+    "endLabel": "09:42"
+  },
+  {
+    "service": "库存服务",
+    "state": "降级",
+    "startMinute": 42,
+    "endMinute": 62,
+    "startLabel": "09:42",
+    "endLabel": "10:02"
+  },
+  {
+    "service": "库存服务",
+    "state": "恢复",
+    "startMinute": 62,
+    "endMinute": 80,
+    "startLabel": "10:02",
+    "endLabel": "10:20"
+  },
+  {
+    "service": "物流服务",
+    "state": "正常",
+    "startMinute": 0,
+    "endMinute": 30,
+    "startLabel": "09:00",
+    "endLabel": "09:30"
+  },
+  {
+    "service": "物流服务",
+    "state": "故障",
+    "startMinute": 30,
+    "endMinute": 52,
+    "startLabel": "09:30",
+    "endLabel": "09:52"
+  },
+  {
+    "service": "物流服务",
+    "state": "恢复",
+    "startMinute": 52,
+    "endMinute": 80,
+    "startLabel": "09:52",
+    "endLabel": "10:20"
+  }
+]

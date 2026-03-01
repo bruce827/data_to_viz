@@ -13,67 +13,228 @@
         "y": 50
       }
     },
+
     {
-      "id": "chart-line",
+      "id": "q-time-discrete",
+      "type": "decision-question",
+      "data": {
+        "label": "Discrete Time",
+        "label-cn": "离散时间"
+      }
+    },
+    {
+      "id": "q-time-continuous",
+      "type": "decision-question",
+      "data": {
+        "label": "Continuous Time",
+        "label-cn": "连续时间"
+      }
+    },
+    {
+      "id": "q-time-event-point",
+      "type": "decision-question",
+      "data": {
+        "label": "Event Point",
+        "label-cn": "时间点事件"
+      }
+    },
+    {
+      "id": "q-time-event-duration",
+      "type": "decision-question",
+      "data": {
+        "label": "Event Duration",
+        "label-cn": "时间区间事件"
+      }
+    },
+    {
+      "id": "q-time-cyclic",
+      "type": "decision-question",
+      "data": {
+        "label": "Cyclic Time",
+        "label-cn": "周期时间"
+      }
+    },
+
+    {
+      "id": "chart-time-discrete-line",
       "type": "decision-chart",
       "data": {
         "label": "Line Plot",
         "icon": "LineIcon",
-        "storyPath": "/graph/line",
-        "label-cn": "折线图"
+        "label-cn": "折线图",
+        "description-cn": "固定粒度（如日/周/月）下展示数值变化趋势。"
       }
     },
     {
-      "id": "chart-area",
+      "id": "chart-time-discrete-column",
       "type": "decision-chart",
       "data": {
-        "label": "Area Plot",
-        "icon": "AreaIcon",
-        "storyPath": "/graph/area",
-        "label-cn": "面积图"
+        "label": "Column Chart",
+        "icon": "BarplotIcon",
+        "label-cn": "柱状图",
+        "description-cn": "固定时间间隔下比较各时点的量级差异。"
       }
     },
     {
-      "id": "chart-stacked-area",
+      "id": "chart-time-discrete-stacked-area",
       "type": "decision-chart",
       "data": {
         "label": "Stacked Area",
         "icon": "StackedAreaIcon",
-        "storyPath": "/graph/stackedarea",
-        "label-cn": "堆叠面积图"
+        "label-cn": "堆叠面积图",
+        "description-cn": "固定时间粒度下观察总量与组成随时间变化。"
+      }
+    },
+
+    {
+      "id": "chart-time-continuous-line-point",
+      "type": "decision-chart",
+      "data": {
+        "label": "Continuous Line",
+        "icon": "ConnectedScatterIcon",
+        "label-cn": "连续折线图",
+        "description-cn": "不等间隔或高频采样下展示连续变化轨迹。"
       }
     },
     {
-      "id": "chart-stream",
+      "id": "chart-time-continuous-density",
       "type": "decision-chart",
       "data": {
-        "label": "Streamgraph",
+        "label": "Time Density",
+        "icon": "HeatmapIcon",
+        "label-cn": "采样密度图",
+        "description-cn": "展示高频时序在时间轴上的密度分布。"
+      }
+    },
+    {
+      "id": "chart-time-continuous-realtime",
+      "type": "decision-chart",
+      "data": {
+        "label": "Realtime Stream",
         "icon": "StreamIcon",
-        "storyPath": "/graph/streamgraph",
-        "label-cn": "流图"
+        "label-cn": "实时滚动图",
+        "description-cn": "用于实时监控场景中的流式时间数据。"
+      }
+    },
+    {
+      "id": "chart-time-continuous-kline",
+      "type": "decision-chart",
+      "data": {
+        "label": "Candlestick",
+        "icon": "KlineIcon",
+        "label-cn": "K线图",
+        "description-cn": "用于连续时间金融或交易数据的开高低收走势。"
+      }
+    },
+
+    {
+      "id": "chart-time-point-timeline",
+      "type": "decision-chart",
+      "data": {
+        "label": "Timeline Scatter",
+        "icon": "ScatterIcon",
+        "label-cn": "时间线散点",
+        "description-cn": "仅有发生时刻的离散事件分布。"
+      }
+    },
+    {
+      "id": "chart-time-point-pulse",
+      "type": "decision-chart",
+      "data": {
+        "label": "Event Pulse",
+        "icon": "LollipopIcon",
+        "label-cn": "事件脉冲图",
+        "description-cn": "按时间点突出事件发生强度与频次。"
+      }
+    },
+
+    {
+      "id": "chart-time-duration-gantt",
+      "type": "decision-chart",
+      "data": {
+        "label": "Gantt",
+        "icon": "TimeIcon",
+        "label-cn": "甘特图",
+        "description-cn": "用于展示任务开始/结束时间及持续时长。"
+      }
+    },
+    {
+      "id": "chart-time-duration-interval",
+      "type": "decision-chart",
+      "data": {
+        "label": "State Interval",
+        "icon": "AreaIcon",
+        "label-cn": "状态区间图",
+        "description-cn": "展示状态在时间轴上的区间切换与持续时间。"
+      }
+    },
+
+    {
+      "id": "chart-time-cyclic-calendar",
+      "type": "decision-chart",
+      "data": {
+        "label": "Calendar Heatmap",
+        "icon": "HeatmapIcon",
+        "label-cn": "日历热力图",
+        "description-cn": "用于查看日/周/年周期上的强度模式。"
+      }
+    },
+    {
+      "id": "chart-time-cyclic-calendar-composite",
+      "type": "decision-chart",
+      "data": {
+        "label": "Calendar Composite",
+        "icon": "CalendarCompositeIcon",
+        "label-cn": "日历复合图",
+        "description-cn": "在日历网格中叠加多活动占比，展示周期结构与组成变化。"
+      }
+    },
+    {
+      "id": "chart-time-cyclic-seasonal",
+      "type": "decision-chart",
+      "data": {
+        "label": "Seasonal Small Multiples",
+        "icon": "FacetRectIcon",
+        "label-cn": "季节序列图",
+        "description-cn": "对比同一周期位置在不同周期段的变化。"
+      }
+    },
+    {
+      "id": "chart-time-cyclic-clock",
+      "type": "decision-chart",
+      "data": {
+        "label": "Clock Plot",
+        "icon": "SpiderIcon",
+        "label-cn": "环形时钟图",
+        "description-cn": "用于展示日内/周内等循环时间模式。"
       }
     }
   ],
   "edges": [
-    {
-      "id": "e1",
-      "source": "root",
-      "target": "chart-line"
-    },
-    {
-      "id": "e2",
-      "source": "root",
-      "target": "chart-area"
-    },
-    {
-      "id": "e3",
-      "source": "root",
-      "target": "chart-stacked-area"
-    },
-    {
-      "id": "e4",
-      "source": "root",
-      "target": "chart-stream"
-    }
+    { "id": "e-root-1", "source": "root", "target": "q-time-discrete" },
+    { "id": "e-root-2", "source": "root", "target": "q-time-continuous" },
+    { "id": "e-root-3", "source": "root", "target": "q-time-event-point" },
+    { "id": "e-root-4", "source": "root", "target": "q-time-event-duration" },
+    { "id": "e-root-5", "source": "root", "target": "q-time-cyclic" },
+
+    { "id": "e-discrete-1", "source": "q-time-discrete", "target": "chart-time-discrete-line" },
+    { "id": "e-discrete-2", "source": "q-time-discrete", "target": "chart-time-discrete-column" },
+    { "id": "e-discrete-3", "source": "q-time-discrete", "target": "chart-time-discrete-stacked-area" },
+
+    { "id": "e-cont-1", "source": "q-time-continuous", "target": "chart-time-continuous-line-point" },
+    { "id": "e-cont-2", "source": "q-time-continuous", "target": "chart-time-continuous-density" },
+    { "id": "e-cont-3", "source": "q-time-continuous", "target": "chart-time-continuous-realtime" },
+    { "id": "e-cont-4", "source": "q-time-continuous", "target": "chart-time-continuous-kline" },
+
+    { "id": "e-point-1", "source": "q-time-event-point", "target": "chart-time-point-timeline" },
+    { "id": "e-point-2", "source": "q-time-event-point", "target": "chart-time-point-pulse" },
+
+    { "id": "e-duration-1", "source": "q-time-event-duration", "target": "chart-time-duration-gantt" },
+    { "id": "e-duration-2", "source": "q-time-event-duration", "target": "chart-time-duration-interval" },
+
+    { "id": "e-cyclic-1", "source": "q-time-cyclic", "target": "chart-time-cyclic-calendar" },
+    { "id": "e-cyclic-4", "source": "q-time-cyclic", "target": "chart-time-cyclic-calendar-composite" },
+    { "id": "e-cyclic-2", "source": "q-time-cyclic", "target": "chart-time-cyclic-seasonal" },
+    { "id": "e-cyclic-3", "source": "q-time-cyclic", "target": "chart-time-cyclic-clock" }
   ]
 }

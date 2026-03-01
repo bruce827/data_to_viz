@@ -1,0 +1,83 @@
+{
+  "nodes": [
+    {
+      "id": "ego",
+      "data": { "label": "核心账号", "role": "center", "size": 40 },
+      "style": { "x": 170, "y": 150 }
+    },
+    {
+      "id": "n1",
+      "data": { "label": "联系人A", "role": "neighbor", "size": 28 },
+      "style": { "x": 95, "y": 82 }
+    },
+    {
+      "id": "n2",
+      "data": { "label": "联系人B", "role": "neighbor", "size": 28 },
+      "style": { "x": 170, "y": 62 }
+    },
+    {
+      "id": "n3",
+      "data": { "label": "联系人C", "role": "neighbor", "size": 28 },
+      "style": { "x": 245, "y": 82 }
+    },
+    {
+      "id": "n4",
+      "data": { "label": "联系人D", "role": "neighbor", "size": 28 },
+      "style": { "x": 245, "y": 218 }
+    },
+    {
+      "id": "n5",
+      "data": { "label": "联系人E", "role": "neighbor", "size": 28 },
+      "style": { "x": 170, "y": 238 }
+    },
+    {
+      "id": "n6",
+      "data": { "label": "联系人F", "role": "neighbor", "size": 28 },
+      "style": { "x": 95, "y": 218 }
+    },
+
+    {
+      "id": "m1",
+      "data": { "label": "二跳1", "role": "outer", "size": 22 },
+      "style": { "x": 50, "y": 48 }
+    },
+    {
+      "id": "m2",
+      "data": { "label": "二跳2", "role": "outer", "size": 22 },
+      "style": { "x": 300, "y": 48 }
+    },
+    {
+      "id": "m3",
+      "data": { "label": "二跳3", "role": "outer", "size": 22 },
+      "style": { "x": 330, "y": 150 }
+    },
+    {
+      "id": "m4",
+      "data": { "label": "二跳4", "role": "outer", "size": 22 },
+      "style": { "x": 300, "y": 252 }
+    },
+    {
+      "id": "m5",
+      "data": { "label": "二跳5", "role": "outer", "size": 22 },
+      "style": { "x": 40, "y": 252 }
+    }
+  ],
+  "edges": [
+    { "id": "e1", "source": "ego", "target": "n1", "data": { "value": 9 } },
+    { "id": "e2", "source": "ego", "target": "n2", "data": { "value": 8 } },
+    { "id": "e3", "source": "ego", "target": "n3", "data": { "value": 10 } },
+    { "id": "e4", "source": "ego", "target": "n4", "data": { "value": 7 } },
+    { "id": "e5", "source": "ego", "target": "n5", "data": { "value": 8 } },
+    { "id": "e6", "source": "ego", "target": "n6", "data": { "value": 6 } },
+
+    { "id": "e7", "source": "n1", "target": "m1", "data": { "value": 4 } },
+    { "id": "e8", "source": "n3", "target": "m2", "data": { "value": 5 } },
+    { "id": "e9", "source": "n4", "target": "m4", "data": { "value": 4 } },
+    { "id": "e10", "source": "n6", "target": "m5", "data": { "value": 3 } },
+    { "id": "e11", "source": "n4", "target": "m3", "data": { "value": 5 } },
+    { "id": "e12", "source": "n2", "target": "m3", "data": { "value": 2 } },
+
+    { "id": "e13", "source": "n2", "target": "n3", "data": { "value": 3 } },
+    { "id": "e14", "source": "n5", "target": "n6", "data": { "value": 2 } }
+  ]
+}

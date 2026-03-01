@@ -2,29 +2,29 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Graph } from '@antv/g6';
-import networkData from './demoData/NetworkG6.json';
+import egoData from './demoData/EgoNetworkG6.json';
 
-const GROUP_COLORS: Record<string, string> = {
-  业务: '#2563eb',
-  平台: '#0ea5a4',
-  服务: '#0f766e',
+const ROLE_COLORS: Record<string, string> = {
+  center: '#1d4ed8',
+  neighbor: '#0ea5a4',
+  outer: '#94a3b8',
 };
 
-type NodeStyleDatum = {
+type NodeDatum = {
   data?: {
     label?: string;
-    group?: string;
+    role?: string;
     size?: number;
   };
 };
 
-type EdgeStyleDatum = {
+type EdgeDatum = {
   data?: {
     value?: number;
   };
 };
 
-export function NetworkG6() {
+export function EgoNetworkG6() {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<Graph | null>(null);
 
@@ -35,44 +35,37 @@ export function NetworkG6() {
 
     const graph = new Graph({
       container: containerRef.current,
-      data: networkData,
-      padding: 12,
-      layout: {
-        type: 'force',
-        preventOverlap: true,
-        linkDistance: 110,
-      },
+      data: egoData,
+      padding: [12, 20, 12, 20],
       node: {
         type: 'circle',
         style: {
-          size: (d: NodeStyleDatum) => d.data?.size ?? 24,
-          fill: (d: NodeStyleDatum) =>
-            (d.data?.group && GROUP_COLORS[d.data.group]) || '#3b82f6',
+          size: (d: NodeDatum) => d.data?.size ?? 24,
+          fill: (d: NodeDatum) => ROLE_COLORS[d.data?.role ?? 'neighbor'] ?? '#0ea5a4',
+          fillOpacity: (d: NodeDatum) => (d.data?.role === 'outer' ? 0.75 : 0.92),
           stroke: '#ffffff',
           lineWidth: 1.5,
-          labelText: (d: NodeStyleDatum) => d.data?.label ?? '',
+          labelText: (d: NodeDatum) => d.data?.label ?? '',
           labelPlacement: 'bottom',
           labelFill: '#334155',
-          labelFontSize: 12,
-          labelFontWeight: 600,
+          labelFontSize: (d: NodeDatum) => (d.data?.role === 'center' ? 13 : 11),
+          labelFontWeight: (d: NodeDatum) => (d.data?.role === 'center' ? 700 : 600),
           labelOffsetY: 6,
         },
       },
       edge: {
         type: 'line',
         style: {
-          stroke: '#94a3b8',
-          strokeOpacity: 0.5,
-          lineWidth: (d: EdgeStyleDatum) => Math.max(1.2, (d.data?.value ?? 4) / 4),
-          targetArrow: true,
+          stroke: '#64748b',
+          strokeOpacity: 0.45,
+          lineWidth: (d: EdgeDatum) => Math.max(1.1, (d.data?.value ?? 2) / 3.5),
         },
       },
       behaviors: ['drag-canvas', 'zoom-canvas', 'drag-element'],
-      autoFit: {
-        type: 'view',
-      },
-      animation: true,
+      autoFit: { type: 'view' },
+      animation: false,
     });
+
     graphRef.current = graph;
 
     const safeDestroy = () => {
@@ -86,9 +79,7 @@ export function NetworkG6() {
       } catch {
         // ignore
       }
-      if (graphRef.current === graph) {
-        graphRef.current = null;
-      }
+      if (graphRef.current === graph) graphRef.current = null;
     };
 
     graph
@@ -107,5 +98,5 @@ export function NetworkG6() {
     };
   }, []);
 
-  return <div ref={containerRef} style={{ width: '100%', height: '300px' }} />;
+  return <div ref={containerRef} style={{ width: '100%', height: '320px' }} />;
 }

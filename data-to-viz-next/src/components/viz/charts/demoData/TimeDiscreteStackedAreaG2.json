@@ -1,0 +1,49 @@
+[
+  { "month": "1月", "channel": "自然流量", "value": 220 },
+  { "month": "1月", "channel": "广告投放", "value": 140 },
+  { "month": "1月", "channel": "私域运营", "value": 95 },
+
+  { "month": "2月", "channel": "自然流量", "value": 230 },
+  { "month": "2月", "channel": "广告投放", "value": 155 },
+  { "month": "2月", "channel": "私域运营", "value": 102 },
+
+  { "month": "3月", "channel": "自然流量", "value": 248 },
+  { "month": "3月", "channel": "广告投放", "value": 165 },
+  { "month": "3月", "channel": "私域运营", "value": 110 },
+
+  { "month": "4月", "channel": "自然流量", "value": 262 },
+  { "month": "4月", "channel": "广告投放", "value": 172 },
+  { "month": "4月", "channel": "私域运营", "value": 118 },
+
+  { "month": "5月", "channel": "自然流量", "value": 278 },
+  { "month": "5月", "channel": "广告投放", "value": 190 },
+  { "month": "5月", "channel": "私域运营", "value": 129 },
+
+  { "month": "6月", "channel": "自然流量", "value": 305 },
+  { "month": "6月", "channel": "广告投放", "value": 214 },
+  { "month": "6月", "channel": "私域运营", "value": 136 },
+
+  { "month": "7月", "channel": "自然流量", "value": 320 },
+  { "month": "7月", "channel": "广告投放", "value": 226 },
+  { "month": "7月", "channel": "私域运营", "value": 145 },
+
+  { "month": "8月", "channel": "自然流量", "value": 336 },
+  { "month": "8月", "channel": "广告投放", "value": 240 },
+  { "month": "8月", "channel": "私域运营", "value": 151 },
+
+  { "month": "9月", "channel": "自然流量", "value": 326 },
+  { "month": "9月", "channel": "广告投放", "value": 224 },
+  { "month": "9月", "channel": "私域运营", "value": 148 },
+
+  { "month": "10月", "channel": "自然流量", "value": 314 },
+  { "month": "10月", "channel": "广告投放", "value": 210 },
+  { "month": "10月", "channel": "私域运营", "value": 143 },
+
+  { "month": "11月", "channel": "自然流量", "value": 332 },
+  { "month": "11月", "channel": "广告投放", "value": 238 },
+  { "month": "11月", "channel": "私域运营", "value": 156 },
+
+  { "month": "12月", "channel": "自然流量", "value": 356 },
+  { "month": "12月", "channel": "广告投放", "value": 268 },
+  { "month": "12月", "channel": "私域运营", "value": 168 }
+]

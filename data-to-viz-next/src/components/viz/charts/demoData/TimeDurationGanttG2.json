@@ -1,0 +1,66 @@
+[
+  {
+    "task": "需求梳理",
+    "phase": "规划",
+    "owner": "产品",
+    "startDay": 1,
+    "endDay": 3,
+    "progress": 100
+  },
+  {
+    "task": "交互设计",
+    "phase": "设计",
+    "owner": "设计",
+    "startDay": 2,
+    "endDay": 6,
+    "progress": 100
+  },
+  {
+    "task": "数据建模",
+    "phase": "开发",
+    "owner": "数据",
+    "startDay": 4,
+    "endDay": 8,
+    "progress": 90
+  },
+  {
+    "task": "接口开发",
+    "phase": "开发",
+    "owner": "后端",
+    "startDay": 5,
+    "endDay": 11,
+    "progress": 78
+  },
+  {
+    "task": "前端实现",
+    "phase": "开发",
+    "owner": "前端",
+    "startDay": 7,
+    "endDay": 12,
+    "progress": 72
+  },
+  {
+    "task": "联调验证",
+    "phase": "测试",
+    "owner": "测试",
+    "startDay": 11,
+    "endDay": 14,
+    "progress": 55
+  },
+  {
+    "task": "灰度发布",
+    "phase": "发布",
+    "owner": "运维",
+    "startDay": 14,
+    "endDay": 16,
+    "progress": 30
+  },
+  {
+    "task": "全量上线",
+    "phase": "发布",
+    "owner": "运维",
+    "startDay": 16,
+    "endDay": 18,
+    "progress": 10
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "nodes": [
+    "用户增长",
+    "推荐系统",
+    "活动运营",
+    "数据中台",
+    "支付服务",
+    "风控服务",
+    "消息中心",
+    "客服系统"
+  ],
+  "links": [
+    { "source": "用户增长", "target": "推荐系统", "value": 12 },
+    { "source": "用户增长", "target": "活动运营", "value": 9 },
+    { "source": "活动运营", "target": "消息中心", "value": 10 },
+    { "source": "推荐系统", "target": "数据中台", "value": 11 },
+    { "source": "数据中台", "target": "支付服务", "value": 7 },
+    { "source": "数据中台", "target": "风控服务", "value": 8 },
+    { "source": "支付服务", "target": "风控服务", "value": 6 },
+    { "source": "支付服务", "target": "客服系统", "value": 5 },
+    { "source": "消息中心", "target": "客服系统", "value": 6 },
+    { "source": "风控服务", "target": "消息中心", "value": 4 },
+    { "source": "推荐系统", "target": "消息中心", "value": 5 },
+    { "source": "活动运营", "target": "客服系统", "value": 7 }
+  ]
+}

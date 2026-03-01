@@ -30,6 +30,18 @@ import { SankeyG2 } from '../charts/SankeyG2';
 import { AlluvialG2 } from '../charts/AlluvialG2';
 import { ChordG2 } from '../charts/ChordG2';
 import { NetworkG6 } from '../charts/NetworkG6';
+import { ForceDirectedNetworkG6 } from '../charts/ForceDirectedNetworkG6';
+import { DirectedNetworkG6 } from '../charts/DirectedNetworkG6';
+import { WeightedNetworkG6 } from '../charts/WeightedNetworkG6';
+import { CommunityNetworkG6 } from '../charts/CommunityNetworkG6';
+import { BipartiteNetworkG6 } from '../charts/BipartiteNetworkG6';
+import { EgoNetworkG6 } from '../charts/EgoNetworkG6';
+import { AdjacencyMatrixG2 } from '../charts/AdjacencyMatrixG2';
+import { EdgeBundlingNetworkG6 } from '../charts/EdgeBundlingNetworkG6';
+import { IndentedTreeG6 } from '../charts/IndentedTreeG6';
+import { DagFlowG6 } from '../charts/DagFlowG6';
+import { RadialCompactTreeG6 } from '../charts/RadialCompactTreeG6';
+import { FishboneG6 } from '../charts/FishboneG6';
 import { ArcDiagramG2 } from '../charts/ArcDiagramG2';
 import { CircularPackingG2 } from '../charts/CircularPackingG2';
 import { CircularPackingHierarchyG2 } from '../charts/CircularPackingHierarchyG2';
@@ -60,6 +72,21 @@ import { DendrogramG2 } from '../charts/DendrogramG2';
 import { HeatmapSevG2 } from '../charts/HeatmapSevG2';
 import { SmallMultiplesG2 } from '../charts/SmallMultiplesG2';
 import { FacetRectG2 } from '../charts/FacetRectG2';
+import { TimeDiscreteLineG2 } from '../charts/TimeDiscreteLineG2';
+import { TimeDiscreteColumnG2 } from '../charts/TimeDiscreteColumnG2';
+import { TimeDiscreteStackedAreaG2 } from '../charts/TimeDiscreteStackedAreaG2';
+import { TimeContinuousLineRealtimeG2 } from '../charts/TimeContinuousLineRealtimeG2';
+import { TimeContinuousDensityRealtimeG2 } from '../charts/TimeContinuousDensityRealtimeG2';
+import { TimeContinuousRealtimeStreamG2 } from '../charts/TimeContinuousRealtimeStreamG2';
+import { TimeContinuousKlineG2 } from '../charts/TimeContinuousKlineG2';
+import { TimePointTimelineG2 } from '../charts/TimePointTimelineG2';
+import { TimePointPulseG2 } from '../charts/TimePointPulseG2';
+import { TimeDurationGanttG2 } from '../charts/TimeDurationGanttG2';
+import { TimeDurationIntervalG2 } from '../charts/TimeDurationIntervalG2';
+import { TimeCyclicCalendarG2 } from '../charts/TimeCyclicCalendarG2';
+import { TimeCyclicSeasonalG2 } from '../charts/TimeCyclicSeasonalG2';
+import { TimeCyclicClockG2 } from '../charts/TimeCyclicClockG2';
+import { TimeCyclicCalendarCompositeG2 } from '../charts/TimeCyclicCalendarCompositeG2';
 import { PointMapL7 } from '../charts/PointMapL7';
 import { BubbleMapL7 } from '../charts/BubbleMapL7';
 import { Map3DBarL7 } from '../charts/Map3DBarL7';
@@ -102,6 +129,20 @@ const CHART_COMPONENTS: Record<string, React.ComponentType> = {
   'chart-chord-set': ChordG2,
   'chart-structure-network-chord': ChordG2,
   'chart-network-set': NetworkG6,
+  'chart-net-force': DirectedNetworkG6,
+  'chart-net-directed': ForceDirectedNetworkG6,
+  'chart-net-weighted': WeightedNetworkG6,
+  'chart-net-community': CommunityNetworkG6,
+  'chart-net-bipartite': BipartiteNetworkG6,
+  'chart-net-ego': EgoNetworkG6,
+  'chart-net-adj-matrix': AdjacencyMatrixG2,
+  'chart-net-edge-bundling': EdgeBundlingNetworkG6,
+  'chart-net-tree': IndentedTreeG6,
+  'chart-net-dag': DagFlowG6,
+  'chart-net-radial-compact-tree': RadialCompactTreeG6,
+  'chart-net-fishbone': FishboneG6,
+  'chart-net-arc': ArcDiagramG2,
+  'chart-net-chord': ChordG2,
   'chart-structure-network-network': NetworkG6,
   'chart-structure-network-arc': ArcDiagramG2,
   'chart-scatter': ScatterG2,
@@ -129,6 +170,21 @@ const CHART_COMPONENTS: Record<string, React.ComponentType> = {
   'chart-combo-mcat-mnum-heatmap': HeatmapG2,
   'chart-combo-mcat-mnum-small-multiples': SmallMultiplesG2,
   'chart-combo-mcat-mnum-facet-rect': FacetRectG2,
+  'chart-time-discrete-line': TimeDiscreteLineG2,
+  'chart-time-discrete-column': TimeDiscreteColumnG2,
+  'chart-time-discrete-stacked-area': TimeDiscreteStackedAreaG2,
+  'chart-time-continuous-line-point': TimeContinuousLineRealtimeG2,
+  'chart-time-continuous-density': TimeContinuousDensityRealtimeG2,
+  'chart-time-continuous-realtime': TimeContinuousRealtimeStreamG2,
+  'chart-time-continuous-kline': TimeContinuousKlineG2,
+  'chart-time-point-timeline': TimePointTimelineG2,
+  'chart-time-point-pulse': TimePointPulseG2,
+  'chart-time-duration-gantt': TimeDurationGanttG2,
+  'chart-time-duration-interval': TimeDurationIntervalG2,
+  'chart-time-cyclic-calendar': TimeCyclicCalendarG2,
+  'chart-time-cyclic-calendar-composite': TimeCyclicCalendarCompositeG2,
+  'chart-time-cyclic-seasonal': TimeCyclicSeasonalG2,
+  'chart-time-cyclic-clock': TimeCyclicClockG2,
   'chart-map-point': PointMapL7,
   'chart-map-bubble': BubbleMapL7,
   'chart-map-heat': Map3DBarL7,

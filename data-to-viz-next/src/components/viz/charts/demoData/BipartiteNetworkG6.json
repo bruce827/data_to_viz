@@ -1,0 +1,62 @@
+{
+  "nodes": [
+    {
+      "id": "u-1",
+      "data": { "label": "用户A", "side": "left", "size": 30 },
+      "style": { "x": 70, "y": 52 }
+    },
+    {
+      "id": "u-2",
+      "data": { "label": "用户B", "side": "left", "size": 30 },
+      "style": { "x": 70, "y": 122 }
+    },
+    {
+      "id": "u-3",
+      "data": { "label": "用户C", "side": "left", "size": 30 },
+      "style": { "x": 70, "y": 192 }
+    },
+    {
+      "id": "u-4",
+      "data": { "label": "用户D", "side": "left", "size": 30 },
+      "style": { "x": 70, "y": 262 }
+    },
+
+    {
+      "id": "p-1",
+      "data": { "label": "商品1", "side": "right", "size": 28 },
+      "style": { "x": 300, "y": 42 }
+    },
+    {
+      "id": "p-2",
+      "data": { "label": "商品2", "side": "right", "size": 28 },
+      "style": { "x": 300, "y": 97 }
+    },
+    {
+      "id": "p-3",
+      "data": { "label": "商品3", "side": "right", "size": 28 },
+      "style": { "x": 300, "y": 152 }
+    },
+    {
+      "id": "p-4",
+      "data": { "label": "商品4", "side": "right", "size": 28 },
+      "style": { "x": 300, "y": 207 }
+    },
+    {
+      "id": "p-5",
+      "data": { "label": "商品5", "side": "right", "size": 28 },
+      "style": { "x": 300, "y": 262 }
+    }
+  ],
+  "edges": [
+    { "id": "e1", "source": "u-1", "target": "p-1", "data": { "value": 8 } },
+    { "id": "e2", "source": "u-1", "target": "p-3", "data": { "value": 6 } },
+    { "id": "e3", "source": "u-1", "target": "p-5", "data": { "value": 4 } },
+    { "id": "e4", "source": "u-2", "target": "p-2", "data": { "value": 7 } },
+    { "id": "e5", "source": "u-2", "target": "p-3", "data": { "value": 5 } },
+    { "id": "e6", "source": "u-3", "target": "p-1", "data": { "value": 5 } },
+    { "id": "e7", "source": "u-3", "target": "p-4", "data": { "value": 8 } },
+    { "id": "e8", "source": "u-4", "target": "p-2", "data": { "value": 4 } },
+    { "id": "e9", "source": "u-4", "target": "p-4", "data": { "value": 7 } },
+    { "id": "e10", "source": "u-4", "target": "p-5", "data": { "value": 5 } }
+  ]
+}

@@ -1,0 +1,14 @@
+[
+  { "month": "1月", "value": 82 },
+  { "month": "2月", "value": 84 },
+  { "month": "3月", "value": 88 },
+  { "month": "4月", "value": 92 },
+  { "month": "5月", "value": 97 },
+  { "month": "6月", "value": 105 },
+  { "month": "7月", "value": 112 },
+  { "month": "8月", "value": 116 },
+  { "month": "9月", "value": 111 },
+  { "month": "10月", "value": 108 },
+  { "month": "11月", "value": 114 },
+  { "month": "12月", "value": 121 }
+]

@@ -1,0 +1,30 @@
+{
+  "nodes": [
+    { "id": "c1-u1", "data": { "label": "社区A-1", "community": "A", "size": 26 } },
+    { "id": "c1-u2", "data": { "label": "社区A-2", "community": "A", "size": 24 } },
+    { "id": "c1-u3", "data": { "label": "社区A-3", "community": "A", "size": 22 } },
+    { "id": "c2-u1", "data": { "label": "社区B-1", "community": "B", "size": 25 } },
+    { "id": "c2-u2", "data": { "label": "社区B-2", "community": "B", "size": 23 } },
+    { "id": "c2-u3", "data": { "label": "社区B-3", "community": "B", "size": 21 } },
+    { "id": "c3-u1", "data": { "label": "社区C-1", "community": "C", "size": 24 } },
+    { "id": "c3-u2", "data": { "label": "社区C-2", "community": "C", "size": 22 } },
+    { "id": "c3-u3", "data": { "label": "社区C-3", "community": "C", "size": 20 } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "c1-u1", "target": "c1-u2", "data": { "value": 10 } },
+    { "id": "e2", "source": "c1-u2", "target": "c1-u3", "data": { "value": 8 } },
+    { "id": "e3", "source": "c1-u1", "target": "c1-u3", "data": { "value": 7 } },
+
+    { "id": "e4", "source": "c2-u1", "target": "c2-u2", "data": { "value": 9 } },
+    { "id": "e5", "source": "c2-u2", "target": "c2-u3", "data": { "value": 7 } },
+    { "id": "e6", "source": "c2-u1", "target": "c2-u3", "data": { "value": 6 } },
+
+    { "id": "e7", "source": "c3-u1", "target": "c3-u2", "data": { "value": 8 } },
+    { "id": "e8", "source": "c3-u2", "target": "c3-u3", "data": { "value": 6 } },
+    { "id": "e9", "source": "c3-u1", "target": "c3-u3", "data": { "value": 6 } },
+
+    { "id": "e10", "source": "c1-u1", "target": "c2-u1", "data": { "value": 3 } },
+    { "id": "e11", "source": "c2-u2", "target": "c3-u2", "data": { "value": 3 } },
+    { "id": "e12", "source": "c1-u3", "target": "c3-u1", "data": { "value": 2 } }
+  ]
+}

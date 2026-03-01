@@ -1,0 +1,23 @@
+{
+  "nodes": [
+    { "id": "a", "data": { "label": "华北", "group": "区域", "size": 30 } },
+    { "id": "b", "data": { "label": "华东", "group": "区域", "size": 34 } },
+    { "id": "c", "data": { "label": "华南", "group": "区域", "size": 28 } },
+    { "id": "d", "data": { "label": "仓储中心", "group": "中台", "size": 32 } },
+    { "id": "e", "data": { "label": "配送中心", "group": "中台", "size": 30 } },
+    { "id": "f", "data": { "label": "售后服务", "group": "服务", "size": 24 } },
+    { "id": "g", "data": { "label": "客服中心", "group": "服务", "size": 24 } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "a", "target": "d", "data": { "value": 98 } },
+    { "id": "e2", "source": "b", "target": "d", "data": { "value": 132 } },
+    { "id": "e3", "source": "c", "target": "d", "data": { "value": 76 } },
+    { "id": "e4", "source": "d", "target": "e", "data": { "value": 168 } },
+    { "id": "e5", "source": "e", "target": "a", "data": { "value": 86 } },
+    { "id": "e6", "source": "e", "target": "b", "data": { "value": 122 } },
+    { "id": "e7", "source": "e", "target": "c", "data": { "value": 74 } },
+    { "id": "e8", "source": "e", "target": "f", "data": { "value": 64 } },
+    { "id": "e9", "source": "e", "target": "g", "data": { "value": 58 } },
+    { "id": "e10", "source": "f", "target": "g", "data": { "value": 36 } }
+  ]
+}

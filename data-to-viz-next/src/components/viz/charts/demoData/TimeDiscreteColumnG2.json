@@ -1,0 +1,14 @@
+[
+  { "month": "1月", "value": 1.8 },
+  { "month": "2月", "value": 2.1 },
+  { "month": "3月", "value": 2.4 },
+  { "month": "4月", "value": 2.7 },
+  { "month": "5月", "value": 3.1 },
+  { "month": "6月", "value": 3.5 },
+  { "month": "7月", "value": 4.0 },
+  { "month": "8月", "value": 4.3 },
+  { "month": "9月", "value": 3.9 },
+  { "month": "10月", "value": 3.6 },
+  { "month": "11月", "value": 4.2 },
+  { "month": "12月", "value": 4.8 }
+]

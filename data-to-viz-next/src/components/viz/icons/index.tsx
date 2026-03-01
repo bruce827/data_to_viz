@@ -254,6 +254,21 @@ export const ParallelIcon = (props: React.SVGProps<SVGSVGElement>) => (
         <path d="M2 22h20" />
       </svg>
     );
+
+    export const KlineIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        <path d="M2 22h20" />
+
+        <line x1="6" y1="5" x2="6" y2="18" />
+        <rect x="4.5" y="9" width="3" height="6" fill="currentColor" fillOpacity="0.2" />
+
+        <line x1="12" y1="3.5" x2="12" y2="20" />
+        <rect x="10.5" y="7" width="3" height="9" fill="currentColor" fillOpacity="0.45" />
+
+        <line x1="18" y1="6" x2="18" y2="19" />
+        <rect x="16.5" y="11.5" width="3" height="5" fill="currentColor" fillOpacity="0.15" />
+      </svg>
+    );
     
     export const LollipopIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...svgProps} {...props}>
@@ -453,6 +468,33 @@ export const ParallelIcon = (props: React.SVGProps<SVGSVGElement>) => (
         <line x1="18" y1="14" x2="18" y2="21" strokeOpacity="0.45" />
         <line x1="14" y1="17.5" x2="22" y2="17.5" strokeOpacity="0.45" />
         <rect x="14.8" y="17.9" width="2.6" height="2.1" fill="currentColor" fillOpacity="0.35" stroke="none" />
+      </svg>
+    );
+
+    export const CalendarCompositeIcon = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...svgProps} {...props}>
+        {/* Calendar frame */}
+        <rect x="3" y="4" width="18" height="17" rx="2" />
+        <line x1="3" y1="8" x2="21" y2="8" strokeOpacity="0.55" />
+        <line x1="8" y1="3" x2="8" y2="6" />
+        <line x1="16" y1="3" x2="16" y2="6" />
+
+        {/* Grid hint */}
+        <line x1="9.5" y1="8" x2="9.5" y2="21" strokeOpacity="0.2" />
+        <line x1="15.5" y1="8" x2="15.5" y2="21" strokeOpacity="0.2" />
+        <line x1="3" y1="12.3" x2="21" y2="12.3" strokeOpacity="0.2" />
+        <line x1="3" y1="16.6" x2="21" y2="16.6" strokeOpacity="0.2" />
+
+        {/* Composite (stacked) cells */}
+        <rect x="4.4" y="13.2" width="1.9" height="2.8" fill="currentColor" fillOpacity="0.25" stroke="none" />
+        <rect x="4.4" y="11.4" width="1.9" height="1.6" fill="currentColor" fillOpacity="0.55" stroke="none" />
+        <rect x="6.6" y="13.8" width="1.9" height="2.2" fill="currentColor" fillOpacity="0.25" stroke="none" />
+        <rect x="6.6" y="12.2" width="1.9" height="1.3" fill="currentColor" fillOpacity="0.55" stroke="none" />
+
+        <rect x="10.6" y="15.2" width="1.9" height="2.2" fill="currentColor" fillOpacity="0.25" stroke="none" />
+        <rect x="10.6" y="13.4" width="1.9" height="1.6" fill="currentColor" fillOpacity="0.55" stroke="none" />
+        <rect x="12.8" y="14.7" width="1.9" height="2.7" fill="currentColor" fillOpacity="0.25" stroke="none" />
+        <rect x="12.8" y="12.9" width="1.9" height="1.6" fill="currentColor" fillOpacity="0.55" stroke="none" />
       </svg>
     );
     
@@ -708,6 +750,139 @@ export const ParallelIcon = (props: React.SVGProps<SVGSVGElement>) => (
         <line x1="18" y1="8" x2="10" y2="18" />
       </svg>
     );
+
+export const CommunityDisjointIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...svgProps} {...props}>
+    <circle cx="7.5" cy="8.2" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="5.2" cy="13.4" r="1.3" fill="currentColor" stroke="none" fillOpacity="0.9" />
+    <circle cx="10.2" cy="14.4" r="1.3" fill="currentColor" stroke="none" fillOpacity="0.84" />
+    <path d="M7.5 8.2L5.8 12.2" strokeWidth="1.5" />
+    <path d="M7.5 8.2L9.6 12.2" strokeWidth="1.5" />
+    <path d="M5.8 12.8l3.8 1" strokeWidth="1.4" strokeOpacity="0.9" />
+    <circle cx="7.6" cy="11.8" r="5.2" strokeWidth="1.2" strokeOpacity="0.25" />
+
+    <circle cx="16.6" cy="8.4" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="14.2" cy="13.6" r="1.3" fill="currentColor" stroke="none" fillOpacity="0.9" />
+    <circle cx="19.2" cy="14.6" r="1.3" fill="currentColor" stroke="none" fillOpacity="0.84" />
+    <path d="M16.6 8.4l-1.8 4" strokeWidth="1.5" />
+    <path d="M16.6 8.4l2.1 4" strokeWidth="1.5" />
+    <path d="M14.9 13l3.8 1" strokeWidth="1.4" strokeOpacity="0.9" />
+    <circle cx="16.7" cy="12" r="5.2" strokeWidth="1.2" strokeOpacity="0.25" />
+
+    <path d="M10.8 11.6h2.7" strokeWidth="1.4" strokeDasharray="2 2" strokeOpacity="0.7" />
+  </svg>
+);
+
+export const BipartiteNetworkIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...svgProps} {...props}>
+    <rect x="3.3" y="5.2" width="3.2" height="3.2" rx="0.8" fill="currentColor" stroke="none" />
+    <rect x="3.3" y="10.4" width="3.2" height="3.2" rx="0.8" fill="currentColor" stroke="none" fillOpacity="0.88" />
+    <rect x="3.3" y="15.6" width="3.2" height="3.2" rx="0.8" fill="currentColor" stroke="none" fillOpacity="0.76" />
+
+    <circle cx="20.2" cy="6.8" r="1.7" fill="currentColor" stroke="none" />
+    <circle cx="20.2" cy="12" r="1.7" fill="currentColor" stroke="none" fillOpacity="0.88" />
+    <circle cx="20.2" cy="17.2" r="1.7" fill="currentColor" stroke="none" fillOpacity="0.76" />
+
+    <path d="M6.7 6.8h11.8" strokeWidth="1.5" />
+    <path d="M6.7 11.8h11.8" strokeWidth="1.5" strokeOpacity="0.9" />
+    <path d="M6.7 16.8h11.8" strokeWidth="1.5" strokeOpacity="0.82" />
+    <path d="M6.7 11.8l11.8-5" strokeWidth="1.4" strokeOpacity="0.72" />
+    <path d="M6.7 11.8l11.8 5" strokeWidth="1.4" strokeOpacity="0.72" />
+  </svg>
+);
+
+export const EgoCenterIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...svgProps} {...props}>
+    <circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="12" r="5.4" strokeWidth="1.2" strokeOpacity="0.32" />
+
+    <circle cx="12" cy="4.4" r="1.3" fill="currentColor" stroke="none" fillOpacity="0.9" />
+    <circle cx="18.2" cy="8.2" r="1.3" fill="currentColor" stroke="none" fillOpacity="0.84" />
+    <circle cx="18.2" cy="15.8" r="1.3" fill="currentColor" stroke="none" fillOpacity="0.8" />
+    <circle cx="12" cy="19.6" r="1.3" fill="currentColor" stroke="none" fillOpacity="0.76" />
+    <circle cx="5.8" cy="15.8" r="1.3" fill="currentColor" stroke="none" fillOpacity="0.8" />
+    <circle cx="5.8" cy="8.2" r="1.3" fill="currentColor" stroke="none" fillOpacity="0.84" />
+
+    <path d="M12 9.6V6.2" strokeWidth="1.5" />
+    <path d="M14.1 10.4l2.8-1.7" strokeWidth="1.5" />
+    <path d="M14.1 13.6l2.8 1.7" strokeWidth="1.5" />
+    <path d="M12 14.4v3.4" strokeWidth="1.5" />
+    <path d="M9.9 13.6l-2.8 1.7" strokeWidth="1.5" />
+    <path d="M9.9 10.4L7.1 8.7" strokeWidth="1.5" />
+  </svg>
+);
+
+export const DirectedNetworkIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...svgProps} {...props}>
+        <circle cx="5.5" cy="7" r="1.8" fill="currentColor" stroke="none" />
+        <circle cx="18.2" cy="8.5" r="1.8" fill="currentColor" fillOpacity="0.88" stroke="none" />
+        <circle cx="9.4" cy="18.2" r="1.8" fill="currentColor" fillOpacity="0.76" stroke="none" />
+
+        <path d="M7.3 7.2l8.2 1" fill="none" strokeWidth="1.7" />
+        <path d="M10.9 6.9l2.2 0.8l-2.1 1.1z" fill="currentColor" stroke="none" />
+
+        <path d="M16.9 9.9l-5.6 6.4" fill="none" strokeWidth="1.7" />
+        <path d="M13.5 11.7l-0.2 2.4l-1.6-1.7z" fill="currentColor" stroke="none" />
+
+        <path d="M8.5 16.6l-2.1-7.1" fill="none" strokeWidth="1.7" />
+        <path d="M6.5 11.9l1.5 1.9l-2.3 0.1z" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+export const DagFlowIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...svgProps} {...props}>
+    <rect x="6.5" y="2.8" width="11" height="4.2" rx="1.4" fill="currentColor" stroke="none" fillOpacity="0.9" />
+    <rect x="6.5" y="10" width="11" height="4.2" rx="1.4" fill="currentColor" stroke="none" fillOpacity="0.72" />
+    <rect x="6.5" y="17.2" width="11" height="4.2" rx="1.4" fill="currentColor" stroke="none" fillOpacity="0.54" />
+
+    <path d="M12 7.2v2.2" strokeWidth="1.8" />
+    <path d="M12 14.4v2.2" strokeWidth="1.8" />
+
+    <path d="M10.8 8.9l1.2 1.3l1.2-1.3" fill="none" strokeWidth="1.8" />
+    <path d="M10.8 16.1l1.2 1.3l1.2-1.3" fill="none" strokeWidth="1.8" />
+  </svg>
+);
+
+export const RadialCompactTreeIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...svgProps} {...props}>
+    <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" />
+
+    <circle cx="12" cy="5.2" r="1.2" fill="currentColor" stroke="none" fillOpacity="0.92" />
+    <circle cx="17.4" cy="8.3" r="1.2" fill="currentColor" stroke="none" fillOpacity="0.86" />
+    <circle cx="17.4" cy="15.7" r="1.2" fill="currentColor" stroke="none" fillOpacity="0.8" />
+    <circle cx="12" cy="18.8" r="1.2" fill="currentColor" stroke="none" fillOpacity="0.74" />
+    <circle cx="6.6" cy="15.7" r="1.2" fill="currentColor" stroke="none" fillOpacity="0.68" />
+    <circle cx="6.6" cy="8.3" r="1.2" fill="currentColor" stroke="none" fillOpacity="0.62" />
+
+    <path d="M12 10.2V7.1" strokeWidth="1.6" />
+    <path d="M13.7 10.8l2.3-1.3" strokeWidth="1.6" />
+    <path d="M13.7 13.2l2.3 1.3" strokeWidth="1.6" />
+    <path d="M12 13.8v3.1" strokeWidth="1.6" />
+    <path d="M10.3 13.2l-2.3 1.3" strokeWidth="1.6" />
+    <path d="M10.3 10.8L8 9.5" strokeWidth="1.6" />
+
+    <circle cx="12" cy="12" r="6.8" strokeWidth="1.2" strokeOpacity="0.25" />
+  </svg>
+);
+
+export const FishboneIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...svgProps} {...props}>
+    <path d="M3 12h15" />
+    <path d="M18 10l3 2l-3 2" />
+
+    <path d="M7 12l-2.6-2.9" strokeOpacity="0.9" />
+    <path d="M7 12l-2.6 2.9" strokeOpacity="0.9" />
+
+    <path d="M11 12l-3.1-4" strokeOpacity="0.8" />
+    <path d="M11 12l-3.1 4" strokeOpacity="0.8" />
+
+    <path d="M15 12l-2.9-5" strokeOpacity="0.72" />
+    <path d="M15 12l-2.9 5" strokeOpacity="0.72" />
+
+    <circle cx="4.4" cy="9.1" r="0.7" fill="currentColor" stroke="none" />
+    <circle cx="4.4" cy="14.9" r="0.7" fill="currentColor" stroke="none" />
+  </svg>
+);
     
     export const ArcIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <svg {...svgProps} {...props}>

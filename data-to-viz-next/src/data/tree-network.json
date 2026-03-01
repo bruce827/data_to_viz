@@ -6,71 +6,205 @@
       "data": {
         "label": "Network",
         "icon": "NetworkIcon",
-        "label-cn": "网络图"
+        "label-cn": "网络关系"
       },
       "style": {
         "x": 600,
         "y": 50
       }
     },
+
     {
-      "id": "chart-network",
-      "type": "decision-chart",
+      "id": "q-net-basic",
+      "type": "decision-question",
       "data": {
-        "label": "Network",
-        "icon": "NetworkIcon",
-        "storyPath": "/graph/network",
-        "description": "Nodes connected by links.",
-        "label-cn": "网络图",
-        "description-cn": "由链接连接的节点。"
+        "label": "Basic Connectivity",
+        "label-cn": "基础连接关系"
       }
     },
     {
-      "id": "chart-arc",
+      "id": "q-net-hierarchy",
+      "type": "decision-question",
+      "data": {
+        "label": "Hierarchy & Dependency",
+        "label-cn": "层级与依赖关系"
+      }
+    },
+    {
+      "id": "q-net-community",
+      "type": "decision-question",
+      "data": {
+        "label": "Community & Group",
+        "label-cn": "社区与群组关系"
+      }
+    },
+    {
+      "id": "q-net-dense",
+      "type": "decision-question",
+      "data": {
+        "label": "Dense Relationship",
+        "label-cn": "稠密关系表达"
+      }
+    },
+
+    {
+      "id": "chart-net-force",
+      "type": "decision-chart",
+      "data": {
+        "label": "Force-directed Graph",
+        "icon": "NetworkIcon",
+        "storyPath": "/graph/network",
+        "description": "General node-link relations without strict hierarchy.",
+        "label-cn": "力导向图",
+        "description-cn": "用于表达一般节点连接关系，不强调严格层级。"
+      }
+    },
+    {
+      "id": "chart-net-directed",
+      "type": "decision-chart",
+      "data": {
+        "label": "Directed Graph",
+        "icon": "DirectedNetworkIcon",
+        "description": "Relations with direction, such as call or transfer links.",
+        "label-cn": "有向关系图",
+        "description-cn": "用于表达有方向的关系，如调用、流转、传播。"
+      }
+    },
+    {
+      "id": "chart-net-weighted",
+      "type": "decision-chart",
+      "data": {
+        "label": "Weighted Graph",
+        "icon": "NetworkIcon",
+        "description": "Edge weight encodes relationship strength.",
+        "label-cn": "带权关系图",
+        "description-cn": "边的粗细或颜色表示关系强度。"
+      }
+    },
+
+    {
+      "id": "chart-net-tree",
+      "type": "decision-chart",
+      "data": {
+        "label": "Tree Diagram",
+        "icon": "DendrogramIcon",
+        "description": "Strict parent-child hierarchical structure.",
+        "label-cn": "树图",
+        "description-cn": "用于表达严格父子层级结构。"
+      }
+    },
+    {
+      "id": "chart-net-dag",
+      "type": "decision-chart",
+      "data": {
+        "label": "DAG Diagram",
+        "icon": "DagFlowIcon",
+        "description": "Dependency network without cycles.",
+        "label-cn": "DAG图",
+        "description-cn": "用于表达无环依赖关系。"
+      }
+    },
+    {
+      "id": "chart-net-radial-compact-tree",
+      "type": "decision-chart",
+      "data": {
+        "label": "Radial Compact Tree",
+        "icon": "RadialCompactTreeIcon",
+        "description": "Compact radial hierarchy for dependency and lineage structures.",
+        "label-cn": "径向紧凑树",
+        "description-cn": "将层级结构以径向紧凑方式展开，适合依赖与血缘关系展示。"
+      }
+    },
+    {
+      "id": "chart-net-fishbone",
+      "type": "decision-chart",
+      "data": {
+        "label": "Fishbone Diagram",
+        "icon": "FishboneIcon",
+        "description": "Cause-and-effect decomposition for hierarchical dependency analysis.",
+        "label-cn": "鱼骨图",
+        "description-cn": "用于从结果出发分解多层原因与依赖关系。"
+      }
+    },
+
+    {
+      "id": "chart-net-community",
+      "type": "decision-chart",
+      "data": {
+        "label": "Community Network",
+        "icon": "CommunityDisjointIcon",
+        "description": "Clustered network grouped by community.",
+        "label-cn": "社区网络图",
+        "description-cn": "对网络做社区分群并突出群组结构。"
+      }
+    },
+    {
+      "id": "chart-net-bipartite",
+      "type": "decision-chart",
+      "data": {
+        "label": "Bipartite Graph",
+        "icon": "BipartiteNetworkIcon",
+        "description": "Relations between two node types.",
+        "label-cn": "二部图",
+        "description-cn": "用于表达两类节点之间的关系。"
+      }
+    },
+    {
+      "id": "chart-net-ego",
+      "type": "decision-chart",
+      "data": {
+        "label": "Ego Network",
+        "icon": "EgoCenterIcon",
+        "description": "Ego-centric local relation network.",
+        "label-cn": "Ego网络",
+        "description-cn": "围绕单个核心节点展开局部关系。"
+      }
+    },
+
+    {
+      "id": "chart-net-adj-matrix",
+      "type": "decision-chart",
+      "data": {
+        "label": "Scatterplot Matrix",
+        "icon": "HeatmapIcon",
+        "description": "Matrix view for dense node relationships.",
+        "label-cn": "散点矩阵",
+        "description-cn": "适合表达高密度网络关系，减少连线缠绕。"
+      }
+    },
+    {
+      "id": "chart-net-edge-bundling",
+      "type": "decision-chart",
+      "data": {
+        "label": "Edge Bundling",
+        "icon": "EdgeBundlingIcon",
+        "description": "Bundles edges to reduce clutter in dense graph.",
+        "label-cn": "边捆绑图",
+        "description-cn": "通过边束聚合降低稠密连线的视觉噪音。"
+      }
+    },
+    {
+      "id": "chart-net-arc",
       "type": "decision-chart",
       "data": {
         "label": "Arc Diagram",
         "icon": "ArcIcon",
         "storyPath": "/graph/arc",
-        "description": "Linear layout of network nodes.",
-        "label-cn": "弧线图",
-        "description-cn": "网络节点的线性布局。"
+        "description": "Linearized node order with arc links for dense relation comparison.",
+        "label-cn": "弧长连接图",
+        "description-cn": "将节点线性排列并用弧线连接，适合稠密关系的结构对比。"
       }
     },
     {
-      "id": "chart-chord",
+      "id": "chart-net-chord",
       "type": "decision-chart",
       "data": {
         "label": "Chord Diagram",
         "icon": "ChordIcon",
         "storyPath": "/graph/chord",
-        "description": "Circular layout showing flow between entities.",
-        "label-cn": "弦图",
-        "description-cn": "显示实体之间流动的圆形布局。"
-      }
-    },
-    {
-      "id": "chart-sankey",
-      "type": "decision-chart",
-      "data": {
-        "label": "Sankey",
-        "icon": "SankeyIcon",
-        "storyPath": "/graph/sankey",
-        "description": "Flow diagram where width represents quantity.",
-        "label-cn": "桑基图",
-        "description-cn": "宽度代表数量的流程图。"
-      }
-    },
-    {
-      "id": "chart-edge-bundling",
-      "type": "decision-chart",
-      "data": {
-        "label": "Edge Bundling",
-        "icon": "EdgeBundlingIcon",
-        "storyPath": "/graph/edge_bundling",
-        "description": "Hierarchical network with curved bundled links.",
-        "label-cn": "边缘捆绑",
-        "description-cn": "带有曲线捆绑链接的层级网络。"
+        "description": "Aggregated many-to-many relationship flow.",
+        "label-cn": "和弦图",
+        "description-cn": "适合展示群组间聚合后的多对多关系。"
       }
     }
   ],
@@ -78,27 +212,96 @@
     {
       "id": "e1",
       "source": "root",
-      "target": "chart-network"
+      "target": "q-net-basic"
     },
     {
       "id": "e2",
       "source": "root",
-      "target": "chart-arc"
+      "target": "q-net-hierarchy"
     },
     {
       "id": "e3",
       "source": "root",
-      "target": "chart-chord"
+      "target": "q-net-community"
     },
     {
       "id": "e4",
       "source": "root",
-      "target": "chart-sankey"
+      "target": "q-net-dense"
+    },
+
+    {
+      "id": "e-b-1",
+      "source": "q-net-basic",
+      "target": "chart-net-force"
     },
     {
-      "id": "e5",
-      "source": "root",
-      "target": "chart-edge-bundling"
+      "id": "e-b-2",
+      "source": "q-net-basic",
+      "target": "chart-net-directed"
+    },
+    {
+      "id": "e-b-3",
+      "source": "q-net-basic",
+      "target": "chart-net-weighted"
+    },
+
+    {
+      "id": "e-h-1",
+      "source": "q-net-hierarchy",
+      "target": "chart-net-tree"
+    },
+    {
+      "id": "e-h-2",
+      "source": "q-net-hierarchy",
+      "target": "chart-net-dag"
+    },
+    {
+      "id": "e-h-3",
+      "source": "q-net-hierarchy",
+      "target": "chart-net-radial-compact-tree"
+    },
+    {
+      "id": "e-h-4",
+      "source": "q-net-hierarchy",
+      "target": "chart-net-fishbone"
+    },
+
+    {
+      "id": "e-c-1",
+      "source": "q-net-community",
+      "target": "chart-net-community"
+    },
+    {
+      "id": "e-c-2",
+      "source": "q-net-community",
+      "target": "chart-net-bipartite"
+    },
+    {
+      "id": "e-c-3",
+      "source": "q-net-community",
+      "target": "chart-net-ego"
+    },
+
+    {
+      "id": "e-d-1",
+      "source": "q-net-dense",
+      "target": "chart-net-adj-matrix"
+    },
+    {
+      "id": "e-d-2",
+      "source": "q-net-dense",
+      "target": "chart-net-edge-bundling"
+    },
+    {
+      "id": "e-d-arc",
+      "source": "q-net-dense",
+      "target": "chart-net-arc"
+    },
+    {
+      "id": "e-d-3",
+      "source": "q-net-dense",
+      "target": "chart-net-chord"
     }
   ]
 }

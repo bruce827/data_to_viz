@@ -1,0 +1,63 @@
+{
+  "id": "Modeling Methods",
+  "children": [
+    {
+      "id": "Supervised Learning",
+      "children": [
+        {
+          "id": "Regression",
+          "children": [
+            { "id": "Linear Regression" },
+            { "id": "Ridge Regression" },
+            { "id": "Lasso Regression" }
+          ]
+        },
+        {
+          "id": "Classification",
+          "children": [
+            { "id": "Logistic Regression" },
+            { "id": "Decision Tree" },
+            { "id": "Random Forest" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Unsupervised Learning",
+      "children": [
+        {
+          "id": "Clustering",
+          "children": [
+            { "id": "K-Means" },
+            { "id": "DBSCAN" },
+            { "id": "Hierarchical Clustering" }
+          ]
+        },
+        {
+          "id": "Dimensionality Reduction",
+          "children": [
+            { "id": "PCA" },
+            { "id": "t-SNE" },
+            { "id": "UMAP" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Graph Learning",
+      "children": [
+        { "id": "Node Classification" },
+        { "id": "Link Prediction" },
+        { "id": "Graph Classification" }
+      ]
+    },
+    {
+      "id": "Time Series",
+      "children": [
+        { "id": "ARIMA" },
+        { "id": "Prophet" },
+        { "id": "LSTM" }
+      ]
+    }
+  ]
+}

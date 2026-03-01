@@ -1,0 +1,57 @@
+{
+  "nodes": [
+    {
+      "id": "start",
+      "data": { "text": "线上性能告警", "type": "pre-inspection" }
+    },
+    {
+      "id": "p1",
+      "data": { "text": "接口耗时升高", "type": "problem" }
+    },
+    {
+      "id": "p2",
+      "data": { "text": "数据库慢查询", "type": "problem" }
+    },
+    {
+      "id": "i1",
+      "data": { "text": "链路追踪定位热点接口", "type": "inspection" }
+    },
+    {
+      "id": "i2",
+      "data": { "text": "查看 SQL 执行计划", "type": "inspection" }
+    },
+    {
+      "id": "i3",
+      "data": { "text": "核查缓存命中率", "type": "inspection" }
+    },
+    {
+      "id": "s1",
+      "data": { "text": "扩容应用实例", "type": "solution" }
+    },
+    {
+      "id": "s2",
+      "data": { "text": "优化索引与 SQL", "type": "solution" }
+    },
+    {
+      "id": "s3",
+      "data": { "text": "增加缓存预热", "type": "solution" }
+    },
+    {
+      "id": "done",
+      "data": { "text": "性能恢复并持续观测", "type": "pre-inspection" }
+    }
+  ],
+  "edges": [
+    { "source": "start", "target": "p1", "data": { "text": "现象A" } },
+    { "source": "start", "target": "p2", "data": { "text": "现象B" } },
+    { "source": "p1", "target": "i1", "data": { "text": "排查" } },
+    { "source": "p1", "target": "i3", "data": { "text": "并行检查" } },
+    { "source": "p2", "target": "i2", "data": { "text": "排查" } },
+    { "source": "i1", "target": "s1", "data": { "text": "措施" } },
+    { "source": "i2", "target": "s2", "data": { "text": "措施" } },
+    { "source": "i3", "target": "s3", "data": { "text": "措施" } },
+    { "source": "s1", "target": "done", "data": { "text": "收敛" } },
+    { "source": "s2", "target": "done", "data": { "text": "收敛" } },
+    { "source": "s3", "target": "done", "data": { "text": "收敛" } }
+  ]
+}
