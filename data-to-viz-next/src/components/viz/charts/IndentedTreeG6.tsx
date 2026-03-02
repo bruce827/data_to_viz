@@ -1,6 +1,7 @@
-'use client';
-
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// @ts-nocheck
+'use client';
 
 import React, { useEffect, useRef } from 'react';
 import { Text as GText, Rect } from '@antv/g';

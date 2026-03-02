@@ -4,6 +4,12 @@ import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
 import streamData from './demoData/StreamgraphG2.json';
 
+type StreamDatum = {
+  date: string;
+  unemployed: number;
+  industry: string;
+};
+
 export function StreamgraphG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +30,7 @@ export function StreamgraphG2() {
         value: streamData,
       },
       encode: {
-        x: (d: any) => new Date(d.date),
+        x: (d: StreamDatum) => new Date(d.date),
         y: 'unemployed',
         color: 'industry',
         shape: 'smooth',

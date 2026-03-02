@@ -3,6 +3,11 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
 
+type BinDatum = {
+  x0: number;
+  x1: number;
+};
+
 export function HistogramG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -36,7 +41,7 @@ export function HistogramG2() {
       .axis('y', { title: '频数', titleFontSize: 12 })
       .tooltip({
         showMarkers: false,
-        title: (d: any) => `范围: ${Math.floor(d.x0)} - ${Math.floor(d.x1)}`,
+        title: (d: BinDatum) => `范围: ${Math.floor(d.x0)} - ${Math.floor(d.x1)}`,
         items: [{ channel: 'y', name: '计数' }]
       });
 

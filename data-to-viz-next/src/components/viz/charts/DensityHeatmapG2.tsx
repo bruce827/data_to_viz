@@ -5,6 +5,11 @@ import { Chart } from "@antv/g2";
 import densityHeatmapData from "./demoData/DensityHeatmapG2.json";
 import DataSet from '@antv/data-set';
 
+type DensityHeatmapSourceDatum = {
+  carat: number;
+  price: number;
+};
+
 export function DensityHeatmapG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -37,11 +42,12 @@ export function DensityHeatmapG2() {
             transform: [
               {
                 type: "custom",
-                callback: (data) => {
+                callback: (data: DensityHeatmapSourceDatum[]) => {
                   const dv = new DataSet.View().source(data);
                   dv.transform({
                     type: "kernel-smooth.density",
                     fields: ["carat", "price"],
+                    method: "gaussian",
                     as: ["carat", "price", "density"],
                   });
                   return dv.rows;

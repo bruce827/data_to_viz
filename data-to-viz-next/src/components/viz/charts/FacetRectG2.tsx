@@ -4,6 +4,12 @@ import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
 import facetRectData from './demoData/FacetRectG2.json';
 
+type PenguinDatum = {
+  culmen_depth_mm: number | 'NaN';
+  culmen_length_mm: number | 'NaN';
+  [key: string]: string | number;
+};
+
 export function FacetRectG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -28,7 +34,7 @@ export function FacetRectG2() {
         transform: [
           {
             type: 'map',
-            callback: ({ culmen_depth_mm: depth, culmen_length_mm: length, ...d }) => ({
+            callback: ({ culmen_depth_mm: depth, culmen_length_mm: length, ...d }: PenguinDatum) => ({
               ...d,
               culmen_depth_mm: depth === 'NaN' ? NaN : depth,
               culmen_length_mm: length === 'NaN' ? NaN : length,

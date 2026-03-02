@@ -42,7 +42,7 @@ export function ParallelG2() {
       axis: {
         // 修正：移除 v.replace，先检查 v 是否存在
         position: {
-          labelFormatter: (v: any) => {
+          labelFormatter: (v: string | number) => {
             if (typeof v === 'string') return v.replace('_', ' ');
             return v;
           }

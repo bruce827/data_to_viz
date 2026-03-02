@@ -52,7 +52,7 @@ export function VennSetRelationG2() {
         inactive: { opacity: 0.2 },
         active: { opacity: 0.9 },
       },
-      interactions: [{ type: 'elementHighlight' }],
+      interaction: [{ type: 'elementHighlight' }],
       legend: false,
       tooltip: {
         title: (d: VennDatum) => d.sets?.join(' ∩ ') || '',

@@ -4,6 +4,13 @@ import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
 import treemapData from './demoData/TreemapG2.json';
 
+type TreemapNodeDatum = {
+  path?: string[];
+  data?: {
+    name?: string;
+  };
+};
+
 export function TreemapG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +33,7 @@ export function TreemapG2() {
       },
       encode: {
         value: 'value',
-        color: (d) => d.path?.[1] || d.data?.name,
+        color: (d: TreemapNodeDatum) => d.path?.[1] || d.data?.name,
       },
       scale: {
         color: {
@@ -34,14 +41,14 @@ export function TreemapG2() {
         },
       },
       style: {
-        labelText: (d) => d.data?.name,
+        labelText: (d: TreemapNodeDatum) => d.data?.name,
         labelFill: '#ffffff',
         labelFontWeight: 700,
         labelFontSize: 12,
         labelLineWidth: 0.4,
       },
       tooltip: {
-        title: (d) => d.data?.name,
+        title: (d: TreemapNodeDatum) => d.data?.name ?? '',
         items: [{ field: 'value', name: '数值' }],
       },
     });

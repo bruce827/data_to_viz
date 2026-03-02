@@ -3,6 +3,14 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
 
+type TreemapDatum = {
+  path?: string[];
+  data: {
+    name: string;
+  };
+  value?: number;
+};
+
 const budgetData = {
   name: '年度预算',
   children: [
@@ -58,19 +66,19 @@ export function DendrogramG2() {
   },
   encode: {
     value: 'value',
-    color: (d) => d.path[1] || d.data.name,
+    color: (d: TreemapDatum) => d.path?.[1] || d.data.name,
   },
   style: {
-    labelText: (d) => d.data.name,
+    labelText: (d: TreemapDatum) => d.data.name,
     // labelFill: '#fff',
     // labelStroke: '#000',
     labelLineWidth: 0.5,
     labelFontSize: 12,
   },
   tooltip: {
-    title: (d) => d.data.name,
+    title: (d: TreemapDatum) => d.data.name,
     items: [
-      { field: 'value', name: '预算', valueFormatter: (v) => `${v}万元` },
+      { field: 'value', name: '预算', valueFormatter: (v: number) => `${v}万元` },
     ],
   },
     });

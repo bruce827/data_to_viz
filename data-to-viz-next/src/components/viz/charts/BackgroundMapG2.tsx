@@ -5,6 +5,7 @@ import { Chart, register } from '@antv/g2';
 import { feature } from 'topojson-client';
 
 let isFeatureTransformRegistered = false;
+const registerDataTransform = register as unknown as (name: string, component: unknown) => void;
 const featureToCollection = feature as unknown as (
   topology: { objects: Record<string, unknown> },
   object: unknown,
@@ -13,7 +14,7 @@ const featureToCollection = feature as unknown as (
 function ensureFeatureTransformRegistered() {
   if (isFeatureTransformRegistered) return;
 
-  register('data.feature', ({ name }: { name: string }) => {
+  registerDataTransform('data.feature', ({ name }: { name: string }) => {
     return (data: { objects: Record<string, unknown> }) =>
       featureToCollection(data, data.objects[name]).features;
   });

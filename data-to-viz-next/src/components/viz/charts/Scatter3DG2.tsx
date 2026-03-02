@@ -2,9 +2,24 @@
 
 import React, { useEffect, useRef } from 'react';
 
+type DestroyableChart = {
+  destroy: () => void;
+  getContext: () => { canvas?: unknown };
+};
+
+type CameraLike = {
+  setPerspective: (near: number, far: number, fov: number, aspect: number) => void;
+  setType: (type: unknown) => void;
+};
+
+type CanvasLike = {
+  getCamera?: () => CameraLike | null;
+  appendChild: (child: unknown) => void;
+};
+
 export function Scatter3DG2() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const chartRef = useRef<any>(null);
+  const chartRef = useRef<DestroyableChart | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -100,7 +115,8 @@ export function Scatter3DG2() {
         }
 
         const { canvas } = chart.getContext();
-        const camera = (canvas as any).getCamera();
+        const typedCanvas = canvas as CanvasLike | undefined;
+        const camera = typedCanvas?.getCamera?.();
         
         if (camera) {
           camera.setPerspective(0.1, 5000, 45, containerRef.current.clientWidth / 350);
@@ -115,9 +131,9 @@ export function Scatter3DG2() {
             direction: [-1, -1, 1],
           },
         });
-        canvas.appendChild(light);
+        typedCanvas?.appendChild(light);
         
-        chartRef.current = chart;
+        chartRef.current = chart as DestroyableChart;
       } catch (e) {
         console.error("G2 3D Render Error:", e);
       }

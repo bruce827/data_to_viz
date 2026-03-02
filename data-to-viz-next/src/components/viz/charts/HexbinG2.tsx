@@ -2,7 +2,13 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
+import DataSet from '@antv/data-set';
 import hexbinData from './demoData/Density2DG2.json';
+
+type HexbinSourceDatum = {
+  x: number;
+  y: number;
+};
 
 export function HexbinG2() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -17,32 +23,41 @@ export function HexbinG2() {
     });
 
     chart.options({
-      type: 'rect',
+      type: 'point',
       data: {
         type: 'inline',
         value: hexbinData,
+        transform: [
+          {
+            type: 'custom',
+            callback: (data: HexbinSourceDatum[]) => {
+              const dv = new DataSet.View().source(data);
+              dv.transform({
+                type: 'bin.hexagon',
+                fields: ['x', 'y'],
+                binWidth: [8, 8],
+                as: ['x', 'y', 'count'],
+              });
+              return dv.rows;
+            },
+          },
+        ],
       },
       encode: {
         x: 'x',
         y: 'y',
         color: 'count',
+        size: 'count',
+        shape: 'hexagon',
       },
-      transform: [
-        {
-          type: 'bin',
-          as: ['x', 'y', 'count'],
-          field: 'count',
-          method: 'count',
-          thresholdsX: 10,
-          thresholdsY: 10,
-        },
-      ],
       scale: {
-        color: { palette: 'interpolateYlGnBu' }
+        color: { palette: 'ylGnBu' },
+        size: { range: [6, 22] },
       },
       style: {
         stroke: '#fff',
         lineWidth: 1,
+        fillOpacity: 0.85,
       },
       axis: {
         x: { title: '变量 X' },

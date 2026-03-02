@@ -2,7 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: false,
-  allowedDevOrigins: ['192.168.2.110'],
+  allowedDevOrigins: [
+    'localhost',
+    '*.localhost',
+    '127.0.0.1',
+    '192.168.100.110',
+    '192.168.2.110',
+  ],
   
   // 尝试解决 G2 组件丢失问题
   transpilePackages: ['@antv/g2', '@antv/util', '@antv/coord', '@antv/scale', '@antv/attr'],
@@ -11,9 +17,6 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: '.',
   },
-
-  // 忽略 TypeScript 错误
-  typescript: { ignoreBuildErrors: true },
 };
 
 export default nextConfig;

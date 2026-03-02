@@ -41,7 +41,54 @@
 - DAG 组件初始化前清空容器：`containerRef.current.innerHTML = ''`。
 - 为每个实例创建独立挂载子节点，不直接复用外层容器。
 - 组件清理时立即 `graph.destroy()` 并移除对应挂载子节点，避免实例间互相影响。
+- 补充销毁时机控制：仅在 `render` 完成后执行销毁；若组件先卸载则标记 `disposed`，由 `render().then/catch` 回调统一销毁，避免“先销毁后渲染”竞态。
+- `safeDestroy` 改为幂等（`destroyed` 标记），防止二次 `destroy` 触发 `[G6] graph instance has been destroyed` 日志。
 
 ### 验证要点
 - 打开 DAG 弹窗后节点持续可见，不再延迟消失。
 - 连续打开/关闭 DAG 弹窗，不出现闪烁、空白或节点丢失。
+
+## 2026-03-01 小多图弹窗触发 G6 已销毁报错（DecisionGraph）
+
+### 现象
+- 打开“多分类+多数值 -> 小多图”时，控制台出现：
+  `[G6 v5.0.51] The graph instance has been destroyed`。
+
+### 影响范围
+- 决策树主画布组件 `src/components/viz/tree/DecisionGraph.tsx`（非小多图本体）。
+
+### 根因
+- React 开发态的重复挂载/卸载周期中，旧 G6 实例仍有未完成异步渲染。
+- 旧实例销毁与新实例初始化共用容器，导致销毁后的异步流程继续触发。
+
+### 修复方案
+- 每次初始化前清空外层容器，并创建独立 `mountEl` 作为 G6 实例容器。
+- 引入 `disposed` 防护，销毁后阻断点击处理与错误上报。
+- 清理阶段显式 `off('node:click')`，再执行 `graph.destroy()`，并移除 `mountEl`。
+- 对 `graph.render()` 增加 catch，仅在未销毁状态下输出异常。
+
+### 验证要点
+- 打开/关闭小多图弹窗不再出现该 G6 报错。
+- 切换决策树数据源或重复进入页面，不出现实例冲突与异常日志。
+
+## 2026-03-01 小多图四个面板不显示（SmallMultiplesG2）
+
+### 现象
+- 打开“多分类+多数值 -> 小多图”后，四个面板区域存在但折线与点不显示。
+
+### 影响范围
+- `src/components/viz/charts/SmallMultiplesG2.tsx`
+
+### 根因
+- 弹窗开启阶段容器可能仍处于过渡状态，`clientWidth/clientHeight` 可能为 0，导致 G2 初始化后无有效绘图区。
+- 组件重渲染时存在实例残留风险，影响后续面板渲染。
+
+### 修复方案
+- 小多图初始化改为“容器可见后再挂载”：使用 `requestAnimationFrame` 轮询尺寸，确认 4 个面板容器均有有效宽高后再创建图表。
+- 每个面板渲染前先清空容器，避免重复挂载残留。
+- 绘制方式改为稳定的链式 API：`line()` + `point()`，替代单次 `chart.options()` 组合写法。
+- 卸载时统一取消 `rAF` 并销毁全部 chart 实例。
+
+### 验证要点
+- 打开小多图时四个面板均可见折线与点标记。
+- 连续开关弹窗后仍稳定显示，不出现空白面板。

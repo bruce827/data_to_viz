@@ -119,6 +119,8 @@ export function DagFlowG6() {
     ensureExtensionsRegistered();
 
     let disposed = false;
+    let rendered = false;
+    let destroyed = false;
     const mountNode = document.createElement('div');
     mountNode.style.width = '100%';
     mountNode.style.height = '100%';
@@ -192,6 +194,8 @@ export function DagFlowG6() {
     graphRef.current = graph;
 
     const safeDestroy = () => {
+      if (destroyed) return;
+      destroyed = true;
       try {
         graph.stopLayout();
       } catch {
@@ -203,23 +207,24 @@ export function DagFlowG6() {
         // ignore
       }
       if (graphRef.current === graph) graphRef.current = null;
+      if (mountNode.parentNode) {
+        mountNode.parentNode.removeChild(mountNode);
+      }
     };
 
     graph
       .render()
       .then(() => {
+        rendered = true;
         if (disposed) safeDestroy();
       })
       .catch(() => {
-        if (disposed) return;
+        if (disposed) safeDestroy();
       });
 
     return () => {
       disposed = true;
-      safeDestroy();
-      if (mountNode.parentNode) {
-        mountNode.parentNode.removeChild(mountNode);
-      }
+      if (rendered) safeDestroy();
     };
   }, []);
 

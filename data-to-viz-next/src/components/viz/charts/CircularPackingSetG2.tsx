@@ -68,7 +68,7 @@ export function CircularPackingSetG2() {
         inactive: { opacity: 0.1 },
         active: { opacity: 0.9 },
       },
-      interactions: [{ type: 'elementHighlight' }],
+      interaction: [{ type: 'elementHighlight' }],
       legend: false,
     });
 

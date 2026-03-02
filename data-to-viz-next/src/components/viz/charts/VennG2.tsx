@@ -45,7 +45,7 @@ export function VennG2() {
       .style('labelFontSize', 12)
       .legend('color', false)
       .tooltip({
-        title: (d: VennTransformedDatum) => d.sets?.join(' ∩ '),
+        title: (d: VennTransformedDatum) => d.sets?.join(' ∩ ') ?? '',
         items: [{ field: 'size', name: '规模' }],
       });
 

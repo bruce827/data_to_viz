@@ -30,9 +30,13 @@ export function BubbleG2() {
         shape: 'point',
       },
       scale: {
-        x: { type: 'log', title: '人均 GDP (对数刻度)' },
-        y: { domain: [50, 90], title: '预期寿命 (年)' },
+        x: { type: 'log' },
+        y: { domain: [50, 90] },
         size: { range: [5, 30] }
+      },
+      axis: {
+        x: { title: '人均 GDP (对数刻度)' },
+        y: { title: '预期寿命 (年)' },
       },
       style: {
         fillOpacity: 0.6,

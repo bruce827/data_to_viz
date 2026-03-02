@@ -3,6 +3,15 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
 
+type BoxDatum = {
+  dept: string;
+  min: number;
+  q1: number;
+  median: number;
+  q3: number;
+  max: number;
+};
+
 export function BoxplotG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -44,7 +53,7 @@ export function BoxplotG2() {
       .box()
       .data(boxData)
       .encode('x', 'dept')
-      .encode('y', (d: any) => [d.min, d.q1, d.median, d.q3, d.max])
+      .encode('y', (d: BoxDatum) => [d.min, d.q1, d.median, d.q3, d.max])
       .encode('color', 'dept')
       .scale('color', { range: ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd'] })
       .style('stroke', '#1e40af')

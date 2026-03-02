@@ -4,6 +4,11 @@ import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
 import DataSet from '@antv/data-set';
 
+type HexbinMapSourceDatum = {
+  longitude: number;
+  latitude: number;
+};
+
 export function HexbinMapG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +29,7 @@ export function HexbinMapG2() {
         transform: [
           {
             type: 'custom',
-            callback: (data) => {
+            callback: (data: HexbinMapSourceDatum[]) => {
               const dv = new DataSet.View().source(data).transform({
                 type: 'bin.hexagon',
                 fields: ['longitude', 'latitude'],

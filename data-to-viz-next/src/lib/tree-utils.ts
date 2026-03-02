@@ -1,6 +1,24 @@
-import { G6Node, G6Edge } from '@/types/graph'; // We need to define types properly first, but for now using any
+interface RawNodeData {
+  label?: string;
+  'label-cn'?: string;
+  icon?: string;
+  storyPath?: string;
+  description?: string;
+  'description-cn'?: string;
+}
 
-interface TreeNode {
+interface RawNode {
+  id: string;
+  type: string;
+  data: RawNodeData;
+}
+
+interface RawEdge {
+  source: string;
+  target: string;
+}
+
+export interface TreeNode {
   id: string;
   label: string;
   labelCn?: string;
@@ -12,26 +30,25 @@ interface TreeNode {
   children: TreeNode[];
 }
 
-// Helper to convert flat graph data (nodes/edges) to nested tree
-export function buildNestedTree(nodes: any[], edges: any[], rootId: string = 'root'): TreeNode | null {
-  const rootNode = nodes.find(n => n.id === rootId);
+// Helper to convert flat graph data (nodes/edges) to nested tree.
+export function buildNestedTree(nodes: RawNode[], edges: RawEdge[], rootId: string = 'root'): TreeNode | null {
+  const rootNode = nodes.find((node) => node.id === rootId);
   if (!rootNode) return null;
 
-  const childrenEdges = edges.filter(e => e.source === rootId);
-  const children = childrenEdges.map(edge => {
-     // Find the target node
-     return buildNestedTree(nodes, edges, edge.target);
-  }).filter(Boolean) as TreeNode[];
+  const children = edges
+    .filter((edge) => edge.source === rootId)
+    .map((edge) => buildNestedTree(nodes, edges, edge.target))
+    .filter((node): node is TreeNode => node !== null);
 
   return {
     id: rootNode.id,
-    label: rootNode.data.label,
+    label: rootNode.data.label ?? rootNode.id,
     labelCn: rootNode.data['label-cn'],
     type: rootNode.type,
     icon: rootNode.data.icon,
     storyPath: rootNode.data.storyPath,
     description: rootNode.data.description,
     descriptionCn: rootNode.data['description-cn'],
-    children
+    children,
   };
 }

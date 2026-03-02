@@ -15,7 +15,7 @@ export default function HistogramStory() {
       <StorySection title="What is a Histogram?">
         <p>
           A histogram is an approximate representation of the distribution of numerical data. 
-          It was first introduced by Karl Pearson. To construct a histogram, the first step is to "bin" (or "bucket") 
+          It was first introduced by Karl Pearson. To construct a histogram, the first step is to &quot;bin&quot; (or &quot;bucket&quot;) 
           the range of values—that is, divide the entire range of values into a series of intervals—and then count 
           how many values fall into each interval.
         </p>

@@ -12,7 +12,7 @@ type WavePoint = {
 
 type DrawOption = {
   size: [number, number];
-  ctx: CanvasRenderingContext2D;
+  ctx: RenderingContext;
   mapService: {
     lngLatToContainer: (lnglat: [number, number]) => { x: number; y: number };
   };
@@ -68,16 +68,17 @@ export function CompositeMapL7() {
 
       const draw = (option: DrawOption) => {
         const { size, ctx, mapService } = option;
+        const canvasCtx = ctx as CanvasRenderingContext2D;
         const [width, height] = size;
         const radius = 30;
         const rectWidth = radius * 2;
         const rectHeight = rectWidth;
 
-        ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = 'rgb(35,75,225)';
-        ctx.font = 'normal small-caps bold 14px arial';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
+        canvasCtx.clearRect(0, 0, width, height);
+        canvasCtx.fillStyle = 'rgb(35,75,225)';
+        canvasCtx.font = 'normal small-caps bold 14px arial';
+        canvasCtx.textAlign = 'center';
+        canvasCtx.textBaseline = 'middle';
 
         WAVE_POINTS.forEach((point) => {
           const pixelCenter = mapService.lngLatToContainer([point.lng, point.lat]);
@@ -87,31 +88,31 @@ export function CompositeMapL7() {
           const rectStartX = cx - radius;
           const rectStartY = cy - radius;
 
-          ctx.save();
-          ctx.fillText(`${point.level}%`, cx, cy);
+          canvasCtx.save();
+          canvasCtx.fillText(`${point.level}%`, cx, cy);
 
-          ctx.beginPath();
-          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(135,206,250,0.2)';
-          ctx.closePath();
-          ctx.fill();
-          ctx.clip();
+          canvasCtx.beginPath();
+          canvasCtx.arc(cx, cy, radius, 0, Math.PI * 2);
+          canvasCtx.fillStyle = 'rgba(135,206,250,0.2)';
+          canvasCtx.closePath();
+          canvasCtx.fill();
+          canvasCtx.clip();
 
-          ctx.beginPath();
-          ctx.fillStyle = point.color;
-          ctx.moveTo(rectStartX, cy);
+          canvasCtx.beginPath();
+          canvasCtx.fillStyle = point.color;
+          canvasCtx.moveTo(rectStartX, cy);
 
           const waterheight = rectStartY + ((100 - point.level) / 100) * rectHeight;
           for (let i = 0; i <= rectWidth; i += 10) {
-            ctx.lineTo(rectStartX + i, waterheight + Math.sin(Math.PI * 2 * (i / rectWidth) + wavePhase) * 3 + 1);
+            canvasCtx.lineTo(rectStartX + i, waterheight + Math.sin(Math.PI * 2 * (i / rectWidth) + wavePhase) * 3 + 1);
           }
 
-          ctx.lineTo(cx + radius, cy + radius);
-          ctx.lineTo(rectStartX, cy + radius);
-          ctx.lineTo(rectStartX, cy);
-          ctx.closePath();
-          ctx.fill();
-          ctx.restore();
+          canvasCtx.lineTo(cx + radius, cy + radius);
+          canvasCtx.lineTo(rectStartX, cy + radius);
+          canvasCtx.lineTo(rectStartX, cy);
+          canvasCtx.closePath();
+          canvasCtx.fill();
+          canvasCtx.restore();
         });
       };
 

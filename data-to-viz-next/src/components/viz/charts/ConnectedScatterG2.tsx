@@ -3,6 +3,12 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
 
+type ConnectedScatterDatum = {
+  year: string;
+  unemployment: number;
+  inflation: number;
+};
+
 export function ConnectedScatterG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -17,7 +23,7 @@ export function ConnectedScatterG2() {
 
     // 模拟数据：类似菲利普斯曲线的经济周期轨迹
     // 两个数值 (Unemployment, Inflation) 随时间 (Year) 的演变
-    const data = Array.from({ length: 15 }, (_, i) => {
+    const data: ConnectedScatterDatum[] = Array.from({ length: 15 }, (_, i) => {
       const t = i / 14 * Math.PI * 2; // 一个完整的圆周周期
       const year = 2010 + i;
       // 制造一个循环轨迹
@@ -39,7 +45,6 @@ export function ConnectedScatterG2() {
             x: 'unemployment',
             y: 'inflation',
             shape: 'smooth', // 平滑曲线更能体现“轨迹”感
-            sort: 'year'     // 关键：确保按年份顺序连接
           },
           style: {
             stroke: '#94a3b8', // 灰色轨迹，不喧宾夺主
@@ -66,7 +71,7 @@ export function ConnectedScatterG2() {
             fillOpacity: 1
           },
            tooltip: {
-            title: (d: any) => `${d.year} 年`,
+            title: (d: ConnectedScatterDatum) => `${d.year} 年`,
             items: ['unemployment', 'inflation']
           }
         },

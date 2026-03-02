@@ -4,19 +4,35 @@ import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
 import ridgelineData from './demoData/RidgelineG2.json';
 
-// KDE 核心算法 (复用)
-function kernelDensityEstimator(kernel: any, x: any) {
-  return function(sample: any) {
-    return x.map((xVal: any) => ({
+type SourceDatum = {
+  group: string;
+  score: number;
+};
+
+type DensityPoint = {
+  x: number;
+  y: number;
+};
+
+type PlotDatum = {
+  group: string;
+  score: number;
+  densityRange: [number, number];
+};
+
+// KDE 核心算法
+function kernelDensityEstimator(kernel: (v: number) => number, x: number[]) {
+  return (sample: number[]): DensityPoint[] =>
+    x.map((xVal) => ({
       x: xVal,
-      y: sample.reduce((acc: any, v: any) => acc + kernel(xVal - v), 0) / sample.length
+      y: sample.reduce((acc, v) => acc + kernel(xVal - v), 0) / sample.length,
     }));
-  };
 }
-function epanechnikov(bandwidth: any) {
-  return function(v: any) {
-    v /= bandwidth;
-    return Math.abs(v) <= 1 ? 0.75 * (1 - v * v) / bandwidth : 0;
+
+function epanechnikov(bandwidth: number) {
+  return (v: number): number => {
+    const normalized = v / bandwidth;
+    return Math.abs(normalized) <= 1 ? (0.75 * (1 - normalized * normalized)) / bandwidth : 0;
   };
 }
 
@@ -31,35 +47,30 @@ export function RidgelineG2() {
       autoFit: true,
       height: 300,
       paddingLeft: 60,
-      paddingBottom: 40
+      paddingBottom: 40,
     });
 
-    // 1. 处理数据：按组计算 KDE 并平移 Y 轴
-    const groups = ["2023", "2022", "2021", "2020"]; // 倒序排列以产生从上往下的重叠感
-    const plotData: any[] = [];
-    const ticks = Array.from({ length: 50 }, (_, i) => 40 + i * (110 - 40) / 49);
+    const groups = ['2023', '2022', '2021', '2020'];
+    const plotData: PlotDatum[] = [];
+    const ticks = Array.from({ length: 50 }, (_, i) => 40 + (i * (110 - 40)) / 49);
     const kde = kernelDensityEstimator(epanechnikov(5), ticks);
 
     groups.forEach((group, idx) => {
-      const scores = ridgelineData.filter(d => d.group === group).map(d => d.score);
+      const scores = (ridgelineData as SourceDatum[]).filter((d) => d.group === group).map((d) => d.score);
       const density = kde(scores);
-      
-      // 平移量：每个组向上抬升一定高度 (idx)
       const offset = idx;
-      const maxDensity = Math.max(...density.map((d: any) => d.y));
-      const scaleFactor = 1.5; // 控制重叠程度
+      const maxDensity = Math.max(...density.map((d) => d.y));
+      const scaleFactor = 1.5;
 
-      density.forEach((d: any) => {
+      density.forEach((point) => {
         plotData.push({
           group,
-          score: d.x,
-          // 核心：y=[offset, offset + density]
-          densityRange: [offset, offset + (d.y / maxDensity) * scaleFactor]
+          score: point.x,
+          densityRange: [offset, offset + (point.y / maxDensity) * scaleFactor],
         });
       });
     });
 
-    // 2. 渲染
     chart.options({
       type: 'area',
       data: plotData,
@@ -70,24 +81,24 @@ export function RidgelineG2() {
       },
       scale: {
         color: { palette: 'blues' },
-        y: { domain: [0, groups.length + 0.5] }
+        y: { domain: [0, groups.length + 0.5] },
       },
       style: {
         fillOpacity: 0.8,
         stroke: '#fff',
-        lineWidth: 1
+        lineWidth: 1,
       },
       axis: {
         x: { title: '分数分布' },
-        y: { 
-            title: '年份',
-            labelFormatter: (v: any) => groups[Math.floor(v)] || ''
-        }
+        y: {
+          title: '年份',
+          labelFormatter: (v: string | number) => groups[Math.floor(Number(v))] || '',
+        },
       },
       tooltip: {
-        title: (d: any) => d.group,
-        items: [{ field: 'score', name: '分数' }]
-      }
+        title: (d: PlotDatum) => d.group,
+        items: [{ field: 'score', name: '分数' }],
+      },
     });
 
     chart.render();

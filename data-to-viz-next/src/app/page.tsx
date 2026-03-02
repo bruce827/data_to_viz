@@ -9,7 +9,7 @@ import treeCatNum from '@/data/tree-catnum.json';
 import treeMaps from '@/data/tree-maps.json';
 import treeNetwork from '@/data/tree-network.json';
 import treeTime from '@/data/tree-time.json';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const treeDataMap = {
   num: treeNumeric,

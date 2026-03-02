@@ -10,6 +10,14 @@ const METRIC_COLORS: Record<string, string> = {
 };
 
 const REGIONS = ['华东', '华南', '华北', '西南'];
+const MONTHS = ['1月', '2月', '3月', '4月', '5月', '6月'];
+
+type SmallMultiplesDatum = {
+  region: string;
+  month: string;
+  metric: string;
+  value: number;
+};
 
 export function SmallMultiplesG2() {
   const panelRefs = useRef<Record<string, HTMLDivElement | null>>({
@@ -20,75 +28,94 @@ export function SmallMultiplesG2() {
   });
 
   const dataByRegion = useMemo(() => {
-    return REGIONS.reduce<Record<string, typeof smallMultiplesData>>((acc, region) => {
-      acc[region] = smallMultiplesData.filter((d) => d.region === region);
+    return REGIONS.reduce<Record<string, SmallMultiplesDatum[]>>((acc, region) => {
+      acc[region] = (smallMultiplesData as SmallMultiplesDatum[]).filter((d) => d.region === region);
       return acc;
     }, {});
   }, []);
 
   useEffect(() => {
     const charts: Chart[] = [];
+    let disposed = false;
+    let frameId = 0;
 
-    REGIONS.forEach((region) => {
-      const container = panelRefs.current[region];
-      if (!container) return;
-
-      const chart = new Chart({
-        container,
-        autoFit: true,
-        height: 128,
-        paddingLeft: 28,
-        paddingRight: 12,
-        paddingTop: 12,
-        paddingBottom: 20,
+    const mountCharts = () => {
+      if (disposed) return;
+      const ready = REGIONS.every((region) => {
+        const el = panelRefs.current[region];
+        return !!el && el.clientWidth > 0 && el.clientHeight > 0;
       });
+      if (!ready) {
+        frameId = window.requestAnimationFrame(mountCharts);
+        return;
+      }
 
-      chart.options({
-        type: 'line',
-        data: {
-          type: 'inline',
-          value: dataByRegion[region],
-        },
-        encode: {
-          x: 'month',
-          y: 'value',
-          color: 'metric',
-          shape: 'metric',
-        },
-        scale: {
-          y: { nice: true },
-          color: { domain: ['销售额', '利润'], range: ['#2563eb', '#16a34a'] },
-        },
-        axis: {
-          x: {
-            tick: false,
-            labelFontSize: 10,
-            title: false,
-          },
-          y: {
-            gridLineDash: [2, 2],
-            labelFontSize: 10,
-            title: false,
-          },
-        },
-        style: {
-          lineWidth: 2,
-        },
-        legend: false,
-        tooltip: {
-          items: ['region', 'month', 'metric', 'value'],
-        },
+      REGIONS.forEach((region) => {
+        const container = panelRefs.current[region];
+        if (!container) return;
+        container.innerHTML = '';
+
+        const chart = new Chart({
+          container,
+          autoFit: true,
+          height: container.clientHeight || 108,
+          paddingLeft: 28,
+          paddingRight: 12,
+          paddingTop: 10,
+          paddingBottom: 20,
+        });
+
+        chart
+          .line()
+          .data({
+            type: 'inline',
+            value: dataByRegion[region],
+          })
+          .encode('x', 'month')
+          .encode('y', 'value')
+          .encode('color', 'metric')
+          .scale('x', { domain: MONTHS })
+          .scale('y', { nice: true })
+          .scale('color', {
+            domain: ['销售额', '利润'],
+            range: ['#2563eb', '#16a34a'],
+          })
+          .style('lineWidth', 2);
+
+        chart
+          .point()
+          .data({
+            type: 'inline',
+            value: dataByRegion[region],
+          })
+          .encode('x', 'month')
+          .encode('y', 'value')
+          .encode('color', 'metric')
+          .style('r', 2.5);
+
+        chart.axis('x', {
+          tick: false,
+          labelAutoRotate: false,
+          labelFontSize: 10,
+          title: false,
+        });
+        chart.axis('y', {
+          gridLineDash: [2, 2],
+          labelFontSize: 10,
+          title: false,
+        });
+        chart.legend('color', false);
+        chart.interaction('tooltip', { shared: true });
+        void chart.render();
+        charts.push(chart);
       });
+    };
 
-      chart.point().encode('x', 'month').encode('y', 'value').encode('color', 'metric').style({
-        r: 2.5,
-      });
-
-      chart.render();
-      charts.push(chart);
-    });
+    frameId = window.requestAnimationFrame(mountCharts);
 
     return () => {
+      disposed = true;
+      if (frameId) window.cancelAnimationFrame(frameId);
       charts.forEach((chart) => chart.destroy());
     };
   }, [dataByRegion]);

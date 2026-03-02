@@ -11,7 +11,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { HistogramG2 } from '../charts/HistogramG2';
@@ -57,8 +56,6 @@ import { LineSevG2 } from '../charts/LineSevG2';
 import { AreaG2 } from '../charts/AreaG2';
 import { ConnectedScatterG2 } from '../charts/ConnectedScatterG2';
 import { ViolinG2 } from '../charts/ViolinG2';
-import { Density2DG2 } from '../charts/Density2DG2';
-import { HexbinG2 } from '../charts/HexbinG2';
 import { HeatmapG2 } from '../charts/HeatmapG2';
 import { StackedAreaG2 } from '../charts/StackedAreaG2';
 import { DensityHeatmapG2 } from '../charts/DensityHeatmapG2';
@@ -102,6 +99,53 @@ import { ExtrudedPolygonMapL7 } from '../charts/ExtrudedPolygonMapL7';
 
 // Register the extension
 register('node', 'react-node', ReactNode);
+
+type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
+
+interface DecisionNodeData {
+  [key: string]: unknown;
+  label?: string;
+  'label-cn'?: string;
+  icon?: string;
+  description?: string;
+  'description-cn'?: string;
+  storyPath?: string;
+}
+
+interface DecisionNode {
+  [key: string]: unknown;
+  id: string;
+  type: string;
+  data: DecisionNodeData;
+}
+
+interface DecisionEdge {
+  [key: string]: unknown;
+  id?: string;
+  source: string;
+  target: string;
+}
+
+interface DecisionTreeData {
+  nodes: DecisionNode[];
+  edges: DecisionEdge[];
+}
+
+const iconsMap = Icons as Record<string, IconComponent>;
+
+function resolveIcon(iconName?: string): IconComponent {
+  if (!iconName) return Icons.NumericIcon;
+  return iconsMap[iconName] ?? Icons.NumericIcon;
+}
+
+function getEventTargetId(event: unknown): string | undefined {
+  const maybeEvent = event as { target?: { id?: string } };
+  return maybeEvent.target?.id;
+}
+
+function renderIcon(iconName: string | undefined, className: string): React.ReactNode {
+  return React.createElement(resolveIcon(iconName), { className });
+}
 
 // --- Chart Component Mapping ---
 const CHART_COMPONENTS: Record<string, React.ComponentType> = {
@@ -201,16 +245,12 @@ const CHART_COMPONENTS: Record<string, React.ComponentType> = {
 };
 
 // --- Custom Node Component (Rendered by G6) ---
-const NodeComponent = ({ data }: { data: any }) => {
+const NodeComponent = ({ data }: { data: DecisionNode }) => {
   const { label, icon } = data.data;
   const labelCn = data.data['label-cn'];
   const displayLabel = labelCn || label;
 
-  // Dynamic Icon loading
-  const Icon = (Icons as any)[icon || 'NumericIcon'] || Icons.NumericIcon;
-  
   const type = data.type;
-  const isChart = type === 'decision-chart';
   const isQuestion = type === 'decision-question';
   const isCategory = type === 'decision-category';
 
@@ -240,7 +280,7 @@ const NodeComponent = ({ data }: { data: any }) => {
     <Card className="gap-1 flex flex-col items-center justify-center w-[120px] h-[120px]  hover:shadow-xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer group bg-white">
       <div className="flex-1 flex items-center justify-center w-full pt-3">
          {/* Icon Container with subtle animation */}
-         <Icon className="w-16 h-16 text-slate-400 group-hover:text-blue-600 transition-colors duration-300" />
+         {renderIcon(icon, "w-16 h-16 text-slate-400 group-hover:text-blue-600 transition-colors duration-300")}
       </div>
       <div className="mt-2 w-full text-center border-t border-slate-100 group-hover:border-blue-100 py-2">
         <span className="text-xl font-bold text-slate-600 group-hover:text-blue-700 leading-normal block px-1">
@@ -252,38 +292,37 @@ const NodeComponent = ({ data }: { data: any }) => {
 };
 
 // --- Main Graph Component ---
-export function DecisionGraph({ data }: { data: any }) {
+export function DecisionGraph({ data }: { data: DecisionTreeData }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const graphRef = useRef<Graph | null>(null);
-  const [selectedNode, setSelectedNode] = useState<any>(null);
+  const [selectedNode, setSelectedNode] = useState<DecisionNode | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Handle Node Click from G6
-  const handleNodeClick = (event: any) => {
-    const { target } = event;
-    // Walk up to find the node element if clicked on child
-    // In G6 v5, event.target.id might be the shape ID. 
-    // We rely on the event model.
-    // However, for React nodes, the click might be captured by React.
-    // Best way: G6 event listener.
-  };
-
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Create an isolated mount node to avoid instance collisions in React dev double-mount.
+    container.innerHTML = '';
+    const mountEl = document.createElement('div');
+    mountEl.style.width = '100%';
+    mountEl.style.height = '100%';
+    container.appendChild(mountEl);
+
+    let disposed = false;
 
     const graph = new Graph({
-      container: containerRef.current,
+      container: mountEl,
       data,
       // Add side padding so outer nodes are not visually clipped.
       padding: [24, 56, 24, 56],
       node: {
         type: 'react-node',
         style: {
-          component: (d: any) => <NodeComponent data={d} />,
+          component: (d: unknown) => <NodeComponent data={d as DecisionNode} />,
           // Define standard sizes for layout calculation
-          size: (d: any) => {
-            if (d.type === 'decision-chart') return [130, 130];
-            if (d.type === 'decision-category') return [150, 80];
+          size: (d: { type?: string }) => {
+            if (d.type === 'decision-chart') return [130, 130] as const;
+            if (d.type === 'decision-category') return [150, 80] as const;
             return [140, 60]; // Question
           },
           ports: [
@@ -318,19 +357,7 @@ export function DecisionGraph({ data }: { data: any }) {
       behaviors: [
         'drag-canvas', 
         'zoom-canvas', 
-        {
-            type: 'click-select',
-            multiple: false,
-            onClick: (e: any) => {
-                if(e.target.id && data.nodes.find((n:any) => n.id === e.target.id)) {
-                    const node = data.nodes.find((n:any) => n.id === e.target.id);
-                    if(node.type === 'decision-chart') {
-                        setSelectedNode(node);
-                        setIsModalOpen(true);
-                    }
-                }
-            }
-        }
+        'click-select',
       ],
       autoFit: {
         type: 'view',
@@ -342,21 +369,37 @@ export function DecisionGraph({ data }: { data: any }) {
       animation: true, 
     });
 
-    graph.render();
-    graphRef.current = graph;
-    
+    const handleNodeClick = (event: unknown) => {
+      if (disposed) return;
+      const nodeId = getEventTargetId(event);
+      if (!nodeId) return;
+      const nodeData = data.nodes.find((node) => node.id === nodeId);
+      if (nodeData && nodeData.type === 'decision-chart') {
+        setSelectedNode(nodeData);
+        setIsModalOpen(true);
+      }
+    };
+
     // Event Listener for Node Clicks (Reliable method)
-    graph.on('node:click', (e) => {
-        const nodeId = e.target.id;
-        const nodeData = data.nodes.find((n: any) => n.id === nodeId);
-        if (nodeData && nodeData.type === 'decision-chart') {
-             setSelectedNode(nodeData);
-             setIsModalOpen(true);
-        }
+    graph.on('node:click', handleNodeClick);
+    void graph.render().catch((error: unknown) => {
+      // Ignore render errors triggered by expected destroy flow in dev strict mode.
+      if (!disposed) {
+        console.error(error);
+      }
     });
 
     return () => {
-      graph.destroy();
+      disposed = true;
+      graph.off('node:click', handleNodeClick);
+      try {
+        graph.destroy();
+      } catch {
+        // Swallow destroy-time errors during fast remount/unmount cycles.
+      }
+      if (mountEl.parentNode === container) {
+        container.removeChild(mountEl);
+      }
     };
   }, [data]);
 
@@ -374,10 +417,7 @@ export function DecisionGraph({ data }: { data: any }) {
                     <DialogHeader>
                         <div className="flex items-center gap-4 mb-4">
                              {/* Render Icon in Header */}
-                             {(() => {
-                                 const Icon = (Icons as any)[selectedNode.data.icon || 'NumericIcon'] || Icons.NumericIcon;
-                                 return <Icon className="w-12 h-12 text-blue-600" />;
-                             })()}
+                             {renderIcon(selectedNode.data.icon, "w-12 h-12 text-blue-600")}
                             <div>
                                 <DialogTitle className="text-2xl">{selectedNode.data['label-cn'] || selectedNode.data.label}</DialogTitle>
                                 <DialogDescription className="text-base mt-1">

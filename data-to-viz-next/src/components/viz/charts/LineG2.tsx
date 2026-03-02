@@ -34,16 +34,15 @@ export function LineG2() {
           style: {
             lineWidth: 2,
           },
-          label: {
-            text: 'temp',
-            style: {
+          labels: [
+            {
+              text: 'temp',
+              dy: -10,
               fontSize: 10,
               textAlign: 'center',
               textBaseline: 'middle',
-              dx: 0,
-              dy: -10,
             },
-          },
+          ],
         },
         {
           type: 'point',

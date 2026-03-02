@@ -2,7 +2,12 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
-import { View } from '@antv/data-set';
+import DataSet from '@antv/data-set';
+
+type HeatmapSourceDatum = {
+  carat: number;
+  price: number;
+};
 
 export function HeatmapG2() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,11 +36,12 @@ export function HeatmapG2() {
         transform: [
           {
             type: 'custom',
-            callback: (data) => {
-              const dv = new View().source(data);
+            callback: (data: HeatmapSourceDatum[]) => {
+              const dv = new DataSet.View().source(data);
               dv.transform({
                 type: 'kernel-smooth.density',
                 fields: ['carat', 'price'],
+                method: 'gaussian',
                 as: ['carat', 'price', 'density'],
               });
               return dv.rows;

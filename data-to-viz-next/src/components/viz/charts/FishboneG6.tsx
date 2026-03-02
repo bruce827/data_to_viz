@@ -59,7 +59,14 @@ const FISHBONE_DATA = {
 let textShape: Text | null = null;
 let transformRegistered = false;
 
-const measureText = (style: { text: string; fontSize: number; fontWeight?: string; fontFamily?: string }) => {
+type TextMeasureStyle = {
+  text: string;
+  fontSize: number;
+  fontWeight?: number | 'bold' | 'normal' | 'bolder' | 'lighter';
+  fontFamily?: string;
+};
+
+const measureText = (style: TextMeasureStyle) => {
   if (!textShape) textShape = new Text({ style });
   textShape.attr(style);
   return textShape.getBBox().width;
@@ -85,7 +92,8 @@ class AssignColorByBranch extends BaseTransform {
 
       node.style ||= {};
       node.style.color = color || this.options.colors[colorIndex++ % this.options.colors.length];
-      node.children?.forEach((childId: string) => dfs(childId, node.style?.color));
+      const nextColor = typeof node.style?.color === 'string' ? node.style.color : undefined;
+      node.children?.forEach((childId: string) => dfs(childId, nextColor));
     };
 
     nodes.filter((node: any) => node.depth === 1).forEach((rootNode: any) => dfs(rootNode.id));
