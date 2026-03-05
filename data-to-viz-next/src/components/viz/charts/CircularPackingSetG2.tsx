@@ -2,10 +2,16 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
+import circularPackingSetData from './demoData/CircularPackingSetG2.json';
 
-type VennDatum = {
-  sets: string[];
-  label?: string;
+type PackDatum = {
+  depth?: number;
+  r?: number;
+  data?: {
+    name?: string;
+    value?: number;
+    group?: string;
+  };
 };
 
 export function CircularPackingSetG2() {
@@ -18,58 +24,43 @@ export function CircularPackingSetG2() {
       container: containerRef.current,
       autoFit: true,
       height: 320,
-      paddingLeft: 20,
-      paddingRight: 20,
-      paddingTop: 12,
-      paddingBottom: 12,
+      padding: 8,
     });
 
     chart.options({
-      type: 'path',
+      type: 'pack',
       data: {
-        type: 'fetch',
-        value: 'https://assets.antv.antgroup.com/g2/lastfm.json',
-        transform: [
-          {
-            type: 'venn',
-            padding: 12,
-            sets: 'sets',
-            size: 'size',
-            as: ['key', 'path'],
-          },
-        ],
+        value: circularPackingSetData,
       },
+      layout: { padding: 3 },
       encode: {
-        d: 'path',
-        color: 'key',
+        value: 'value',
+        color: (d: PackDatum) => d.data?.group || '分组',
       },
-      labels: [
-        {
-          position: 'inside',
-          text: (d: VennDatum) => d.label || '',
-          style: {
-            fontSize: 12,
-            fontWeight: 'bold',
-          },
-          transform: [{ type: 'contrastReverse' }],
-        },
-      ],
       style: {
-        opacity: (d: VennDatum) => (d.sets.length > 1 ? 0.4 : 0.7),
-        stroke: '#fff',
-        lineWidth: 2,
+        fillOpacity: 0.9,
+        stroke: '#ffffff',
+        lineWidth: 1.5,
+        labelText: (d: PackDatum) => {
+          if ((d.depth ?? 0) <= 0) return '';
+          if ((d.r ?? 0) < 16) return '';
+          return d.data?.name || '';
+        },
+        labelFill: '#0f172a',
+        labelFontWeight: 700,
+        labelFontSize: 11,
       },
       scale: {
         color: {
-          range: ['#667eea', '#764ba2', '#f093fb'],
+          range: ['#1d4ed8', '#3b82f6', '#f59e0b', '#ef4444'],
         },
-      },
-      state: {
-        inactive: { opacity: 0.1 },
-        active: { opacity: 0.9 },
       },
       interaction: [{ type: 'elementHighlight' }],
       legend: false,
+      tooltip: {
+        title: (d: PackDatum) => d.data?.name || '',
+        items: [{ field: 'value', name: '规模' }],
+      },
     });
 
     chart.render();

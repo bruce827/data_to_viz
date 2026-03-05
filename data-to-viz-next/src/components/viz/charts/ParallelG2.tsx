@@ -48,9 +48,8 @@ export function ParallelG2() {
           }
         }
       },
-      tooltip: {
-        items: [{ field: 'species', name: '品种' }]
-      }
+      tooltip: false,
+      interaction: []
     });
 
     chart.render();

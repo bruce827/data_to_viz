@@ -139,7 +139,7 @@
       "data": {
         "label": "Circular Packing",
         "icon": "CircularPackingIcon",
-        "storyPath": "/graph/circularpacking",
+        "storyPath": "/graph/circularpacking-hierarchy",
         "label-cn": "圆形填充图"
       }
     },
