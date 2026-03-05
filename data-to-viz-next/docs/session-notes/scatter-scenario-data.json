@@ -1,0 +1,986 @@
+[
+  {
+    "enterprise": "SME01",
+    "dscr": 1.55,
+    "pd": 1.2,
+    "industry": "制造"
+  },
+  {
+    "enterprise": "SME02",
+    "dscr": 1.32,
+    "pd": 1.8,
+    "industry": "批发"
+  },
+  {
+    "enterprise": "SME03",
+    "dscr": 1.18,
+    "pd": 3,
+    "industry": "餐饮"
+  },
+  {
+    "enterprise": "SME04",
+    "dscr": 1.05,
+    "pd": 6.8,
+    "industry": "建工"
+  },
+  {
+    "enterprise": "SME05",
+    "dscr": 0.92,
+    "pd": 12.5,
+    "industry": "商贸"
+  },
+  {
+    "enterprise": "SME06",
+    "dscr": 1.4,
+    "pd": 1.5,
+    "industry": "科技服务"
+  },
+  {
+    "enterprise": "SME07",
+    "dscr": 1.1,
+    "pd": 5.2,
+    "industry": "物流"
+  },
+  {
+    "enterprise": "SME08",
+    "dscr": 0.98,
+    "pd": 10.1,
+    "industry": "餐饮"
+  },
+  {
+    "enterprise": "SME09",
+    "dscr": 1.25,
+    "pd": 2.2,
+    "industry": "制造"
+  },
+  {
+    "enterprise": "SME10",
+    "dscr": 0.85,
+    "pd": 15.9,
+    "industry": "建工"
+  },
+  {
+    "enterprise": "SYN01",
+    "industry": "制造",
+    "dscr": 1.29,
+    "pd": 2.8
+  },
+  {
+    "enterprise": "SYN02",
+    "industry": "制造",
+    "dscr": 1.45,
+    "pd": 1.9
+  },
+  {
+    "enterprise": "SYN03",
+    "industry": "制造",
+    "dscr": 1.27,
+    "pd": 2.3
+  },
+  {
+    "enterprise": "SYN04",
+    "industry": "制造",
+    "dscr": 1.26,
+    "pd": 2.1
+  },
+  {
+    "enterprise": "SYN05",
+    "industry": "制造",
+    "dscr": 1.23,
+    "pd": 1.8
+  },
+  {
+    "enterprise": "SYN06",
+    "industry": "制造",
+    "dscr": 1.37,
+    "pd": 2.2
+  },
+  {
+    "enterprise": "SYN07",
+    "industry": "制造",
+    "dscr": 1.4,
+    "pd": 2.9
+  },
+  {
+    "enterprise": "SYN08",
+    "industry": "制造",
+    "dscr": 1.28,
+    "pd": 2.7
+  },
+  {
+    "enterprise": "SYN09",
+    "industry": "制造",
+    "dscr": 1.39,
+    "pd": 2
+  },
+  {
+    "enterprise": "SYN10",
+    "industry": "制造",
+    "dscr": 1.43,
+    "pd": 3.2
+  },
+  {
+    "enterprise": "SYN11",
+    "industry": "制造",
+    "dscr": 1.41,
+    "pd": 3
+  },
+  {
+    "enterprise": "SYN12",
+    "industry": "制造",
+    "dscr": 1.23,
+    "pd": 1.7
+  },
+  {
+    "enterprise": "SYN13",
+    "industry": "制造",
+    "dscr": 1.33,
+    "pd": 2.6
+  },
+  {
+    "enterprise": "SYN14",
+    "industry": "制造",
+    "dscr": 1.29,
+    "pd": 1.5
+  },
+  {
+    "enterprise": "SYN15",
+    "industry": "制造",
+    "dscr": 1.4,
+    "pd": 2
+  },
+  {
+    "enterprise": "SYN16",
+    "industry": "制造",
+    "dscr": 1.25,
+    "pd": 1.4
+  },
+  {
+    "enterprise": "SYN17",
+    "industry": "制造",
+    "dscr": 1.37,
+    "pd": 2.5
+  },
+  {
+    "enterprise": "SYN18",
+    "industry": "制造",
+    "dscr": 1.35,
+    "pd": 1.6
+  },
+  {
+    "enterprise": "SYN19",
+    "industry": "制造",
+    "dscr": 1.3,
+    "pd": 2.6
+  },
+  {
+    "enterprise": "SYN20",
+    "industry": "制造",
+    "dscr": 1.25,
+    "pd": 2.1
+  },
+  {
+    "enterprise": "SYN21",
+    "industry": "制造",
+    "dscr": 1.29,
+    "pd": 2.6
+  },
+  {
+    "enterprise": "SYN22",
+    "industry": "制造",
+    "dscr": 1.38,
+    "pd": 3.1
+  },
+  {
+    "enterprise": "SYN23",
+    "industry": "制造",
+    "dscr": 1.39,
+    "pd": 2.2
+  },
+  {
+    "enterprise": "SYN24",
+    "industry": "制造",
+    "dscr": 1.34,
+    "pd": 1.5
+  },
+  {
+    "enterprise": "SYN25",
+    "industry": "制造",
+    "dscr": 1.46,
+    "pd": 2.5
+  },
+  {
+    "enterprise": "SYN26",
+    "industry": "制造",
+    "dscr": 1.42,
+    "pd": 2.7
+  },
+  {
+    "enterprise": "SYN27",
+    "industry": "批发",
+    "dscr": 1.02,
+    "pd": 4.9
+  },
+  {
+    "enterprise": "SYN28",
+    "industry": "批发",
+    "dscr": 1.27,
+    "pd": 4.3
+  },
+  {
+    "enterprise": "SYN29",
+    "industry": "批发",
+    "dscr": 1.18,
+    "pd": 2.7
+  },
+  {
+    "enterprise": "SYN30",
+    "industry": "批发",
+    "dscr": 1.22,
+    "pd": 3.6
+  },
+  {
+    "enterprise": "SYN31",
+    "industry": "批发",
+    "dscr": 1.22,
+    "pd": 3.8
+  },
+  {
+    "enterprise": "SYN32",
+    "industry": "批发",
+    "dscr": 1.21,
+    "pd": 2.7
+  },
+  {
+    "enterprise": "SYN33",
+    "industry": "批发",
+    "dscr": 1.25,
+    "pd": 3.8
+  },
+  {
+    "enterprise": "SYN34",
+    "industry": "批发",
+    "dscr": 1.28,
+    "pd": 4.3
+  },
+  {
+    "enterprise": "SYN35",
+    "industry": "批发",
+    "dscr": 1.47,
+    "pd": 1.4
+  },
+  {
+    "enterprise": "SYN36",
+    "industry": "批发",
+    "dscr": 1.21,
+    "pd": 3.5
+  },
+  {
+    "enterprise": "SYN37",
+    "industry": "批发",
+    "dscr": 1.27,
+    "pd": 1.8
+  },
+  {
+    "enterprise": "SYN38",
+    "industry": "批发",
+    "dscr": 1.32,
+    "pd": 1.1
+  },
+  {
+    "enterprise": "SYN39",
+    "industry": "批发",
+    "dscr": 1.25,
+    "pd": 2.3
+  },
+  {
+    "enterprise": "SYN40",
+    "industry": "批发",
+    "dscr": 1.34,
+    "pd": 1.7
+  },
+  {
+    "enterprise": "SYN41",
+    "industry": "批发",
+    "dscr": 1.26,
+    "pd": 2.4
+  },
+  {
+    "enterprise": "SYN42",
+    "industry": "批发",
+    "dscr": 1.2,
+    "pd": 3.9
+  },
+  {
+    "enterprise": "SYN43",
+    "industry": "批发",
+    "dscr": 1.23,
+    "pd": 3.1
+  },
+  {
+    "enterprise": "SYN44",
+    "industry": "批发",
+    "dscr": 1.19,
+    "pd": 2.9
+  },
+  {
+    "enterprise": "SYN45",
+    "industry": "批发",
+    "dscr": 1.36,
+    "pd": 3.9
+  },
+  {
+    "enterprise": "SYN46",
+    "industry": "批发",
+    "dscr": 1.38,
+    "pd": 3.9
+  },
+  {
+    "enterprise": "SYN47",
+    "industry": "餐饮",
+    "dscr": 0.95,
+    "pd": 11.2
+  },
+  {
+    "enterprise": "SYN48",
+    "industry": "餐饮",
+    "dscr": 1.04,
+    "pd": 9.2
+  },
+  {
+    "enterprise": "SYN49",
+    "industry": "餐饮",
+    "dscr": 1.06,
+    "pd": 8.9
+  },
+  {
+    "enterprise": "SYN50",
+    "industry": "餐饮",
+    "dscr": 1.25,
+    "pd": 6.3
+  },
+  {
+    "enterprise": "SYN51",
+    "industry": "餐饮",
+    "dscr": 1.23,
+    "pd": 7.6
+  },
+  {
+    "enterprise": "SYN52",
+    "industry": "餐饮",
+    "dscr": 1.03,
+    "pd": 7.5
+  },
+  {
+    "enterprise": "SYN53",
+    "industry": "餐饮",
+    "dscr": 1.12,
+    "pd": 9.5
+  },
+  {
+    "enterprise": "SYN54",
+    "industry": "餐饮",
+    "dscr": 1.03,
+    "pd": 8.8
+  },
+  {
+    "enterprise": "SYN55",
+    "industry": "餐饮",
+    "dscr": 0.96,
+    "pd": 9
+  },
+  {
+    "enterprise": "SYN56",
+    "industry": "餐饮",
+    "dscr": 1.07,
+    "pd": 8.2
+  },
+  {
+    "enterprise": "SYN57",
+    "industry": "餐饮",
+    "dscr": 1,
+    "pd": 12
+  },
+  {
+    "enterprise": "SYN58",
+    "industry": "餐饮",
+    "dscr": 1.11,
+    "pd": 7.4
+  },
+  {
+    "enterprise": "SYN59",
+    "industry": "餐饮",
+    "dscr": 1.04,
+    "pd": 8
+  },
+  {
+    "enterprise": "SYN60",
+    "industry": "餐饮",
+    "dscr": 1.08,
+    "pd": 9.3
+  },
+  {
+    "enterprise": "SYN61",
+    "industry": "餐饮",
+    "dscr": 1.04,
+    "pd": 7.6
+  },
+  {
+    "enterprise": "SYN62",
+    "industry": "餐饮",
+    "dscr": 1.07,
+    "pd": 9.6
+  },
+  {
+    "enterprise": "SYN63",
+    "industry": "餐饮",
+    "dscr": 1.16,
+    "pd": 7.1
+  },
+  {
+    "enterprise": "SYN64",
+    "industry": "餐饮",
+    "dscr": 1.21,
+    "pd": 5.3
+  },
+  {
+    "enterprise": "SYN65",
+    "industry": "餐饮",
+    "dscr": 1.02,
+    "pd": 8.7
+  },
+  {
+    "enterprise": "SYN66",
+    "industry": "餐饮",
+    "dscr": 0.91,
+    "pd": 10.4
+  },
+  {
+    "enterprise": "SYN67",
+    "industry": "餐饮",
+    "dscr": 1.24,
+    "pd": 6.4
+  },
+  {
+    "enterprise": "SYN68",
+    "industry": "餐饮",
+    "dscr": 1.17,
+    "pd": 5.2
+  },
+  {
+    "enterprise": "SYN69",
+    "industry": "餐饮",
+    "dscr": 1.23,
+    "pd": 8.7
+  },
+  {
+    "enterprise": "SYN70",
+    "industry": "餐饮",
+    "dscr": 0.97,
+    "pd": 9.3
+  },
+  {
+    "enterprise": "SYN71",
+    "industry": "建工",
+    "dscr": 1.01,
+    "pd": 10.8
+  },
+  {
+    "enterprise": "SYN72",
+    "industry": "建工",
+    "dscr": 0.93,
+    "pd": 9.5
+  },
+  {
+    "enterprise": "SYN73",
+    "industry": "建工",
+    "dscr": 1.09,
+    "pd": 9.6
+  },
+  {
+    "enterprise": "SYN74",
+    "industry": "建工",
+    "dscr": 1.04,
+    "pd": 9.6
+  },
+  {
+    "enterprise": "SYN75",
+    "industry": "建工",
+    "dscr": 1.14,
+    "pd": 8.8
+  },
+  {
+    "enterprise": "SYN76",
+    "industry": "建工",
+    "dscr": 0.86,
+    "pd": 15.2
+  },
+  {
+    "enterprise": "SYN77",
+    "industry": "建工",
+    "dscr": 0.98,
+    "pd": 10.4
+  },
+  {
+    "enterprise": "SYN78",
+    "industry": "建工",
+    "dscr": 1.02,
+    "pd": 9.6
+  },
+  {
+    "enterprise": "SYN79",
+    "industry": "建工",
+    "dscr": 0.94,
+    "pd": 11.6
+  },
+  {
+    "enterprise": "SYN80",
+    "industry": "建工",
+    "dscr": 1.22,
+    "pd": 12.1
+  },
+  {
+    "enterprise": "SYN81",
+    "industry": "建工",
+    "dscr": 1.12,
+    "pd": 6.9
+  },
+  {
+    "enterprise": "SYN82",
+    "industry": "建工",
+    "dscr": 0.95,
+    "pd": 12.8
+  },
+  {
+    "enterprise": "SYN83",
+    "industry": "建工",
+    "dscr": 0.92,
+    "pd": 12.7
+  },
+  {
+    "enterprise": "SYN84",
+    "industry": "建工",
+    "dscr": 0.92,
+    "pd": 12.8
+  },
+  {
+    "enterprise": "SYN85",
+    "industry": "建工",
+    "dscr": 1.05,
+    "pd": 7.7
+  },
+  {
+    "enterprise": "SYN86",
+    "industry": "建工",
+    "dscr": 0.97,
+    "pd": 13
+  },
+  {
+    "enterprise": "SYN87",
+    "industry": "建工",
+    "dscr": 0.98,
+    "pd": 11.2
+  },
+  {
+    "enterprise": "SYN88",
+    "industry": "建工",
+    "dscr": 0.92,
+    "pd": 12.4
+  },
+  {
+    "enterprise": "SYN89",
+    "industry": "建工",
+    "dscr": 1.03,
+    "pd": 9.1
+  },
+  {
+    "enterprise": "SYN90",
+    "industry": "建工",
+    "dscr": 0.97,
+    "pd": 13.3
+  },
+  {
+    "enterprise": "SYN91",
+    "industry": "建工",
+    "dscr": 0.86,
+    "pd": 14.9
+  },
+  {
+    "enterprise": "SYN92",
+    "industry": "建工",
+    "dscr": 0.97,
+    "pd": 13.4
+  },
+  {
+    "enterprise": "SYN93",
+    "industry": "建工",
+    "dscr": 1.14,
+    "pd": 7.3
+  },
+  {
+    "enterprise": "SYN94",
+    "industry": "建工",
+    "dscr": 0.9,
+    "pd": 14.4
+  },
+  {
+    "enterprise": "SYN95",
+    "industry": "商贸",
+    "dscr": 1.12,
+    "pd": 5.7
+  },
+  {
+    "enterprise": "SYN96",
+    "industry": "商贸",
+    "dscr": 0.85,
+    "pd": 14.2
+  },
+  {
+    "enterprise": "SYN97",
+    "industry": "商贸",
+    "dscr": 1.02,
+    "pd": 12.8
+  },
+  {
+    "enterprise": "SYN98",
+    "industry": "商贸",
+    "dscr": 0.96,
+    "pd": 11.4
+  },
+  {
+    "enterprise": "SYN99",
+    "industry": "商贸",
+    "dscr": 0.95,
+    "pd": 12.8
+  },
+  {
+    "enterprise": "SYN100",
+    "industry": "商贸",
+    "dscr": 1.09,
+    "pd": 8.3
+  },
+  {
+    "enterprise": "SYN101",
+    "industry": "商贸",
+    "dscr": 1.03,
+    "pd": 9.3
+  },
+  {
+    "enterprise": "SYN102",
+    "industry": "商贸",
+    "dscr": 1.06,
+    "pd": 9.6
+  },
+  {
+    "enterprise": "SYN103",
+    "industry": "商贸",
+    "dscr": 0.83,
+    "pd": 15.4
+  },
+  {
+    "enterprise": "SYN104",
+    "industry": "商贸",
+    "dscr": 0.92,
+    "pd": 9.8
+  },
+  {
+    "enterprise": "SYN105",
+    "industry": "商贸",
+    "dscr": 0.94,
+    "pd": 11.1
+  },
+  {
+    "enterprise": "SYN106",
+    "industry": "商贸",
+    "dscr": 0.86,
+    "pd": 14.6
+  },
+  {
+    "enterprise": "SYN107",
+    "industry": "商贸",
+    "dscr": 0.98,
+    "pd": 9.9
+  },
+  {
+    "enterprise": "SYN108",
+    "industry": "商贸",
+    "dscr": 0.86,
+    "pd": 14.6
+  },
+  {
+    "enterprise": "SYN109",
+    "industry": "商贸",
+    "dscr": 1.12,
+    "pd": 7.5
+  },
+  {
+    "enterprise": "SYN110",
+    "industry": "商贸",
+    "dscr": 0.94,
+    "pd": 13.8
+  },
+  {
+    "enterprise": "SYN111",
+    "industry": "商贸",
+    "dscr": 0.88,
+    "pd": 12.7
+  },
+  {
+    "enterprise": "SYN112",
+    "industry": "商贸",
+    "dscr": 1.11,
+    "pd": 7.7
+  },
+  {
+    "enterprise": "SYN113",
+    "industry": "商贸",
+    "dscr": 1.06,
+    "pd": 9.1
+  },
+  {
+    "enterprise": "SYN114",
+    "industry": "商贸",
+    "dscr": 0.97,
+    "pd": 14.8
+  },
+  {
+    "enterprise": "SYN115",
+    "industry": "商贸",
+    "dscr": 1.02,
+    "pd": 10.8
+  },
+  {
+    "enterprise": "SYN116",
+    "industry": "商贸",
+    "dscr": 1.07,
+    "pd": 8.1
+  },
+  {
+    "enterprise": "SYN117",
+    "industry": "科技服务",
+    "dscr": 1.4,
+    "pd": 1.2
+  },
+  {
+    "enterprise": "SYN118",
+    "industry": "科技服务",
+    "dscr": 1.32,
+    "pd": 1.5
+  },
+  {
+    "enterprise": "SYN119",
+    "industry": "科技服务",
+    "dscr": 1.37,
+    "pd": 2.8
+  },
+  {
+    "enterprise": "SYN120",
+    "industry": "科技服务",
+    "dscr": 1.34,
+    "pd": 1.1
+  },
+  {
+    "enterprise": "SYN121",
+    "industry": "科技服务",
+    "dscr": 1.43,
+    "pd": 1.4
+  },
+  {
+    "enterprise": "SYN122",
+    "industry": "科技服务",
+    "dscr": 1.39,
+    "pd": 1.2
+  },
+  {
+    "enterprise": "SYN123",
+    "industry": "科技服务",
+    "dscr": 1.42,
+    "pd": 1.7
+  },
+  {
+    "enterprise": "SYN124",
+    "industry": "科技服务",
+    "dscr": 1.3,
+    "pd": 1.2
+  },
+  {
+    "enterprise": "SYN125",
+    "industry": "科技服务",
+    "dscr": 1.12,
+    "pd": 1.7
+  },
+  {
+    "enterprise": "SYN126",
+    "industry": "科技服务",
+    "dscr": 1.45,
+    "pd": 1.6
+  },
+  {
+    "enterprise": "SYN127",
+    "industry": "科技服务",
+    "dscr": 1.37,
+    "pd": 2.4
+  },
+  {
+    "enterprise": "SYN128",
+    "industry": "科技服务",
+    "dscr": 1.38,
+    "pd": 2
+  },
+  {
+    "enterprise": "SYN129",
+    "industry": "科技服务",
+    "dscr": 1.33,
+    "pd": 1.8
+  },
+  {
+    "enterprise": "SYN130",
+    "industry": "科技服务",
+    "dscr": 1.37,
+    "pd": 1.2
+  },
+  {
+    "enterprise": "SYN131",
+    "industry": "科技服务",
+    "dscr": 1.35,
+    "pd": 1.5
+  },
+  {
+    "enterprise": "SYN132",
+    "industry": "科技服务",
+    "dscr": 1.44,
+    "pd": 2.4
+  },
+  {
+    "enterprise": "SYN133",
+    "industry": "科技服务",
+    "dscr": 1.31,
+    "pd": 2.5
+  },
+  {
+    "enterprise": "SYN134",
+    "industry": "科技服务",
+    "dscr": 1.31,
+    "pd": 1.6
+  },
+  {
+    "enterprise": "SYN135",
+    "industry": "物流",
+    "dscr": 1.23,
+    "pd": 4.5
+  },
+  {
+    "enterprise": "SYN136",
+    "industry": "物流",
+    "dscr": 1.13,
+    "pd": 4.3
+  },
+  {
+    "enterprise": "SYN137",
+    "industry": "物流",
+    "dscr": 1.08,
+    "pd": 6.5
+  },
+  {
+    "enterprise": "SYN138",
+    "industry": "物流",
+    "dscr": 1.19,
+    "pd": 4.3
+  },
+  {
+    "enterprise": "SYN139",
+    "industry": "物流",
+    "dscr": 1.25,
+    "pd": 4.5
+  },
+  {
+    "enterprise": "SYN140",
+    "industry": "物流",
+    "dscr": 1.14,
+    "pd": 2.7
+  },
+  {
+    "enterprise": "SYN141",
+    "industry": "物流",
+    "dscr": 1.02,
+    "pd": 5.5
+  },
+  {
+    "enterprise": "SYN142",
+    "industry": "物流",
+    "dscr": 1.18,
+    "pd": 3.7
+  },
+  {
+    "enterprise": "SYN143",
+    "industry": "物流",
+    "dscr": 1.2,
+    "pd": 3.3
+  },
+  {
+    "enterprise": "SYN144",
+    "industry": "物流",
+    "dscr": 1.19,
+    "pd": 3.4
+  },
+  {
+    "enterprise": "SYN145",
+    "industry": "物流",
+    "dscr": 1.12,
+    "pd": 5.2
+  },
+  {
+    "enterprise": "SYN146",
+    "industry": "物流",
+    "dscr": 1.11,
+    "pd": 5.7
+  },
+  {
+    "enterprise": "SYN147",
+    "industry": "物流",
+    "dscr": 1.1,
+    "pd": 4.2
+  },
+  {
+    "enterprise": "SYN148",
+    "industry": "物流",
+    "dscr": 1.34,
+    "pd": 3.7
+  },
+  {
+    "enterprise": "SYN149",
+    "industry": "物流",
+    "dscr": 1.08,
+    "pd": 5
+  },
+  {
+    "enterprise": "SYN150",
+    "industry": "物流",
+    "dscr": 1.12,
+    "pd": 4.7
+  },
+  {
+    "enterprise": "SYN151",
+    "industry": "物流",
+    "dscr": 1.3,
+    "pd": 4
+  },
+  {
+    "enterprise": "SYN152",
+    "industry": "物流",
+    "dscr": 1.12,
+    "pd": 2.9
+  },
+  {
+    "enterprise": "SYN153",
+    "industry": "物流",
+    "dscr": 1.19,
+    "pd": 5.3
+  },
+  {
+    "enterprise": "SYN154",
+    "industry": "物流",
+    "dscr": 1.23,
+    "pd": 5.3
+  }
+]

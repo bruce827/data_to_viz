@@ -92,3 +92,74 @@
 ### 验证要点
 - 打开小多图时四个面板均可见折线与点标记。
 - 连续开关弹窗后仍稳定显示，不出现空白面板。
+
+## 2026-03-04 密度热力图场景语义偏差与悬停抖动（DensityHeatmapScenarioG2）
+
+### 现象
+- `density2d` story 的“应用场景图”表现为离散阈值网格，更接近阈值热力图，而非密度热力图。
+- 鼠标悬停时出现 tooltip 焦点切换不稳定，交互有“抖动/抢焦点”感。
+
+### 影响范围
+- `src/components/viz/charts/DensityHeatmapScenarioG2.tsx`
+- `src/app/graph/density2d/page.tsx`
+
+### 根因
+- 场景图初版使用 `cell` 网格直接渲染聚合矩阵，图形语义偏向“阈值格子”而非“连续密度面”。
+- 热力层与点层同时参与悬停反馈，并叠加 `elementHighlight`，导致 hover 体验不稳定。
+
+### 修复方案
+- 将 report 的二维聚合矩阵按原始占比重采样为连续点云数据。
+- 使用核密度平滑（`kernel-smooth.density`）重建 `heatmap` 面层，匹配密度热力图语义。
+- 点层仅保留为弱化参照，不再响应 tooltip；移除全局 `elementHighlight`。
+- 同步调整 story 文案，明确“聚合矩阵 -> 点云重采样 -> 核密度平滑”的数据处理链路。
+
+### 验证要点
+- 视觉形态应为连续密度分布，而非离散格子热区。
+- 悬停时 tooltip 来源稳定，不出现频繁跳变。
+- 页面“应用场景”观点与数据口径一致（区分占比最高与绝对规模最大）。
+
+## 2026-03-04 气泡图场景可读性问题（BubbleScenarioG2）
+
+### 现象
+- 气泡填充透明度偏高，颜色分层不够直观。
+- 气泡边线颜色与 legend 色彩体系不一致。
+- 顶部 legend 与图内元素存在遮挡感。
+
+### 影响范围
+- `src/components/viz/charts/BubbleScenarioG2.tsx`
+
+### 根因
+- 点标记 `fillOpacity` 偏低，且边线使用统一深色，弱化了分组颜色语义。
+- 顶部留白不足，legend 与绘图区上缘距离过近。
+
+### 修复方案
+- 提升气泡填充不透明度（`fillOpacity` 调高至接近不透明）。
+- 边线颜色改为与 `riskTag` 的颜色映射一致，保持与 legend 一一对应。
+- 增加顶部内边距并下移 legend（`offsetY`），缓解遮挡。
+
+### 验证要点
+- 气泡颜色与策略分层在视觉上清晰可辨。
+- 边线与 legend 颜色一致，不出现“颜色语义冲突”。
+- legend 不再遮挡图形与标签。
+
+## 2026-03-04 河流图场景运行时报错（StreamgraphFundingScenarioG2）
+
+### 现象
+- 打开 `chart-stream` story 场景图时报错：
+  `TypeError: value.slice is not a function`。
+
+### 影响范围
+- `src/components/viz/charts/StreamgraphScenarioG2.tsx`
+
+### 根因
+- 自定义 tooltip 标题格式化对 `date` 使用了字符串 `slice`，但运行时数据在当前渲染链路中并不总是字符串。
+- 图表配置与 G2 官方 streamgraph 示例存在偏差，导致格式化链路更脆弱。
+
+### 修复方案
+- 按官方示例链路重构场景图：`area -> stackY -> symmetryY -> encode(x/y/color)`。
+- 去除不稳定的自定义 tooltip `slice` 格式化逻辑，保留基础编码与颜色映射。
+- 统一数据字段为 `date / unemployed / industry`，避免额外转换分支。
+
+### 验证要点
+- `chart-stream` 页面正常渲染，不再抛出 `value.slice` 相关异常。
+- 图形呈现对称堆叠河流形态，颜色分组稳定可辨。

@@ -235,7 +235,7 @@
       "data": {
         "label": "Stacked Area",
         "icon": "StackedAreaIcon",
-        "storyPath": "/graph/stackedarea",
+        "storyPath": "/graph/stackedarea_sev",
         "label-cn": "堆叠面积图"
       }
     },
@@ -297,7 +297,7 @@
       "data": {
         "label": "Heatmap",
         "icon": "HeatmapIcon",
-        "storyPath": "/graph/heatmap",
+        "storyPath": "/graph/heatmap_sev",
         "label-cn": "热力图"
       }
     },

@@ -309,6 +309,8 @@ export function DecisionGraph({ data }: { data: DecisionTreeData }) {
     container.appendChild(mountEl);
 
     let disposed = false;
+    let rendered = false;
+    let destroyed = false;
 
     const graph = new Graph({
       container: mountEl,
@@ -380,18 +382,14 @@ export function DecisionGraph({ data }: { data: DecisionTreeData }) {
       }
     };
 
-    // Event Listener for Node Clicks (Reliable method)
-    graph.on('node:click', handleNodeClick);
-    void graph.render().catch((error: unknown) => {
-      // Ignore render errors triggered by expected destroy flow in dev strict mode.
-      if (!disposed) {
-        console.error(error);
+    const safeDestroy = () => {
+      if (destroyed) return;
+      destroyed = true;
+      try {
+        graph.off('node:click', handleNodeClick);
+      } catch {
+        // Swallow teardown race in dev remount cycles.
       }
-    });
-
-    return () => {
-      disposed = true;
-      graph.off('node:click', handleNodeClick);
       try {
         graph.destroy();
       } catch {
@@ -399,6 +397,32 @@ export function DecisionGraph({ data }: { data: DecisionTreeData }) {
       }
       if (mountEl.parentNode === container) {
         container.removeChild(mountEl);
+      }
+    };
+
+    // Event Listener for Node Clicks (Reliable method)
+    graph.on('node:click', handleNodeClick);
+    const renderPromise = graph.render()
+      .then(() => {
+        rendered = true;
+        if (disposed) safeDestroy();
+      })
+      .catch((error: unknown) => {
+        // Ignore render errors triggered by expected destroy flow in dev strict mode.
+        if (!disposed) {
+          console.error(error);
+        }
+        if (disposed) safeDestroy();
+      });
+
+    return () => {
+      disposed = true;
+      if (rendered) {
+        safeDestroy();
+      } else {
+        void renderPromise.finally(() => {
+          safeDestroy();
+        });
       }
     };
   }, [data]);

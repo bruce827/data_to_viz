@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
 
-export function StreamgraphG2() {
+export function StreamgraphFundingScenarioG2() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export function StreamgraphG2() {
     const chart = new Chart({
       container: containerRef.current,
       autoFit: true,
-      height: 300,
+      height: 360,
     });
 
     chart.data({
@@ -33,5 +33,5 @@ export function StreamgraphG2() {
     return () => chart.destroy();
   }, []);
 
-  return <div ref={containerRef} style={{ width: '100%', height: '300px' }} />;
+  return <div ref={containerRef} style={{ width: '100%', height: '360px' }} />;
 }

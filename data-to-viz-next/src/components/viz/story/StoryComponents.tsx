@@ -7,53 +7,80 @@ interface StoryLayoutProps {
   subtitle: string;
   children: React.ReactNode;
   icon?: React.ComponentType<{ className?: string }>;
+  outlineItems?: Array<{ id: string; label: string }>;
 }
 
-export function StoryLayout({ title, subtitle, children, icon: Icon }: StoryLayoutProps) {
+export function StoryLayout({ title, subtitle, children, icon: Icon, outlineItems }: StoryLayoutProps) {
+  const hasOutline = Boolean(outlineItems && outlineItems.length > 0);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="border-b border-slate-100 bg-white sticky top-0 z-50 bg-opacity-90 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="font-bold text-lg text-slate-900 flex items-center gap-2">
-            <span className="text-blue-600">●</span> Data to Viz
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 md:h-16 flex items-center justify-between">
+          <Link href="/" className="font-bold text-base md:text-lg text-slate-900 flex items-center gap-2">
+            <span className="text-blue-600">●</span> 数据可视化指南
           </Link>
           <div className="flex gap-2">
              <Button variant="ghost" size="sm" asChild>
-                <Link href="/">Back to Tree</Link>
+                <Link href="/">返回决策树</Link>
              </Button>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <div className="bg-slate-50 border-b border-slate-100 py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          {Icon && (
-            <div className="flex justify-center mb-6">
-               <div className="p-4 bg-white rounded-2xl shadow-sm border border-slate-200">
-                  <Icon className="w-16 h-16 text-blue-600" />
-               </div>
-            </div>
-          )}
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">
-            {title}
-          </h1>
-          <p className="text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+      <div className="bg-slate-50 border-b border-slate-100 py-5 md:py-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <div className="flex items-center justify-center gap-3 mb-1.5">
+            {Icon && (
+              <div className="p-1.5 bg-white rounded-lg shadow-sm border border-slate-200">
+                <Icon className="w-6 h-6 text-blue-600" />
+              </div>
+            )}
+            <h1 className="text-xl md:text-2xl font-semibold text-slate-900 tracking-tight">
+              {title}
+            </h1>
+          </div>
+          <p className="text-sm md:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
             {subtitle}
           </p>
         </div>
       </div>
 
       {/* Content */}
-      <main className="max-w-4xl mx-auto px-6 py-12">
-        {children}
-      </main>
+      {hasOutline ? (
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-10">
+          <div className="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
+            <aside className="hidden lg:block">
+              <div className="sticky top-24 rounded-lg border border-slate-200 bg-white p-4">
+                <p className="text-xs font-semibold text-slate-500 tracking-wide uppercase mb-3">大纲导航</p>
+                <nav className="space-y-2">
+                  {outlineItems?.map((item) => (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      className="block text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </aside>
+            <div className="min-w-0">{children}</div>
+          </div>
+        </main>
+      ) : (
+        <main className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+          {children}
+        </main>
+      )}
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-400 py-12 mt-20">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <p>© 2024 From Data to Viz. Re-engineered with Next.js & AntV.</p>
+      <footer className="bg-slate-900 text-slate-400 py-8 md:py-12 mt-12 md:mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+          <p>© 2026 数据可视化指南 with Next.js & AntV.</p>
         </div>
       </footer>
     </div>
@@ -62,14 +89,22 @@ export function StoryLayout({ title, subtitle, children, icon: Icon }: StoryLayo
 
 // --- Content Building Blocks ---
 
-export function StorySection({ title, children }: { title: string; children: React.ReactNode }) {
+export function StorySection({
+  title,
+  children,
+  id,
+}: {
+  title: string;
+  children: React.ReactNode;
+  id?: string;
+}) {
   return (
-    <section className="mb-16">
-      <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-        <span className="w-1 h-8 bg-blue-500 rounded-full"></span>
+    <section id={id} className="mb-10 md:mb-16 scroll-mt-24">
+      <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
+        <span className="w-1 h-6 md:h-8 bg-blue-500 rounded-full"></span>
         {title}
       </h2>
-      <div className="text-lg text-slate-700 leading-8 space-y-6">
+      <div className="text-base md:text-lg text-slate-700 leading-7 md:leading-8 space-y-5 md:space-y-6">
         {children}
       </div>
     </section>
@@ -78,13 +113,13 @@ export function StorySection({ title, children }: { title: string; children: Rea
 
 export function ChartWrapper({ children, title }: { children: React.ReactNode; title?: string }) {
   return (
-    <div className="my-10 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+    <div className="my-6 md:my-10 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
       {title && (
-        <div className="bg-slate-50 px-6 py-3 border-b border-slate-100 font-medium text-slate-700">
+        <div className="bg-slate-50 px-4 md:px-6 py-2.5 md:py-3 border-b border-slate-100 font-medium text-sm md:text-base text-slate-700">
           {title}
         </div>
       )}
-      <div className="p-6">
+      <div className="p-4 md:p-6">
         {children}
       </div>
     </div>
