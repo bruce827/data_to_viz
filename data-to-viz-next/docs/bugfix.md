@@ -163,3 +163,27 @@
 ### 验证要点
 - `chart-stream` 页面正常渲染，不再抛出 `value.slice` 相关异常。
 - 图形呈现对称堆叠河流形态，颜色分组稳定可辨。
+
+## 2026-03-06 Treemap 场景颜色映射未生效（TreemapStructureExposureScenarioG2）
+
+### 现象
+- 应用场景图已修改颜色规则后，页面视觉颜色几乎无变化，表现为颜色语义与预期分层不一致。
+
+### 影响范围
+- `src/components/viz/charts/TreemapStructureScenarioG2.tsx`
+- `src/app/graph/treemap-structure/page.tsx`
+
+### 根因
+- treemap 为层级数据结构，颜色字段挂载在节点 `data` 对象内；使用字符串字段路径（如 `color: 'risk_band'`）时，实际渲染节点不一定能稳定解析该字段。
+- 颜色映射规则变更后，未做“视觉回归核对”（仅通过编译与类型检查），导致颜色回退到默认行为未被及时发现。
+
+### 修复方案
+- 将颜色编码改为显式函数映射：`encode.color = (d) => d.data?.risk_band ?? '中风险'`，直接读取层级节点数据。
+- 固定 `scale.color.domain/range` 与风险分层一一对应（`高风险/中风险/低风险`）。
+- 同步校正 `legend` 标题与 `tooltip` 字段，确保“颜色代表什么”可追溯。
+- 在规则层新增约束：层级图默认使用显式颜色映射函数，并要求改动后进行人工视觉核对。
+
+### 验证要点
+- 同一风险分层的节点颜色一致，不同风险分层颜色有明显区分。
+- 颜色变化与数据分层联动（修改 `risk_band` 后颜色同步变化）。
+- `legend` 文案与图上颜色语义一致，tooltip 能解释当前节点的颜色分层来源。
