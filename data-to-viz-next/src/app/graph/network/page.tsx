@@ -20,6 +20,7 @@ export default function NetworkStory() {
       subtitle="用节点与边展示担保、互保与确权链路，适合识别集团级风险传染路径。"
       icon={NetworkIcon}
       outlineItems={outlineItems}
+      decisionTreeTab="cat"
     >
       <StorySection title="什么是关系图？" id="what-is-network">
         <p>

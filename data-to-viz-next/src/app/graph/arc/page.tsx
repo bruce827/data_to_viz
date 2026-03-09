@@ -29,6 +29,7 @@ export default function ArcStory() {
       subtitle="将节点按一维顺序排布并用弧线连接，适合查看中心节点向外辐射的集中关系。"
       icon={ArcIcon}
       outlineItems={outlineItems}
+      decisionTreeTab="catnum"
     >
       <StorySection title="什么是弧形关系图？" id="what-is-arc">
         <p>

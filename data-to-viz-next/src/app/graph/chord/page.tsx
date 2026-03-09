@@ -20,6 +20,7 @@ export default function ChordStory() {
       subtitle="用圆环弦带展示产品之间的双向转化规模，适合交叉销售飞轮分析。"
       icon={ChordIcon}
       outlineItems={outlineItems}
+      decisionTreeTab="cat"
     >
       <StorySection title="什么是和弦图？" id="what-is-chord">
         <p>

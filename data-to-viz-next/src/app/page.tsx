@@ -1,27 +1,30 @@
 'use client';
 
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { DecisionGraph } from '@/components/viz/tree/DecisionGraph';
 import { MobileDecisionTree } from '@/components/viz/tree/MobileDecisionTree';
-import treeNumeric from '@/data/tree-numeric.json';
-import treeCategoric from '@/data/tree-categoric.json';
-import treeCatNum from '@/data/tree-catnum.json';
-import treeMaps from '@/data/tree-maps.json';
-import treeNetwork from '@/data/tree-network.json';
-import treeTime from '@/data/tree-time.json';
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-const treeDataMap = {
-  num: treeNumeric,
-  cat: treeCategoric,
-  catnum: treeCatNum,
-  geo: treeMaps,
-  relationnal: treeNetwork,
-  time: treeTime,
-};
+import { TREE_DATA_MAP, isTreeTabKey, type TreeTabKey } from '@/lib/story-navigation';
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('num');
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const tabParam = searchParams.get('tab');
+  const activeTab: TreeTabKey = isTreeTabKey(tabParam) ? tabParam : 'num';
+
+  const handleTabChange = (value: string) => {
+    if (!isTreeTabKey(value)) return;
+
+    const params = new URLSearchParams(searchParams.toString());
+    if (value === 'num') {
+      params.delete('tab');
+    } else {
+      params.set('tab', value);
+    }
+
+    const query = params.toString();
+    router.replace(query ? `/?${query}` : '/', { scroll: false });
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center p-4 md:p-8 bg-white font-sans">
@@ -33,8 +36,8 @@ export default function Home() {
         在下方选择一种数据类型，让决策树引导你找到最合适的图表。
         </p>
         
-        <Tabs defaultValue="num" className="w-full max-w-4xl h-auto" onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 h-auto p-1 bg-slate-100/80 rounded-xl mb-8">
+	        <Tabs value={activeTab} className="w-full max-w-4xl h-auto" onValueChange={handleTabChange}>
+	          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 h-auto p-1 bg-slate-100/80 rounded-xl mb-8">
             <TabsTrigger value="num" className="py-2.5 text-xs md:text-sm font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm rounded-lg transition-all">数值</TabsTrigger>
             <TabsTrigger value="cat" className="py-2.5 text-xs md:text-sm font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm rounded-lg transition-all">类别</TabsTrigger>
             <TabsTrigger value="catnum" className="py-2.5 text-xs md:text-sm font-medium data-[state=active]:bg-white data-[state=active]:shadow-sm rounded-lg transition-all">数值和类别</TabsTrigger>
@@ -45,17 +48,17 @@ export default function Home() {
         </Tabs>
       </div>
 
-      <div className="w-full max-w-[1600px] rounded-3xl overflow-hidden">
-        {/* Desktop View: G6 Graph */}
-        <div className="hidden md:block shadow-2xl shadow-slate-200/60 border border-slate-200/60 bg-slate-50/30 backdrop-blur-sm rounded-3xl">
-           <DecisionGraph data={treeDataMap[activeTab as keyof typeof treeDataMap]} />
-        </div>
+	      <div className="w-full max-w-[1600px] rounded-3xl overflow-hidden">
+	        {/* Desktop View: G6 Graph */}
+	        <div className="hidden md:block shadow-2xl shadow-slate-200/60 border border-slate-200/60 bg-slate-50/30 backdrop-blur-sm rounded-3xl">
+	           <DecisionGraph data={TREE_DATA_MAP[activeTab]} />
+	        </div>
 
-        {/* Mobile View: Accordion List */}
-        <div className="block md:hidden">
-           <MobileDecisionTree data={treeDataMap[activeTab as keyof typeof treeDataMap]} />
-        </div>
-      </div>
-    </main>
+	        {/* Mobile View: Accordion List */}
+	        <div className="block md:hidden">
+	           <MobileDecisionTree data={TREE_DATA_MAP[activeTab]} />
+	        </div>
+	      </div>
+	    </main>
   );
 }

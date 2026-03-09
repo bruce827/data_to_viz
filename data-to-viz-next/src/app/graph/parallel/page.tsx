@@ -20,6 +20,7 @@ export default function ParallelStory() {
       subtitle="在一张图里同时审查多维指标，适合识别小微客群风险画像中的“红线组合”。"
       icon={ParallelIcon}
       outlineItems={outlineItems}
+      decisionTreeTab="cat"
     >
       <StorySection title="什么是平行坐标图？" id="what-is-parallel">
         <p>

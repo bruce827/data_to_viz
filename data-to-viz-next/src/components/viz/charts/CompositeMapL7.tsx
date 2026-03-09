@@ -2,32 +2,132 @@
 
 import React, { useEffect, useRef } from 'react';
 import type { Scene as L7Scene } from '@antv/l7';
+import type { L7Container } from '@antv/l7-core';
 
-type WavePoint = {
-  lng: number;
-  lat: number;
-  level: number;
+type PieSlice = {
+  label: string;
+  value: number;
   color: string;
 };
 
-type DrawOption = {
-  size: [number, number];
-  ctx: RenderingContext;
-  mapService: {
-    lngLatToContainer: (lnglat: [number, number]) => { x: number; y: number };
-  };
+type CompositeDemoDatum = {
+  id: string;
+  city: string;
+  lng: number;
+  lat: number;
+  total_cny: number;
+  slices: PieSlice[];
 };
 
-const WAVE_POINTS: WavePoint[] = [
-  { lng: 108.544921875, lat: 30.977609093348686, level: 85, color: 'rgba(220,20,60,0.6)' },
-  { lng: 110.654296875, lat: 31.090574094954192, level: 75, color: 'rgba(255,140,0,0.6)' },
-  { lng: 112.5, lat: 29.80251790576445, level: 65, color: 'rgba(255,165,0,0.6)' },
-  { lng: 114.78515624999999, lat: 30.64867367928756, level: 40, color: 'rgba(30,144,255,0.6)' },
-  { lng: 116.49902343749999, lat: 29.84064389983441, level: 50, color: 'rgba(30,144,255,0.6)' },
-  { lng: 118.21289062499999, lat: 31.16580958786196, level: 20, color: 'rgba(127,255,0,0.6)' },
-  { lng: 119.091796875, lat: 32.509761735919426, level: 50, color: 'rgba(30,144,255,0.6)' },
-  { lng: 121.0693359374999, lat: 31.80289258670676, level: 45, color: 'rgba(30,144,255,0.6)' },
+const PIE_COLORS = {
+  工程款: '#2563eb',
+  材料款: '#f59e0b',
+  监管留存: '#14b8a6',
+} as const;
+
+const demoData: CompositeDemoDatum[] = [
+  {
+    id: 'CMP_DEMO_001',
+    city: '深圳',
+    lng: 113.9345,
+    lat: 22.5407,
+    total_cny: 92000000,
+    slices: [
+      { label: '工程款', value: 52, color: PIE_COLORS.工程款 },
+      { label: '材料款', value: 31, color: PIE_COLORS.材料款 },
+      { label: '监管留存', value: 17, color: PIE_COLORS.监管留存 },
+    ],
+  },
+  {
+    id: 'CMP_DEMO_002',
+    city: '广州',
+    lng: 113.3618,
+    lat: 23.1228,
+    total_cny: 76000000,
+    slices: [
+      { label: '工程款', value: 44, color: PIE_COLORS.工程款 },
+      { label: '材料款', value: 39, color: PIE_COLORS.材料款 },
+      { label: '监管留存', value: 17, color: PIE_COLORS.监管留存 },
+    ],
+  },
+  {
+    id: 'CMP_DEMO_003',
+    city: '武汉',
+    lng: 114.314,
+    lat: 30.5983,
+    total_cny: 68000000,
+    slices: [
+      { label: '工程款', value: 36, color: PIE_COLORS.工程款 },
+      { label: '材料款', value: 46, color: PIE_COLORS.材料款 },
+      { label: '监管留存', value: 18, color: PIE_COLORS.监管留存 },
+    ],
+  },
+  {
+    id: 'CMP_DEMO_004',
+    city: '杭州',
+    lng: 120.1551,
+    lat: 30.2741,
+    total_cny: 54000000,
+    slices: [
+      { label: '工程款', value: 49, color: PIE_COLORS.工程款 },
+      { label: '材料款', value: 27, color: PIE_COLORS.材料款 },
+      { label: '监管留存', value: 24, color: PIE_COLORS.监管留存 },
+    ],
+  },
 ];
+
+function buildPieGradient(slices: PieSlice[]) {
+  let start = 0;
+  const parts = slices.map((slice) => {
+    const end = start + slice.value;
+    const segment = `${slice.color} ${start}% ${end}%`;
+    start = end;
+    return segment;
+  });
+
+  return `conic-gradient(${parts.join(', ')})`;
+}
+
+function createPopupHtml(datum: CompositeDemoDatum) {
+  const rows = datum.slices
+    .map(
+      (slice) => `
+        <div class="composite-popup-row">
+          <span class="composite-popup-key">${slice.label}</span>
+          <span class="composite-popup-value">${slice.value}%</span>
+        </div>
+      `,
+    )
+    .join('');
+
+  return `
+    <div class="composite-popup-card">
+      <div class="composite-popup-header">${datum.city}资金结构</div>
+      <div class="composite-popup-grid">
+        <div class="composite-popup-row">
+          <span class="composite-popup-key">示例ID</span>
+          <span class="composite-popup-value">${datum.id}</span>
+        </div>
+        <div class="composite-popup-row">
+          <span class="composite-popup-key">总金额</span>
+          <span class="composite-popup-value">${(datum.total_cny / 1000000).toFixed(1)} 百万元</span>
+        </div>
+        ${rows}
+      </div>
+    </div>
+  `;
+}
+
+function createPieMarkerElement(datum: CompositeDemoDatum) {
+  const el = document.createElement('div');
+  el.className = 'composite-marker';
+  el.innerHTML = `
+    <div class="composite-marker-ring" style="background:${buildPieGradient(datum.slices)};">
+      <div class="composite-marker-core">${datum.city}</div>
+    </div>
+  `;
+  return el;
+}
 
 export function CompositeMapL7() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -36,11 +136,9 @@ export function CompositeMapL7() {
   useEffect(() => {
     if (!containerRef.current) return;
     let disposed = false;
-    let wavePhase = 0;
-    let timerId: number | null = null;
 
     const setupScene = async () => {
-      const [{ CanvasLayer, Scene }, { GaodeMap }] = await Promise.all([
+      const [{ Marker, Popup, Scene }, { GaodeMap }] = await Promise.all([
         import('@antv/l7'),
         import('@antv/l7-maps'),
       ]);
@@ -48,88 +146,55 @@ export function CompositeMapL7() {
 
       const amapSecurityJsCode = process.env.NEXT_PUBLIC_AMAP_SECURITY_JS_CODE;
       if (amapSecurityJsCode) {
-        (window as Window & { _AMapSecurityConfig?: { securityJsCode: string } })._AMapSecurityConfig =
-          { securityJsCode: amapSecurityJsCode };
+        (window as Window & { _AMapSecurityConfig?: { securityJsCode: string } })._AMapSecurityConfig = {
+          securityJsCode: amapSecurityJsCode,
+        };
       }
 
-      // Prevent duplicate canvas stack on hot reload / modal reopen.
       containerRef.current.innerHTML = '';
 
       const scene = new Scene({
         id: containerRef.current,
         map: new GaodeMap({
-          style: 'fresh',
-          center: [115, 31],
-          zoom: 5.0,
+          style: 'normal',
+          center: [114.2, 27.2],
+          zoom: 4.55,
+          pitch: 0,
           token: process.env.NEXT_PUBLIC_AMAP_KEY,
         }),
       });
+
       sceneRef.current = scene;
-
-      const draw = (option: DrawOption) => {
-        const { size, ctx, mapService } = option;
-        const canvasCtx = ctx as CanvasRenderingContext2D;
-        const [width, height] = size;
-        const radius = 30;
-        const rectWidth = radius * 2;
-        const rectHeight = rectWidth;
-
-        canvasCtx.clearRect(0, 0, width, height);
-        canvasCtx.fillStyle = 'rgb(35,75,225)';
-        canvasCtx.font = 'normal small-caps bold 14px arial';
-        canvasCtx.textAlign = 'center';
-        canvasCtx.textBaseline = 'middle';
-
-        WAVE_POINTS.forEach((point) => {
-          const pixelCenter = mapService.lngLatToContainer([point.lng, point.lat]);
-          const dpr = window.devicePixelRatio || 1;
-          const cx = pixelCenter.x * dpr;
-          const cy = pixelCenter.y * dpr;
-          const rectStartX = cx - radius;
-          const rectStartY = cy - radius;
-
-          canvasCtx.save();
-          canvasCtx.fillText(`${point.level}%`, cx, cy);
-
-          canvasCtx.beginPath();
-          canvasCtx.arc(cx, cy, radius, 0, Math.PI * 2);
-          canvasCtx.fillStyle = 'rgba(135,206,250,0.2)';
-          canvasCtx.closePath();
-          canvasCtx.fill();
-          canvasCtx.clip();
-
-          canvasCtx.beginPath();
-          canvasCtx.fillStyle = point.color;
-          canvasCtx.moveTo(rectStartX, cy);
-
-          const waterheight = rectStartY + ((100 - point.level) / 100) * rectHeight;
-          for (let i = 0; i <= rectWidth; i += 10) {
-            canvasCtx.lineTo(rectStartX + i, waterheight + Math.sin(Math.PI * 2 * (i / rectWidth) + wavePhase) * 3 + 1);
-          }
-
-          canvasCtx.lineTo(cx + radius, cy + radius);
-          canvasCtx.lineTo(rectStartX, cy + radius);
-          canvasCtx.lineTo(rectStartX, cy);
-          canvasCtx.closePath();
-          canvasCtx.fill();
-          canvasCtx.restore();
-        });
-      };
 
       scene.on('loaded', () => {
         if (disposed) return;
 
-        const layer = new CanvasLayer({
-          zIndex: 10,
-          trigger: 'change',
-        });
-        layer.draw(draw);
-        scene.addLayer(layer);
+        demoData.forEach((datum) => {
+          const markerEl = createPieMarkerElement(datum);
+          const popup = new Popup({
+            closeButton: false,
+            closeOnClick: false,
+            anchor: 'top',
+            offsets: [0, -8],
+          }).setHTML(createPopupHtml(datum));
 
-        timerId = window.setInterval(() => {
-          wavePhase += 0.1;
-          scene.render();
-        }, 30);
+          const marker = new Marker({
+            element: markerEl,
+            offsets: [0, -18],
+          })
+            .setLnglat({ lng: datum.lng, lat: datum.lat })
+            .setPopup(popup);
+
+          markerEl.addEventListener('mouseenter', () => {
+            marker.openPopup();
+          });
+
+          markerEl.addEventListener('mouseleave', () => {
+            marker.closePopup();
+          });
+
+          marker.addTo(scene as unknown as L7Container);
+        });
       });
     };
 
@@ -137,9 +202,6 @@ export function CompositeMapL7() {
 
     return () => {
       disposed = true;
-      if (timerId !== null) {
-        window.clearInterval(timerId);
-      }
       if (sceneRef.current) {
         sceneRef.current.destroy();
         sceneRef.current = null;
@@ -147,5 +209,96 @@ export function CompositeMapL7() {
     };
   }, []);
 
-  return <div ref={containerRef} style={{ width: '100%', height: '320px', position: 'relative' }} />;
+  return (
+    <div className="space-y-3">
+      <div
+        ref={containerRef}
+        style={{ width: '100%', height: '320px', position: 'relative' }}
+        className="overflow-hidden rounded-md border border-slate-200"
+      />
+      <div className="flex flex-wrap items-center gap-4 text-sm text-slate-600">
+        <div className="flex items-center gap-2">
+          <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: PIE_COLORS.工程款 }} />
+          <span>工程款</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: PIE_COLORS.材料款 }} />
+          <span>材料款</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: PIE_COLORS.监管留存 }} />
+          <span>监管留存</span>
+        </div>
+        <span className="text-slate-500">鼠标悬停查看各城市的资金结构弹窗</span>
+      </div>
+      <style jsx global>{`
+        .composite-marker {
+          width: 52px;
+          height: 52px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          filter: drop-shadow(0 4px 8px rgba(15, 23, 42, 0.18));
+        }
+
+        .composite-marker-ring {
+          width: 52px;
+          height: 52px;
+          border-radius: 9999px;
+          padding: 5px;
+          box-sizing: border-box;
+        }
+
+        .composite-marker-core {
+          width: 100%;
+          height: 100%;
+          border-radius: 9999px;
+          background: rgba(255, 255, 255, 0.96);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #0f172a;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.01em;
+        }
+
+        .l7-popup .composite-popup-card {
+          min-width: 190px;
+        }
+
+        .l7-popup .composite-popup-header {
+          font-size: 11px;
+          font-weight: 700;
+          color: #0f172a;
+          margin-bottom: 6px;
+        }
+
+        .l7-popup .composite-popup-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          column-gap: 8px;
+          row-gap: 4px;
+          font-size: 10px;
+          line-height: 1.25;
+        }
+
+        .l7-popup .composite-popup-row {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .l7-popup .composite-popup-key {
+          color: #64748b;
+          font-size: 9px;
+        }
+
+        .l7-popup .composite-popup-value {
+          color: #0f172a;
+          word-break: break-all;
+        }
+      `}</style>
+    </div>
+  );
 }

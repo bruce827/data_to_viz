@@ -3,6 +3,14 @@
 import React, { useEffect, useRef } from 'react';
 import type { Scene as L7Scene } from '@antv/l7';
 
+const demoPoints = [
+  { name: '北京运营中心', lng: 116.4074, lat: 39.9042 },
+  { name: '上海科创客群', lng: 121.4737, lat: 31.2304 },
+  { name: '深圳零售商圈', lng: 114.0579, lat: 22.5431 },
+  { name: '成都普惠服务', lng: 104.0665, lat: 30.5728 },
+  { name: '武汉制造走廊', lng: 114.3055, lat: 30.5928 },
+];
+
 export function PointMapL7() {
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<L7Scene | null>(null);
@@ -31,57 +39,53 @@ export function PointMapL7() {
         id: containerRef.current,
         map: new GaodeMap({
           style: 'normal',
-          center: [121.434765, 31.256735],
-          zoom: 14.83,
+          center: [112.8, 33.4],
+          zoom: 3.55,
           pitch: 0,
           token: process.env.NEXT_PUBLIC_AMAP_KEY,
         }),
       });
       sceneRef.current = scene;
 
-      scene.addImage('00', '/images/map-point-marker.png');
-      scene.addImage('01', '/images/map-point-marker.png');
-      scene.addImage('02', '/images/map-point-marker.png');
-
       scene.on('loaded', () => {
         if (disposed) return;
-        fetch('https://gw.alipayobjects.com/os/basement_prod/893d1d5f-11d9-45f3-8322-ee9140d288ae.json')
-          .then((res) => res.json())
-          .then((data) => {
-            if (disposed) return;
 
-            const imageLayer = new PointLayer()
-              .source(data, {
-                parser: {
-                  type: 'json',
-                  x: 'longitude',
-                  y: 'latitude',
-                },
-              })
-              .shape('name', ['00', '01', '02'])
-              .size(10);
-
-            const imageLayerText = new PointLayer()
-              .source(data, {
-                parser: {
-                  type: 'json',
-                  x: 'longitude',
-                  y: 'latitude',
-                },
-              })
-              .shape('name', 'text')
-              .color('#f00')
-              .size(25)
-              .style({
-                textOffset: [0, 20],
-              });
-
-            scene.addLayer(imageLayer);
-            scene.addLayer(imageLayerText);
+        const pointLayer = new PointLayer({ autoFit: true })
+          .source(demoPoints, {
+            parser: {
+              type: 'json',
+              x: 'lng',
+              y: 'lat',
+            },
           })
-          .catch(() => {
-            // Keep UI silent in demo mode if remote data is unavailable.
+          .shape('circle')
+          .size(11)
+          .color('#2563eb')
+          .style({
+            opacity: 0.9,
+            stroke: '#eff6ff',
+            strokeWidth: 1.4,
           });
+
+        const labelLayer = new PointLayer()
+          .source(demoPoints, {
+            parser: {
+              type: 'json',
+              x: 'lng',
+              y: 'lat',
+            },
+          })
+          .shape('name', 'text')
+          .size(12)
+          .color('#0f172a')
+          .style({
+            textOffset: [0, 12],
+            stroke: '#ffffff',
+            strokeWidth: 1.2,
+          });
+
+        scene.addLayer(pointLayer);
+        scene.addLayer(labelLayer);
       });
     };
 

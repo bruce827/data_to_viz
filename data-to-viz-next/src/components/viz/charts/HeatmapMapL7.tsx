@@ -3,6 +3,21 @@
 import React, { useEffect, useRef } from 'react';
 import type { Scene as L7Scene } from '@antv/l7';
 
+const demoHeatmapPoints = [
+  { lng: 116.4074, lat: 39.9042, weight: 2.4 },
+  { lng: 116.4118, lat: 39.9096, weight: 2.8 },
+  { lng: 116.4031, lat: 39.8987, weight: 2.2 },
+  { lng: 121.4737, lat: 31.2304, weight: 2.9 },
+  { lng: 121.4811, lat: 31.2255, weight: 3.4 },
+  { lng: 121.4673, lat: 31.2368, weight: 2.5 },
+  { lng: 114.0579, lat: 22.5431, weight: 3.6 },
+  { lng: 114.0658, lat: 22.5489, weight: 3.8 },
+  { lng: 114.0514, lat: 22.5372, weight: 3.1 },
+  { lng: 104.0665, lat: 30.5728, weight: 2.7 },
+  { lng: 104.0718, lat: 30.5686, weight: 3.1 },
+  { lng: 104.0619, lat: 30.5773, weight: 2.4 },
+];
+
 export function HeatmapMapL7() {
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<L7Scene | null>(null);
@@ -25,15 +40,14 @@ export function HeatmapMapL7() {
         };
       }
 
-      // 防止弹窗多次打开导致同容器叠层
       containerRef.current.innerHTML = '';
 
       const scene = new Scene({
         id: containerRef.current,
         map: new GaodeMap({
-          style: 'dark',
-          center: [127.5671666579043, 7.445038892195569],
-          zoom: 2.632456779444394,
+          style: 'light',
+          center: [112.8, 31.8],
+          zoom: 3.55,
           token: process.env.NEXT_PUBLIC_AMAP_KEY,
         }),
       });
@@ -42,28 +56,26 @@ export function HeatmapMapL7() {
       scene.on('loaded', () => {
         if (disposed) return;
 
-        fetch('https://gw.alipayobjects.com/os/basement_prod/d3564b06-670f-46ea-8edb-842f7010a7c6.json')
-          .then((res) => res.json())
-          .then((data) => {
-            if (disposed) return;
-
-            const layer = new HeatmapLayer({})
-              .source(data)
-              .shape('heatmap')
-              .size('mag', [0, 1.0])
-              .style({
-                intensity: 2,
-                radius: 20,
-                rampColors: {
-                  colors: ['#FF4818', '#F7B74A', '#FFF598', '#91EABC', '#2EA9A1', '#206C7C'].reverse(),
-                  positions: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
-                },
-              });
-            scene.addLayer(layer);
+        const layer = new HeatmapLayer({})
+          .source(demoHeatmapPoints, {
+            parser: {
+              type: 'json',
+              x: 'lng',
+              y: 'lat',
+            },
           })
-          .catch(() => {
-            // 网络数据不可用时保持页面稳定
+          .shape('heatmap')
+          .size('weight', [0, 1])
+          .style({
+            intensity: 2.2,
+            radius: 28,
+            rampColors: {
+              colors: ['#fff7bc', '#fee391', '#fec44f', '#fb8d3c', '#f03b20', '#bd0026'],
+              positions: [0, 0.2, 0.4, 0.6, 0.8, 1],
+            },
           });
+
+        scene.addLayer(layer);
       });
     };
 
@@ -80,4 +92,3 @@ export function HeatmapMapL7() {
 
   return <div ref={containerRef} style={{ width: '100%', height: '320px', position: 'relative' }} />;
 }
-

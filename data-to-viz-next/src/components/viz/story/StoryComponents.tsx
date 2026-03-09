@@ -1,6 +1,10 @@
+'use client';
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { buildDecisionTreeHref, type TreeTabKey } from '@/lib/story-navigation';
 
 interface StoryLayoutProps {
   title: string;
@@ -8,26 +12,29 @@ interface StoryLayoutProps {
   children: React.ReactNode;
   icon?: React.ComponentType<{ className?: string }>;
   outlineItems?: Array<{ id: string; label: string }>;
+  decisionTreeTab?: TreeTabKey;
 }
 
-export function StoryLayout({ title, subtitle, children, icon: Icon, outlineItems }: StoryLayoutProps) {
+export function StoryLayout({ title, subtitle, children, icon: Icon, outlineItems, decisionTreeTab }: StoryLayoutProps) {
   const hasOutline = Boolean(outlineItems && outlineItems.length > 0);
+  const pathname = usePathname();
+  const decisionTreeHref = buildDecisionTreeHref(pathname || '/', decisionTreeTab);
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="border-b border-slate-100 bg-white sticky top-0 z-50 bg-opacity-90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 md:h-16 flex items-center justify-between">
-          <Link href="/" className="font-bold text-base md:text-lg text-slate-900 flex items-center gap-2">
-            <span className="text-blue-600">●</span> 数据可视化指南
-          </Link>
-          <div className="flex gap-2">
-             <Button variant="ghost" size="sm" asChild>
-                <Link href="/">返回决策树</Link>
-             </Button>
-          </div>
-        </div>
-      </header>
+	          <Link href="/" className="font-bold text-base md:text-lg text-slate-900 flex items-center gap-2">
+	            <span className="text-blue-600">●</span> 数据可视化指南
+	          </Link>
+	          <div className="flex gap-2">
+	             <Button variant="ghost" size="sm" asChild>
+	                <Link href={decisionTreeHref}>返回决策树</Link>
+	             </Button>
+	          </div>
+	        </div>
+	      </header>
 
       {/* Hero Section */}
       <div className="bg-slate-50 border-b border-slate-100 py-5 md:py-6">

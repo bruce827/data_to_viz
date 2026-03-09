@@ -43,6 +43,7 @@
       "data": {
         "label": "Point Map",
         "icon": "PointMapIcon",
+        "storyPath": "/graph/pointmap",
         "label-cn": "点地图",
         "description-cn": "以点标记显示位置分布。"
       }
@@ -65,6 +66,7 @@
       "data": {
         "label": "3D Bar Map",
         "icon": "Map3DBarIcon",
+        "storyPath": "/graph/map3dbar",
         "label-cn": "3D柱状图",
         "description-cn": "在地图上以柱体高度编码数值。"
       }
@@ -75,6 +77,7 @@
       "data": {
         "label": "Composite Map",
         "icon": "CompositeMapIcon",
+        "storyPath": "/graph/compositemap",
         "label-cn": "复合地图",
         "description-cn": "在地图上叠加自定义画布图形与动画。"
       }
@@ -85,6 +88,7 @@
       "data": {
         "label": "Heat Map",
         "icon": "MapHeatmapIcon",
+        "storyPath": "/graph/map-heatmap",
         "label-cn": "热力图",
         "description-cn": "基于点位权重生成连续密度分布，适合展示热点聚集区域。"
       }
@@ -107,6 +111,7 @@
       "data": {
         "label": "Grid Heatmap",
         "icon": "MapGridHeatmapIcon",
+        "storyPath": "/graph/gridheatmap",
         "label-cn": "网格热力图",
         "description-cn": "将点数据聚合到网格后着色，适合做区域强度对比。"
       }
@@ -117,6 +122,7 @@
       "data": {
         "label": "Path Map",
         "icon": "PathMapIcon",
+        "storyPath": "/graph/pathmap",
         "label-cn": "路径线图",
         "description-cn": "展示单条或多条路径轨迹。"
       }
@@ -127,6 +133,7 @@
       "data": {
         "label": "Flow Map",
         "icon": "FlowMapIcon",
+        "storyPath": "/graph/flowmap",
         "label-cn": "流向地图",
         "description-cn": "表达方向和强度的流动关系。"
       }
@@ -137,6 +144,7 @@
       "data": {
         "label": "Contour Map",
         "icon": "ContourMapIcon",
+        "storyPath": "/graph/contourmap",
         "label-cn": "等值线图",
         "description-cn": "用等值线表达连续空间场的变化。"
       }
@@ -159,6 +167,7 @@
       "data": {
         "label": "3D Filled Map",
         "icon": "Map3DFillIcon",
+        "storyPath": "/graph/map3dfill",
         "label-cn": "3D填充图",
         "description-cn": "对面要素进行三维拉伸填充，表达区域数值等级。"
       }
