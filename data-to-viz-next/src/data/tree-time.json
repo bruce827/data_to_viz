@@ -62,7 +62,8 @@
         "label": "Line Plot",
         "icon": "LineIcon",
         "label-cn": "折线图",
-        "description-cn": "固定粒度（如日/周/月）下展示数值变化趋势。"
+        "description-cn": "固定粒度（如日/周/月）下展示单一关键指标的走势，适合讲趋势、拐点与恢复过程。",
+        "storyPath": "/graph/time_line"
       }
     },
     {
@@ -72,7 +73,8 @@
         "label": "Column Chart",
         "icon": "BarplotIcon",
         "label-cn": "柱状图",
-        "description-cn": "固定时间间隔下比较各时点的量级差异。"
+        "description-cn": "固定时间间隔下比较各时点的量级差异，适合讲阶段对比和异常峰值。",
+        "storyPath": "/graph/time_column"
       }
     },
     {
@@ -82,7 +84,8 @@
         "label": "Stacked Area",
         "icon": "StackedAreaIcon",
         "label-cn": "堆叠面积图",
-        "description-cn": "固定时间粒度下观察总量与组成随时间变化。"
+        "description-cn": "固定时间粒度下观察总量与组成随时间变化，适合讲结构迁移和通道切换。",
+        "storyPath": "/graph/time_stacked_area"
       }
     },
 
@@ -93,7 +96,7 @@
         "label": "Continuous Line",
         "icon": "ConnectedScatterIcon",
         "label-cn": "连续折线图",
-        "description-cn": "不等间隔或高频采样下展示连续变化轨迹。"
+        "description-cn": "用于不等间隔或高频轨迹回放与监控；更适合看实时变化和回放，不建议强行包装为完整数据故事。"
       }
     },
     {
@@ -103,7 +106,7 @@
         "label": "Time Density",
         "icon": "HeatmapIcon",
         "label-cn": "采样密度图",
-        "description-cn": "展示高频时序在时间轴上的密度分布。"
+        "description-cn": "用于查看高频采样在时间轴上的拥塞、空洞与密度异常；偏辅助诊断图，不适合单独承载完整数据故事。"
       }
     },
     {
@@ -113,7 +116,7 @@
         "label": "Realtime Stream",
         "icon": "StreamIcon",
         "label-cn": "实时滚动图",
-        "description-cn": "用于实时监控场景中的流式时间数据。"
+        "description-cn": "用于实时值班监控与告警联动；重点是时效性和处置动作，不适合讲静态数据故事。"
       }
     },
     {
@@ -123,7 +126,7 @@
         "label": "Candlestick",
         "icon": "KlineIcon",
         "label-cn": "K线图",
-        "description-cn": "用于连续时间金融或交易数据的开高低收走势。"
+        "description-cn": "用于价格、利率、汇率等开高低收走势；若没有明确交易语境，不建议强行扩展为通用业务故事。"
       }
     },
 
@@ -134,7 +137,8 @@
         "label": "Timeline Scatter",
         "icon": "ScatterIcon",
         "label-cn": "时间线散点",
-        "description-cn": "仅有发生时刻的离散事件分布。"
+        "description-cn": "用于展示关键事件在时间轴上的分布与层级，适合讲事件链和关键时点。",
+        "storyPath": "/graph/time_timeline"
       }
     },
     {
@@ -144,7 +148,8 @@
         "label": "Event Pulse",
         "icon": "LollipopIcon",
         "label-cn": "事件脉冲图",
-        "description-cn": "按时间点突出事件发生强度与频次。"
+        "description-cn": "按时间点突出事件发生强度与频次，适合讲异常爆发和告警峰值。",
+        "storyPath": "/graph/time_pulse"
       }
     },
 
@@ -155,7 +160,8 @@
         "label": "Gantt",
         "icon": "TimeIcon",
         "label-cn": "甘特图",
-        "description-cn": "用于展示任务开始/结束时间及持续时长。"
+        "description-cn": "用于展示任务开始、结束与持续时长，适合讲处置流程和任务推进。",
+        "storyPath": "/graph/time_gantt"
       }
     },
     {
@@ -165,7 +171,8 @@
         "label": "State Interval",
         "icon": "AreaIcon",
         "label-cn": "状态区间图",
-        "description-cn": "展示状态在时间轴上的区间切换与持续时间。"
+        "description-cn": "展示状态在时间轴上的区间切换与持续时间。",
+        "storyPath": "/graph/time_interval"
       }
     },
 
@@ -176,7 +183,8 @@
         "label": "Calendar Heatmap",
         "icon": "HeatmapIcon",
         "label-cn": "日历热力图",
-        "description-cn": "用于查看日/周/年周期上的强度模式。"
+        "description-cn": "用于查看日、周、月周期上的强度模式，适合讲周期性高峰与节假日效应。",
+        "storyPath": "/graph/time_calendar"
       }
     },
     {
@@ -186,7 +194,7 @@
         "label": "Calendar Composite",
         "icon": "CalendarCompositeIcon",
         "label-cn": "日历复合图",
-        "description-cn": "在日历网格中叠加多活动占比，展示周期结构与组成变化。"
+        "description-cn": "用于同时看周期强度与组成结构；信息密度高，若没有稳定口径不适合优先讲数据故事。"
       }
     },
     {
@@ -196,7 +204,8 @@
         "label": "Seasonal Small Multiples",
         "icon": "FacetRectIcon",
         "label-cn": "季节序列图",
-        "description-cn": "对比同一周期位置在不同周期段的变化。"
+        "description-cn": "对比同一周期位置在不同周期段的变化，适合讲同周期位置的异常偏离。",
+        "storyPath": "/graph/time_seasonal"
       }
     },
     {
@@ -206,7 +215,7 @@
         "label": "Clock Plot",
         "icon": "SpiderIcon",
         "label-cn": "环形时钟图",
-        "description-cn": "用于展示日内/周内等循环时间模式。"
+        "description-cn": "用于展示日内、周内等循环时间节律；擅长看周期模式，不擅长讲单次事件的时间故事。"
       }
     }
   ],

@@ -4,50 +4,37 @@ import React, { useEffect, useRef } from 'react';
 import { Chart } from '@antv/g2';
 
 type Datum = {
-  sample: string;
-  speed_t: number;
-  speed_t1: number;
-  type: '正常' | '异常';
+  time: Date;
+  lane: string;
+  severity: '提示' | '预警' | '严重';
+  score: number;
+  event: string;
 };
 
-function clamp(value: number, min: number, max: number): number {
-  return Math.max(min, Math.min(max, value));
+const SEVERITY_COLORS: Record<Datum['severity'], string> = {
+  提示: '#3b82f6',
+  预警: '#f59e0b',
+  严重: '#ef4444',
+};
+
+function formatHourMinute(value: string | number | Date): string {
+  const date = new Date(value);
+  const hour = String(date.getHours()).padStart(2, '0');
+  const minute = String(date.getMinutes()).padStart(2, '0');
+  return `${hour}:${minute}`;
 }
 
-function createSeededRandom(seed: number) {
-  let state = seed >>> 0;
-  return () => {
-    state = (1664525 * state + 1013904223) >>> 0;
-    return state / 4294967296;
-  };
-}
-
-function buildLagSpeedData(): Datum[] {
-  const rand = createSeededRandom(20260301);
-  const normalData: Datum[] = [];
-
-  let current = 64;
-  for (let i = 0; i < 96; i += 1) {
-    current = clamp(current + (rand() - 0.5) * 14, 28, 122);
-    const next = clamp(current + (rand() - 0.5) * 12, 24, 126);
-    normalData.push({
-      sample: `N-${i + 1}`,
-      speed_t: Number(current.toFixed(1)),
-      speed_t1: Number(next.toFixed(1)),
-      type: '正常',
-    });
-  }
-
-  const anomalyData: Datum[] = [
-    { sample: 'A-1', speed_t: 31.2, speed_t1: 104.8, type: '异常' },
-    { sample: 'A-2', speed_t: 109.4, speed_t1: 39.6, type: '异常' },
-    { sample: 'A-3', speed_t: 42.8, speed_t1: 116.2, type: '异常' },
-    { sample: 'A-4', speed_t: 121.3, speed_t1: 54.5, type: '异常' },
-    { sample: 'A-5', speed_t: 95.7, speed_t1: 22.9, type: '异常' },
-    { sample: 'A-6', speed_t: 24.9, speed_t1: 86.3, type: '异常' },
+function buildTimelineData(): Datum[] {
+  return [
+    { time: new Date('2026-02-26T07:38:00'), lane: '支付路由', severity: '提示', score: 28, event: '延迟抬升' },
+    { time: new Date('2026-02-26T07:45:00'), lane: '短信网关', severity: '提示', score: 24, event: '回执变慢' },
+    { time: new Date('2026-02-26T07:52:00'), lane: '风控引擎', severity: '预警', score: 48, event: '阈值收紧' },
+    { time: new Date('2026-02-26T08:00:00'), lane: '核心清算', severity: '严重', score: 86, event: '人工接管' },
+    { time: new Date('2026-02-26T08:08:00'), lane: '支付路由', severity: '严重', score: 92, event: '备通道切入' },
+    { time: new Date('2026-02-26T08:18:00'), lane: '客服热线', severity: '预警', score: 55, event: '投诉抬升' },
+    { time: new Date('2026-02-26T08:30:00'), lane: '核心清算', severity: '预警', score: 44, event: '人工退坡' },
+    { time: new Date('2026-02-26T08:44:00'), lane: '支付路由', severity: '提示', score: 26, event: '趋于稳定' },
   ];
-
-  return [...normalData, ...anomalyData];
 }
 
 export function TimePointTimelineG2() {
@@ -60,118 +47,71 @@ export function TimePointTimelineG2() {
       container: containerRef.current,
       autoFit: true,
       height: 320,
-      paddingLeft: 88,
+      paddingLeft: 86,
       paddingRight: 16,
       paddingTop: 20,
-      paddingBottom: 44,
+      paddingBottom: 42,
     });
 
-    const data = buildLagSpeedData();
+    const data = buildTimelineData();
 
     chart.options({
-      type: 'view',
+      type: 'point',
       data: {
         type: 'inline',
         value: data,
       },
       scale: {
-        x: {
-          nice: true,
-        },
-        y: {
-          nice: true,
+        color: {
+          domain: ['提示', '预警', '严重'],
+          range: ['#3b82f6', '#f59e0b', '#ef4444'],
         },
       },
-      children: [
+      encode: {
+        x: 'time',
+        y: 'lane',
+        color: 'severity',
+      },
+      style: {
+        fill: (d: Datum) => SEVERITY_COLORS[d.severity],
+        stroke: '#ffffff',
+        lineWidth: 1.4,
+        r: (d: Datum) => 4 + ((d.score - 20) / 80) * 6,
+        fillOpacity: 0.9,
+      },
+      labels: [
         {
-          type: 'line',
-          data: {
-            type: 'inline',
-            value: [
-              { x: 20, y: 20 },
-              { x: 130, y: 130 },
-            ],
-          },
-          encode: {
-            x: 'x',
-            y: 'y',
-          },
-          style: {
-            stroke: '#94a3b8',
-            lineDash: [4, 4],
-            lineWidth: 1.2,
-          },
-          tooltip: false,
-          legend: false,
-        },
-        {
-          type: 'point',
-          data: {
-            type: 'inline',
-            value: data.filter((d) => d.type === '正常'),
-          },
-          encode: {
-            x: 'speed_t',
-            y: 'speed_t1',
-          },
-          style: {
-            fill: '#2563eb',
-            stroke: '#ffffff',
-            lineWidth: 1,
-            r: 4.5,
-            fillOpacity: 0.85,
-          },
-          tooltip: false,
-          legend: false,
-        },
-        {
-          type: 'point',
-          data: {
-            type: 'inline',
-            value: data.filter((d) => d.type === '异常'),
-          },
-          encode: {
-            x: 'speed_t',
-            y: 'speed_t1',
-          },
-          style: {
-            fill: '#ef4444',
-            stroke: '#111827',
-            lineWidth: 1.1,
-            r: 8,
-            fillOpacity: 0.95,
-          },
-          labels: [
-            {
-              text: 'sample',
-              dy: -10,
-              fill: '#0f172a',
-              fontSize: 10,
-              fontWeight: 700,
-            },
-          ],
-          tooltip: {
-            title: (d: Datum) => d.sample,
-            items: [
-              { field: 'speed_t', name: 't 时刻速度(km/h)' },
-              { field: 'speed_t1', name: 't+1 时刻速度(km/h)' },
-              { field: 'type', name: '点类型' },
-            ],
-          },
-          legend: false,
+          text: (d: Datum) => (d.severity === '严重' ? d.event : ''),
+          dy: -12,
+          fill: '#0f172a',
+          fontSize: 10,
+          fontWeight: 600,
         },
       ],
       axis: {
         x: {
-          title: '汽车 t 时刻速度 (km/h)',
+          title: '事件时间',
+          labelFormatter: formatHourMinute,
         },
         y: {
-          title: '汽车 t+1 时刻速度 (km/h)',
+          title: false,
         },
       },
-      interaction: {
-        tooltip: { shared: false },
+      legend: {
+        color: {
+          title: '事件级别',
+        },
       },
+      tooltip: {
+        title: (d: Datum) => formatHourMinute(d.time),
+        items: [
+          { field: 'lane', name: '链路' },
+          { field: 'event', name: '事件' },
+          { field: 'severity', name: '级别' },
+          { field: 'score', name: '影响分' },
+        ],
+      },
+      interaction: [{ type: 'elementHighlight', background: true }],
     });
 
     chart.render();
