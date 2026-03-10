@@ -4,104 +4,118 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Graph, treeToGraphData } from '@antv/g6';
+import radialCompactTreeData from './demoData/RadialCompactTreeG6.json';
 
 export function RadialCompactTreeG6() {
   const containerRef = useRef<HTMLDivElement>(null);
   const graphRef = useRef<Graph | null>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
-    containerRef.current.innerHTML = '';
+    const container = containerRef.current;
+    if (!container) return;
+    container.innerHTML = '';
 
     let disposed = false;
+    let rendered = false;
+    let destroyed = false;
     const mountNode = document.createElement('div');
     mountNode.style.width = '100%';
     mountNode.style.height = '100%';
-    containerRef.current.appendChild(mountNode);
+    container.appendChild(mountNode);
     const safeDestroy = () => {
-      if (!graphRef.current) return;
+      if (destroyed || !graphRef.current) return;
+      destroyed = true;
       const graph = graphRef.current;
-      try {
-        graph.stopLayout();
-      } catch {
-        // ignore
-      }
       try {
         graph.destroy();
       } catch {
         // ignore
       }
       graphRef.current = null;
+      if (mountNode.parentNode === container) {
+        container.removeChild(mountNode);
+      }
     };
 
-    fetch('https://assets.antv.antgroup.com/g6/flare.json')
-      .then((res) => res.json())
-      .then((data) => {
-        if (disposed) return;
-
-        const graph = new Graph({
-          container: mountNode,
-          autoFit: 'view',
-          padding: 50,
-          data: treeToGraphData(data as any),
-          node: {
-            style: {
-              size: 12,
-              labelText: (d: any) => d.id,
-              labelBackground: true,
-              labelFontSize: 14,
-              labelFontFamily: 'Gill Sans',
-            },
+    const graph = new Graph({
+      container: mountNode,
+      autoFit: 'view',
+      padding: 50,
+      data: treeToGraphData(radialCompactTreeData as any),
+      node: {
+        style: {
+          size: (d: any) => (d.depth === 0 ? 22 : 14),
+          fill: (d: any) => {
+            if (d.depth === 0) return '#0f172a';
+            if (d.depth === 1) return '#2563eb';
+            return '#0ea5a4';
           },
-          edge: {
-            type: 'cubic-radial',
-            style: {
-              lineWidth: 3,
-            },
-          },
-          layout: {
-            type: 'compact-box',
-            radial: true,
-            direction: 'RL',
-            getVGap: () => 40,
-            getHGap: () => 80,
-            preLayout: false,
-          },
-          behaviors: [
-            'drag-canvas',
-            'zoom-canvas',
-            'drag-element',
-            {
-              key: 'hover-activate',
-              type: 'hover-activate',
-              degree: 5,
-              direction: 'in',
-              inactiveState: 'inactive',
-            },
-          ],
-          transforms: ['place-radial-labels'],
-          animation: false,
-        });
+          stroke: '#ffffff',
+          lineWidth: 1.4,
+          labelText: (d: any) => d.id,
+          labelBackground: true,
+          labelBackgroundFill: '#ffffff',
+          labelPadding: [2, 4],
+          labelFontSize: 12,
+          labelFill: '#334155',
+          labelFontFamily: 'Gill Sans',
+        },
+      },
+      edge: {
+        type: 'cubic-radial',
+        style: {
+          stroke: '#94a3b8',
+          lineWidth: 2.2,
+        },
+      },
+      layout: {
+        type: 'compact-box',
+        radial: true,
+        direction: 'RL',
+        getVGap: () => 40,
+        getHGap: () => 80,
+        preLayout: false,
+      },
+      behaviors: [
+        'drag-canvas',
+        'zoom-canvas',
+        'drag-element',
+        {
+          key: 'hover-activate',
+          type: 'hover-activate',
+          degree: 5,
+          direction: 'in',
+          inactiveState: 'inactive',
+        },
+      ],
+      transforms: ['place-radial-labels'],
+      animation: false,
+    });
 
-        graphRef.current = graph;
+    graphRef.current = graph;
 
-        graph
-          .render()
-          .then(() => {
-            if (disposed) safeDestroy();
-          })
-          .catch(() => {
-            if (disposed) return;
-          });
+    const renderPromise = graph
+      .render()
+      .then(() => {
+        rendered = true;
+        if (disposed) safeDestroy();
       })
-      .catch(() => {
-        // ignore
+      .catch((error: unknown) => {
+        if (!disposed) {
+          console.error(error);
+        }
+        if (disposed) safeDestroy();
       });
 
     return () => {
       disposed = true;
-      safeDestroy();
-      if (mountNode.parentNode) mountNode.parentNode.removeChild(mountNode);
+      if (rendered) {
+        safeDestroy();
+      } else {
+        void renderPromise.finally(() => {
+          safeDestroy();
+        });
+      }
     };
   }, []);
 

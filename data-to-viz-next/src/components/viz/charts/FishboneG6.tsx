@@ -142,16 +142,19 @@ export function FishboneG6() {
   const graphRef = useRef<Graph | null>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
-    containerRef.current.innerHTML = '';
+    const container = containerRef.current;
+    if (!container) return;
+    container.innerHTML = '';
 
     ensureTransformsRegistered();
 
     let disposed = false;
+    let rendered = false;
+    let destroyed = false;
     const mountNode = document.createElement('div');
     mountNode.style.width = '100%';
     mountNode.style.height = '100%';
-    containerRef.current.appendChild(mountNode);
+    container.appendChild(mountNode);
 
     const graph = new Graph({
       container: mountNode,
@@ -226,32 +229,41 @@ export function FishboneG6() {
     graphRef.current = graph;
 
     const safeDestroy = () => {
-      try {
-        graph.stopLayout();
-      } catch {
-        // ignore
-      }
+      if (destroyed || graphRef.current !== graph) return;
+      destroyed = true;
       try {
         graph.destroy();
       } catch {
         // ignore
       }
-      if (graphRef.current === graph) graphRef.current = null;
+      graphRef.current = null;
+      if (mountNode.parentNode === container) {
+        container.removeChild(mountNode);
+      }
     };
 
-    graph
+    const renderPromise = graph
       .render()
       .then(() => {
+        rendered = true;
         if (disposed) safeDestroy();
       })
-      .catch(() => {
-        if (disposed) return;
+      .catch((error: unknown) => {
+        if (!disposed) {
+          console.error(error);
+        }
+        if (disposed) safeDestroy();
       });
 
     return () => {
       disposed = true;
-      safeDestroy();
-      if (mountNode.parentNode) mountNode.parentNode.removeChild(mountNode);
+      if (rendered) {
+        safeDestroy();
+      } else {
+        void renderPromise.finally(() => {
+          safeDestroy();
+        });
+      }
     };
   }, []);
 
