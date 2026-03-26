@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { buildStoryHref, type TreeTabKey } from '@/lib/story-navigation';
 import { HistogramG2 } from '../charts/HistogramG2';
 import { BarplotG2 } from '../charts/BarplotG2';
 import { GroupedBarG2 } from '../charts/GroupedBarG2';
@@ -245,7 +246,7 @@ const CHART_COMPONENTS: Record<string, React.ComponentType> = {
 };
 
 // --- Custom Node Component (Rendered by G6) ---
-const NodeComponent = ({ data }: { data: DecisionNode }) => {
+const NodeComponent = ({ data, focusedNodeId }: { data: DecisionNode; focusedNodeId?: string }) => {
   const { label, icon } = data.data;
   const labelCn = data.data['label-cn'];
   const displayLabel = labelCn || label;
@@ -253,6 +254,7 @@ const NodeComponent = ({ data }: { data: DecisionNode }) => {
   const type = data.type;
   const isQuestion = type === 'decision-question';
   const isCategory = type === 'decision-category';
+  const isFocused = data.id === focusedNodeId;
 
   // UI/UX Styling Strategy:
   // - Category (Root): Prominent, larger, brand color border.
@@ -269,7 +271,11 @@ const NodeComponent = ({ data }: { data: DecisionNode }) => {
 
   if (isQuestion) {
     return (
-      <div className="flex items-center justify-center w-full text-center px-5 py-2.5 bg-slate-100 border border-slate-300 rounded-full shadow-sm min-w-[120px]">
+      <div
+        className={`flex items-center justify-center w-full text-center px-5 py-2.5 rounded-full shadow-sm min-w-[120px] ${
+          isFocused ? 'bg-blue-50 border border-blue-400 shadow-md' : 'bg-slate-100 border border-slate-300'
+        }`}
+      >
          <span className="text-[24px] font-bold text-slate-700 tracking-normal">{displayLabel}</span>
       </div>
     );
@@ -277,13 +283,30 @@ const NodeComponent = ({ data }: { data: DecisionNode }) => {
 
   // Chart Node
   return (
-    <Card className="gap-1 flex flex-col items-center justify-center w-[120px] h-[120px]  hover:shadow-xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer group bg-white">
+    <Card
+      className={`gap-1 flex flex-col items-center justify-center w-[120px] h-[120px] hover:shadow-xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer group bg-white ${
+        isFocused ? 'border-blue-500 shadow-xl ring-4 ring-blue-100 -translate-y-1' : ''
+      }`}
+    >
       <div className="flex-1 flex items-center justify-center w-full pt-3">
          {/* Icon Container with subtle animation */}
-         {renderIcon(icon, "w-16 h-16 text-slate-400 group-hover:text-blue-600 transition-colors duration-300")}
+         {renderIcon(
+           icon,
+           `w-16 h-16 transition-colors duration-300 ${
+             isFocused ? 'text-blue-600' : 'text-slate-400 group-hover:text-blue-600'
+           }`,
+         )}
       </div>
-      <div className="mt-2 w-full text-center border-t border-slate-100 group-hover:border-blue-100 py-2">
-        <span className="text-xl font-bold text-slate-600 group-hover:text-blue-700 leading-normal block px-1">
+      <div
+        className={`mt-2 w-full text-center py-2 ${
+          isFocused ? 'border-t border-blue-100' : 'border-t border-slate-100 group-hover:border-blue-100'
+        }`}
+      >
+        <span
+          className={`text-xl font-bold leading-normal block px-1 ${
+            isFocused ? 'text-blue-700' : 'text-slate-600 group-hover:text-blue-700'
+          }`}
+        >
           {displayLabel}
         </span>
       </div>
@@ -292,7 +315,15 @@ const NodeComponent = ({ data }: { data: DecisionNode }) => {
 };
 
 // --- Main Graph Component ---
-export function DecisionGraph({ data }: { data: DecisionTreeData }) {
+export function DecisionGraph({
+  data,
+  focusNodeId,
+  activeTab,
+}: {
+  data: DecisionTreeData;
+  focusNodeId?: string;
+  activeTab: TreeTabKey;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedNode, setSelectedNode] = useState<DecisionNode | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -320,7 +351,7 @@ export function DecisionGraph({ data }: { data: DecisionTreeData }) {
       node: {
         type: 'react-node',
         style: {
-          component: (d: unknown) => <NodeComponent data={d as DecisionNode} />,
+          component: (d: unknown) => <NodeComponent data={d as DecisionNode} focusedNodeId={focusNodeId} />,
           // Define standard sizes for layout calculation
           size: (d: { type?: string }) => {
             if (d.type === 'decision-chart') return [130, 130] as const;
@@ -403,8 +434,15 @@ export function DecisionGraph({ data }: { data: DecisionTreeData }) {
     // Event Listener for Node Clicks (Reliable method)
     graph.on('node:click', handleNodeClick);
     const renderPromise = graph.render()
-      .then(() => {
+      .then(async () => {
         rendered = true;
+        if (focusNodeId && data.nodes.some((node) => node.id === focusNodeId)) {
+          try {
+            await graph.focusElement(focusNodeId, { duration: 600 });
+          } catch {
+            // Ignore focus failures; visual highlight still provides enough feedback.
+          }
+        }
         if (disposed) safeDestroy();
       })
       .catch((error: unknown) => {
@@ -425,7 +463,7 @@ export function DecisionGraph({ data }: { data: DecisionTreeData }) {
         });
       }
     };
-  }, [data]);
+  }, [data, focusNodeId]);
 
   return (
     <>
@@ -490,7 +528,10 @@ export function DecisionGraph({ data }: { data: DecisionTreeData }) {
                            disabled={!selectedNode.data.storyPath}
                            onClick={() => {
                              if (selectedNode.data.storyPath) {
-                               window.location.href = selectedNode.data.storyPath;
+                               window.location.href = buildStoryHref(selectedNode.data.storyPath, {
+                                 originTab: activeTab,
+                                 originFocus: selectedNode.id,
+                               });
                              }
                            }}
                          >

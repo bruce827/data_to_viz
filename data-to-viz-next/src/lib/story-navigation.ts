@@ -4,6 +4,10 @@ import treeCatNum from '@/data/tree-catnum.json';
 import treeMaps from '@/data/tree-maps.json';
 import treeNetwork from '@/data/tree-network.json';
 import treeTime from '@/data/tree-time.json';
+import {
+  buildDecisionTreeHrefFromTab,
+  buildStoryHrefWithOrigin,
+} from '@/lib/navigation-flow.mjs';
 
 export const TREE_DATA_MAP = {
   num: treeNumeric,
@@ -15,6 +19,10 @@ export const TREE_DATA_MAP = {
 } as const;
 
 export type TreeTabKey = keyof typeof TREE_DATA_MAP;
+export type StoryOrigin = {
+  originTab?: TreeTabKey;
+  originFocus?: string;
+};
 
 function getNodeStoryPath(node: { data?: unknown }): string | undefined {
   if (!node.data || typeof node.data !== 'object') return undefined;
@@ -47,7 +55,18 @@ export function getDecisionTreeTabByStoryPath(storyPath: string): TreeTabKey | u
   return tabs.values().next().value;
 }
 
-export function buildDecisionTreeHref(storyPath: string, preferredTab?: TreeTabKey): string {
+export function buildDecisionTreeHref(
+  storyPath: string,
+  preferredTab?: TreeTabKey,
+  focusedNodeId?: string,
+): string {
   const tab = preferredTab ?? getDecisionTreeTabByStoryPath(storyPath);
-  return tab ? `/?tab=${tab}` : '/';
+  return buildDecisionTreeHrefFromTab(tab, focusedNodeId);
+}
+
+export function buildStoryHref(
+  storyPath: string,
+  { originTab, originFocus, anchor }: StoryOrigin & { anchor?: string | null } = {},
+): string {
+  return buildStoryHrefWithOrigin(storyPath, { originTab, originFocus, anchor });
 }

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "generate:search": "node scripts/generate-search-index.mjs",
+    "predev": "npm run generate:search",
+    "prebuild": "npm run generate:search",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

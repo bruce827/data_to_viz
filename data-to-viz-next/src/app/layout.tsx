@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { GlobalSearchProvider } from '@/components/search/GlobalSearchProvider';
 
 export const metadata: Metadata = {
   title: "Data to Viz - Interactive Decision Tree",
@@ -14,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {children}
+        <GlobalSearchProvider>{children}</GlobalSearchProvider>
       </body>
     </html>
   );

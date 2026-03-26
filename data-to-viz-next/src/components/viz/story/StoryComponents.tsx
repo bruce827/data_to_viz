@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useSyncExternalStore } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { buildDecisionTreeHref, type TreeTabKey } from '@/lib/story-navigation';
+import { isTreeTabKey, type TreeTabKey } from '@/lib/story-navigation';
+import { resolveStoryReturnHref } from '@/lib/navigation-flow.mjs';
+import { SearchTrigger } from '@/components/search/SearchTrigger';
 
 interface StoryLayoutProps {
   title: string;
@@ -17,8 +18,22 @@ interface StoryLayoutProps {
 
 export function StoryLayout({ title, subtitle, children, icon: Icon, outlineItems, decisionTreeTab }: StoryLayoutProps) {
   const hasOutline = Boolean(outlineItems && outlineItems.length > 0);
-  const pathname = usePathname();
-  const decisionTreeHref = buildDecisionTreeHref(pathname || '/', decisionTreeTab);
+  const locationSearch = useSyncExternalStore(
+    () => () => undefined,
+    () => window.location.search,
+    () => '',
+  );
+  const params = new URLSearchParams(locationSearch);
+  const originTabParam = params.get('originTab');
+  const originFocusParam = params.get('originFocus');
+  const originTab: TreeTabKey | undefined = isTreeTabKey(originTabParam) ? originTabParam : undefined;
+  const originFocus = originFocusParam || undefined;
+
+  const decisionTreeHref = resolveStoryReturnHref({
+    fallbackTab: decisionTreeTab,
+    originTab,
+    originFocus,
+  });
 
   return (
     <div className="min-h-screen bg-white">
@@ -29,6 +44,7 @@ export function StoryLayout({ title, subtitle, children, icon: Icon, outlineItem
 	            <span className="text-blue-600">●</span> 数据可视化指南
 	          </Link>
 	          <div className="flex gap-2">
+               <SearchTrigger compact />
 	             <Button variant="ghost" size="sm" asChild>
 	                <Link href={decisionTreeHref}>返回决策树</Link>
 	             </Button>

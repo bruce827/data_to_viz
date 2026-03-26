@@ -46,6 +46,14 @@ npm run dev
 
 打开浏览器访问 [http://localhost:3000](http://localhost:3000) 即可查看效果。
 
+### 交互逻辑白盒检查
+
+```bash
+node scripts/whitebox-navigation-check.mjs
+```
+
+该脚本会校验搜索、story 跳转、返回决策树、定位节点这几条核心 URL 状态流，确保不会出现“回错面板”或“丢失节点上下文”的死路。
+
 ## 📂 项目结构
 
 ```text
@@ -68,6 +76,56 @@ src/
 │   └── ...
 └── lib/                  # 工具函数
 ```
+
+## 🔎 全局搜索与导航逻辑
+
+项目当前的搜索与导航有两套不同语义，必须区分：
+
+### 1. 返回决策树
+
+`返回决策树` 优先回到用户进入 story 之前所在的首页面板，而不是 story 自身所属的图表分类。
+
+例如：
+* 用户当前停留在 `数值 (num)` 面板。
+* 通过全局搜索打开了一个 `地图 (geo)` story。
+* 此时 story 页会保留 `originTab=num`。
+* 点击 `返回决策树` 时，应回到 `/?tab=num`，而不是 `/?tab=geo`。
+
+如果用户是从某个具体节点进入 story，还会继续保留 `originFocus=<nodeId>`，返回后首页会自动高亮该节点。
+
+### 2. 定位
+
+`定位` 是另一条动作链，它不关心用户原本在哪个面板，而是直接跳到当前 story 真正所属的决策树，并高亮其对应叶子节点。
+
+例如：
+* 搜索结果中的 `定位` 点击后，会跳到 `/?tab=geo&focus=chart-map-point`。
+* 首页会自动切换到 `地图` 面板，并高亮目标节点。
+
+### 3. URL 状态约定
+
+当前使用以下 query 参数保留交互上下文：
+
+* `tab`: 首页当前决策树面板
+* `focus`: 首页当前高亮节点
+* `originTab`: 进入 story 前所在的首页面板
+* `originFocus`: 进入 story 前所在的首页高亮节点
+
+这套约定的目标是保证：
+* 搜索进入 story 后，返回不会回错面板
+* 从树节点进入 story 后，返回不会丢失高亮节点
+* `定位` 不会错误继承旧的 `originTab`
+
+### 4. 代码入口
+
+相关逻辑主要集中在：
+
+* [src/components/search/GlobalSearchDialog.tsx](src/components/search/GlobalSearchDialog.tsx)
+* [src/components/viz/story/StoryComponents.tsx](src/components/viz/story/StoryComponents.tsx)
+* [src/components/viz/tree/DecisionGraph.tsx](src/components/viz/tree/DecisionGraph.tsx)
+* [src/components/viz/tree/MobileDecisionTree.tsx](src/components/viz/tree/MobileDecisionTree.tsx)
+* [src/lib/story-navigation.ts](src/lib/story-navigation.ts)
+* [src/lib/navigation-flow.mjs](src/lib/navigation-flow.mjs)
+* [scripts/whitebox-navigation-check.mjs](scripts/whitebox-navigation-check.mjs)
 
 ## 🎨 设计理念
 
