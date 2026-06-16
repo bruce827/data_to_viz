@@ -19,6 +19,7 @@ interface StoryLayoutProps {
 }
 
 export function StoryLayout({ title, subtitle, children, icon: Icon, outlineItems, decisionTreeTab }: StoryLayoutProps) {
+  const { theme } = useTheme();
   const hasOutline = Boolean(outlineItems && outlineItems.length > 0);
   const locationSearch = useSyncExternalStore(
     () => () => undefined,
@@ -44,7 +45,7 @@ export function StoryLayout({ title, subtitle, children, icon: Icon, outlineItem
       <header className="border-b border-slate-100 dark:border-cyan-500/20 bg-white dark:bg-cyan-950/20 sticky top-0 z-50 bg-opacity-90 dark:bg-opacity-80 backdrop-blur-md transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 md:h-16 flex items-center justify-between">
           <Link href="/" className="font-bold text-base md:text-lg text-slate-900 dark:text-cyan-100 flex items-center gap-2">
-            <span className="text-blue-600 dark:text-cyan-400">●</span> 数据可视化指南
+            <span className={theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'}>●</span> 数据可视化指南
           </Link>
           <div className="flex items-center gap-4">
             <SearchTrigger compact />
@@ -62,7 +63,7 @@ export function StoryLayout({ title, subtitle, children, icon: Icon, outlineItem
           <div className="flex items-center justify-center gap-3 mb-1.5">
             {Icon && (
               <div className="p-1.5 bg-white dark:bg-cyan-950/20 rounded-lg shadow-sm border border-slate-200 dark:border-cyan-500/30">
-                <Icon className="w-6 h-6 text-blue-600 dark:text-cyan-400" />
+                <Icon className={`w-6 h-6 ${theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'}`} />
               </div>
             )}
             <h1 className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-cyan-100 tracking-tight">

@@ -177,3 +177,34 @@
 .dark .g2-tooltip * {
   color: #cffafe !important;
 }
+
+/* Global dark mode styling overrides for generic tables and text in story pages */
+.dark table {
+  color: #e2e8f0 !important;
+  border-color: rgba(6, 182, 212, 0.15) !important;
+}
+
+.dark thead {
+  background-color: rgba(6, 182, 212, 0.1) !important;
+}
+
+.dark thead th {
+  color: #cffafe !important;
+}
+
+.dark tr {
+  border-color: rgba(6, 182, 212, 0.15) !important;
+}
+
+.dark td {
+  color: #94a3b8 !important;
+}
+
+.dark tr:hover {
+  background-color: rgba(6, 182, 212, 0.03) !important;
+}
+
+/* Override potential dark mode text visibility problems for story headers */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: #e2e8f0 !important;
+}
