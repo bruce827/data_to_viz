@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Graph, register } from '@antv/g6';
 import { ReactNode } from '@antv/g6-extension-react';
 import * as Icons from '../icons';
+import { useTheme } from '@/lib/ThemeContext';
 import {
   Dialog,
   DialogContent,
@@ -246,7 +247,7 @@ const CHART_COMPONENTS: Record<string, React.ComponentType> = {
 };
 
 // --- Custom Node Component (Rendered by G6) ---
-const NodeComponent = ({ data, focusedNodeId }: { data: DecisionNode; focusedNodeId?: string }) => {
+const NodeComponent = ({ data, focusedNodeId, isDark }: { data: DecisionNode; focusedNodeId?: string; isDark: boolean }) => {
   const { label, icon } = data.data;
   const labelCn = data.data['label-cn'];
   const displayLabel = labelCn || label;
@@ -263,8 +264,8 @@ const NodeComponent = ({ data, focusedNodeId }: { data: DecisionNode; focusedNod
 
   if (isCategory) {
     return (
-      <div className="flex flex-col items-center justify-center w-[160px] h-[70px] bg-slate-900 text-white rounded-lg shadow-lg border-2 border-slate-700">
-        <span className="font-bold text-[28px] tracking-wide ">{displayLabel}</span>
+      <div className="flex flex-col items-center justify-center w-[160px] h-[70px] bg-gradient-to-r from-blue-700 to-indigo-700 dark:from-cyan-950 dark:to-blue-950 text-white rounded-lg shadow-lg border-2 border-blue-600 dark:border-cyan-500/40 dark:shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+        <span className="font-bold text-[28px] tracking-wide dark:text-cyan-100 dark:drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">{displayLabel}</span>
       </div>
     );
   }
@@ -272,11 +273,13 @@ const NodeComponent = ({ data, focusedNodeId }: { data: DecisionNode; focusedNod
   if (isQuestion) {
     return (
       <div
-        className={`flex items-center justify-center w-full text-center px-5 py-2.5 rounded-full shadow-sm min-w-[120px] ${
-          isFocused ? 'bg-blue-50 border border-blue-400 shadow-md' : 'bg-slate-100 border border-slate-300'
+        className={`flex items-center justify-center w-full text-center px-5 py-2.5 rounded-full shadow-sm min-w-[120px] transition-all duration-300 ${
+          isFocused 
+            ? 'bg-blue-100/80 border border-blue-400 shadow-md text-blue-800 dark:bg-cyan-500/20 dark:border-cyan-400 dark:text-cyan-100 dark:shadow-[0_0_15px_rgba(6,182,212,0.3)]' 
+            : 'bg-blue-50/60 border border-blue-200/50 text-blue-700 dark:bg-cyan-950/20 dark:border-cyan-500/20 dark:text-cyan-200'
         }`}
       >
-         <span className="text-[24px] font-bold text-slate-700 tracking-normal">{displayLabel}</span>
+         <span className="text-[24px] font-bold tracking-normal">{displayLabel}</span>
       </div>
     );
   }
@@ -284,8 +287,10 @@ const NodeComponent = ({ data, focusedNodeId }: { data: DecisionNode; focusedNod
   // Chart Node
   return (
     <Card
-      className={`gap-1 flex flex-col items-center justify-center w-[120px] h-[120px] hover:shadow-xl hover:border-blue-400 hover:-translate-y-1 transition-all duration-300 cursor-pointer group bg-white ${
-        isFocused ? 'border-blue-500 shadow-xl ring-4 ring-blue-100 -translate-y-1' : ''
+      className={`gap-1 flex flex-col items-center justify-center w-[120px] h-[120px] transition-all duration-300 cursor-pointer group backdrop-blur border bg-white/95 dark:bg-cyan-950/15 dark:border-cyan-500/20 hover:-translate-y-1 hover:border-blue-400 dark:hover:border-cyan-400 shadow-sm hover:shadow-[0_12px_35px_rgba(37,99,235,0.1)] dark:hover:shadow-[0_0_18px_rgba(6,182,212,0.3)] ${
+        isFocused 
+          ? 'border-blue-500 shadow-lg shadow-blue-100 ring-4 ring-blue-100/50 -translate-y-1 dark:border-cyan-400 dark:ring-cyan-500/10 dark:shadow-[0_0_18px_rgba(6,182,212,0.35)]' 
+          : 'border-slate-200/60'
       }`}
     >
       <div className="flex-1 flex items-center justify-center w-full pt-3">
@@ -293,18 +298,24 @@ const NodeComponent = ({ data, focusedNodeId }: { data: DecisionNode; focusedNod
          {renderIcon(
            icon,
            `w-16 h-16 transition-colors duration-300 ${
-             isFocused ? 'text-blue-600' : 'text-slate-400 group-hover:text-blue-600'
+             isFocused 
+               ? 'text-blue-600 dark:text-cyan-400' 
+               : 'text-slate-400 dark:text-cyan-600 group-hover:text-blue-600 dark:group-hover:text-cyan-400'
            }`,
          )}
       </div>
       <div
         className={`mt-2 w-full text-center py-2 ${
-          isFocused ? 'border-t border-blue-100' : 'border-t border-slate-100 group-hover:border-blue-100'
+          isFocused 
+            ? 'border-t border-blue-100 dark:border-cyan-500/20' 
+            : 'border-t border-slate-200/40 dark:border-cyan-500/10 group-hover:border-blue-100 dark:group-hover:border-cyan-500/20'
         }`}
       >
         <span
           className={`text-xl font-bold leading-normal block px-1 ${
-            isFocused ? 'text-blue-700' : 'text-slate-600 group-hover:text-blue-700'
+            isFocused 
+              ? 'text-blue-700 dark:text-cyan-300' 
+              : 'text-slate-600 dark:text-slate-300 group-hover:text-blue-700 dark:group-hover:text-cyan-300'
           }`}
         >
           {displayLabel}
@@ -327,6 +338,7 @@ export function DecisionGraph({
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedNode, setSelectedNode] = useState<DecisionNode | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const container = containerRef.current;
@@ -351,7 +363,7 @@ export function DecisionGraph({
       node: {
         type: 'react-node',
         style: {
-          component: (d: unknown) => <NodeComponent data={d as DecisionNode} focusedNodeId={focusNodeId} />,
+          component: (d: unknown) => <NodeComponent data={d as DecisionNode} focusedNodeId={focusNodeId} isDark={theme === 'dark'} />,
           // Define standard sizes for layout calculation
           size: (d: { type?: string }) => {
             if (d.type === 'decision-chart') return [130, 130] as const;
@@ -369,12 +381,9 @@ export function DecisionGraph({
         style: {
           router: { 
             type: 'orth',
-            // padding:  90,
-            // offset: 30  
           },
-          // controlPoints:[5,20],
-          stroke: '#94a3b8',
-          lineWidth: 2,
+          stroke: theme === 'dark' ? '#00f0ff' : 'rgba(148, 163, 184, 0.5)',
+          lineWidth: theme === 'dark' ? 2.5 : 2,
           targetArrow: true,
           radius: 4,
         },
@@ -463,26 +472,26 @@ export function DecisionGraph({
         });
       }
     };
-  }, [data, focusNodeId]);
+  }, [data, focusNodeId, theme]);
 
   return (
     <>
         <div 
           ref={containerRef} 
-          className="w-full h-[800px] bg-slate-50/30" 
+          className="w-full h-[800px] bg-slate-50/30 dark:bg-transparent" 
         />
         
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-            <DialogContent className="sm:max-w-[600px]">
+            <DialogContent className="sm:max-w-[600px] dark:bg-slate-950 dark:border-cyan-500/20">
                 {selectedNode && (
                     <>
                     <DialogHeader>
                         <div className="flex items-center gap-4 mb-4">
                              {/* Render Icon in Header */}
-                             {renderIcon(selectedNode.data.icon, "w-12 h-12 text-blue-600")}
+                             {renderIcon(selectedNode.data.icon, "w-12 h-12 text-blue-600 dark:text-cyan-400")}
                             <div>
-                                <DialogTitle className="text-2xl">{selectedNode.data['label-cn'] || selectedNode.data.label}</DialogTitle>
-                                <DialogDescription className="text-base mt-1">
+                                <DialogTitle className="text-2xl dark:text-cyan-100">{selectedNode.data['label-cn'] || selectedNode.data.label}</DialogTitle>
+                                <DialogDescription className="text-base mt-1 dark:text-slate-400">
                                     {selectedNode.data['description-cn'] || selectedNode.data.description || "Explore this chart type to understand your data distribution."}
                                 </DialogDescription>
                             </div>
@@ -491,28 +500,28 @@ export function DecisionGraph({
                     
                     <div className="flex flex-col gap-6 py-4">
                         {/* Interactive Chart Container */}
-                        <div className="w-full bg-slate-50 rounded-xl border border-slate-200 overflow-hidden min-h-[350px] relative">
+                        <div className="w-full bg-slate-50 dark:bg-cyan-950/20 rounded-xl border border-slate-200 dark:border-cyan-500/20 overflow-hidden min-h-[350px] relative">
                              {(() => {
-                                 const ChartComponent = CHART_COMPONENTS[selectedNode.id];
-                                 if (ChartComponent) {
-                                     return (
-                                       <div className="p-4" key={selectedNode.id}>
-                                         <ChartComponent />
-                                       </div>
-                                     );
-                                 }
-                                 return (
-                                     <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 gap-3">
-                                         <Icons.NumericIcon className="w-12 h-12 opacity-20" />
-                                         <p className="text-sm">Demo chart coming soon for {selectedNode.data.label}</p>
-                                     </div>
-                                 );
-                             })()}
+                                  const ChartComponent = CHART_COMPONENTS[selectedNode.id];
+                                  if (ChartComponent) {
+                                      return (
+                                        <div className="p-4" key={`${selectedNode.id}-${theme}`}>
+                                          <ChartComponent />
+                                        </div>
+                                      );
+                                  }
+                                  return (
+                                      <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 gap-3">
+                                          <Icons.NumericIcon className="w-12 h-12 opacity-20" />
+                                          <p className="text-sm">Demo chart coming soon for {selectedNode.data.label}</p>
+                                      </div>
+                                  );
+                              })()}
                         </div>
 
-                        <div className="bg-blue-50/50 p-4 rounded-lg text-sm text-blue-900 border border-blue-100">
+                        <div className="bg-blue-50/50 dark:bg-cyan-950/40 p-4 rounded-lg text-sm text-blue-900 dark:text-cyan-200 border border-blue-100 dark:border-cyan-500/20">
                              <div className="font-semibold mb-1 flex items-center gap-2">
-                                <Icons.NumericIcon className="w-4 h-4" />
+                                <Icons.NumericIcon className="w-4 h-4 text-blue-600 dark:text-cyan-400" />
                                 核心用途
                              </div>
                              {selectedNode.data['description-cn'] || selectedNode.data.description || "探索此图表类型以了解您的数据分布。"}
@@ -520,11 +529,11 @@ export function DecisionGraph({
                     </div>
 
                     <div className="flex justify-end gap-3 pt-2">
-                         <Button variant="outline" onClick={() => setIsModalOpen(false)}>
+                         <Button variant="outline" className="dark:border-cyan-500/20 dark:hover:bg-cyan-950/40" onClick={() => setIsModalOpen(false)}>
                             关闭
                          </Button>
                          <Button
-                           className="bg-blue-600 hover:bg-blue-700"
+                           className="bg-blue-600 hover:bg-blue-700 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:text-slate-950 dark:font-bold"
                            disabled={!selectedNode.data.storyPath}
                            onClick={() => {
                              if (selectedNode.data.storyPath) {
